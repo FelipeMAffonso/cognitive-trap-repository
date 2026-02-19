@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit a Trap - Cognitive Trap Repository</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero hero-small">
+    <div class="container">
+      <a href="index.html" class="back-link">&larr; Back to Repository</a>
+      <h1>Submit a Cognitive Trap</h1>
+      <p class="hero-subtitle">Help build the community's defense against AI survey contamination</p>
+    </div>
+  </header>
+
+  <main class="container submit-page">
+
+    <section class="submit-intro">
+      <p>
+        Every trap added to this repository strengthens the research community's ability to
+        detect AI agents in online surveys. Submissions are reviewed for completeness and
+        added to the browsable collection. You do not need to have full deployment data;
+        preliminary results from model testing or pilot studies are welcome.
+      </p>
+    </section>
+
+    <section class="submit-requirements">
+      <div class="req-columns">
+        <div class="req-box req-required">
+          <h3>Required</h3>
+          <ul>
+            <li>Stimulus image (the visual task itself)</li>
+            <li>Trap name</li>
+            <li>Which architectural constraint it exploits</li>
+            <li>Question text and correct answer</li>
+            <li>Your name/affiliation (for attribution)</li>
+          </ul>
+        </div>
+        <div class="req-box req-optional">
+          <h3>Optional (but valuable)</h3>
+          <ul>
+            <li>Model testing results (which models, pass/fail rates, number of trials)</li>
+            <li>Human validation data (pass rate, sample size, platform)</li>
+            <li>Deployment results (agent failure rate, discrimination)</li>
+            <li>Source paper documenting the constraint</li>
+            <li>Response options used in the survey</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="submit-action">
+      <h2>Ready to submit?</h2>
+      <p>
+        Click the button below to open the submission form on GitHub. You can fill in the
+        structured fields and drag-and-drop your stimulus image directly into the form.
+        A free GitHub account is required.
+      </p>
+
+      <a href="https://github.com/FelipeMAffonso/cognitive-trap-repository/issues/new?template=submit-trap.yml"
+         class="btn btn-primary btn-large" target="_blank" rel="noopener">
+        Open Submission Form
+      </a>
+
+      <div class="submit-alt">
+        <p>
+          No GitHub account?
+          <a href="mailto:felipe.affonso@okstate.edu?subject=Cognitive%20Trap%20Submission&body=Trap%20Name%3A%0AConstraint%20Category%3A%0AQuestion%3A%0ACorrect%20Answer%3A%0ADescription%3A%0A%0A(Please%20attach%20stimulus%20image)">
+            Submit via email
+          </a>
+          with your stimulus image and trap details.
+        </p>
+      </div>
+    </section>
+
+    <section class="submit-guide">
+      <h2>What makes a good submission?</h2>
+
+      <div class="guide-grid">
+        <div class="guide-item">
+          <h4>Grounded in a known constraint</h4>
+          <p>
+            The best traps exploit a documented architectural limitation in vision-language models,
+            such as data overfitting, spatial reasoning failures, cross-modal binding errors, or
+            spatiotemporal processing limitations. Link to the computer science paper that documents
+            the constraint if possible.
+          </p>
+        </div>
+        <div class="guide-item">
+          <h4>Easy for humans, hard for models</h4>
+          <p>
+            The task should have a human pass rate above 75%. If humans also struggle with the task,
+            it cannot distinguish humans from AI and will produce too many false positives.
+            Our Shape Overload trap (47% human pass rate) was excluded for this reason.
+          </p>
+        </div>
+        <div class="guide-item">
+          <h4>Tested on at least one model</h4>
+          <p>
+            Even preliminary testing (10 trials on one model) is useful. Report the model name,
+            version, number of trials, and pass rate. Use standalone sessions (incognito/temporary chat)
+            so each trial is independent.
+          </p>
+        </div>
+        <div class="guide-item">
+          <h4>Clear and unambiguous</h4>
+          <p>
+            The question should have a single correct answer that does not depend on subjective
+            judgment. Avoid tasks where reasonable humans might disagree on the answer.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-cite">
+        <p class="footer-heading">How to Cite</p>
+        <p>Affonso, F.M. (2026). Are Your Survey Respondents Human? A Framework for Detecting AI Agents in Online Research. <em>Journal of Consumer Research</em>.</p>
+      </div>
+      <div class="footer-links">
+        <p class="footer-heading">Links</p>
+        <ul>
+          <li><a href="index.html">Browse Traps</a></li>
+          <li><a href="https://github.com/FelipeMAffonso/cognitive-trap-repository" target="_blank" rel="noopener">GitHub Repository</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>Maintained by Felipe M. Affonso. Built for the behavioral science community.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

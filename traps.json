@@ -1,0 +1,950 @@
+[
+  {
+    "id": "modified-muller-lyer",
+    "name": "Modified Muller-Lyer",
+    "category": "Data Overfitting",
+    "description": "The classic Muller-Lyer illusion is modified so that the two lines are actually identical in length, but the arrowhead fins create the standard perceptual illusion. Vision-language models, trained on the canonical illusion, report the expected illusory response rather than the actual physical equality.",
+    "question": "Which is longer, the blue line or the red line?",
+    "correctAnswer": "NONE (they are the same size)",
+    "responseOptions": [
+      "Blue Line",
+      "Red Line",
+      "NONE (they are the same size)"
+    ],
+    "image": "images/modified-muller-lyer.png",
+    "constraintExploited": "Training data overfitting. Models learn the canonical illusion response from extensive training examples and reproduce it even when the stimulus has been modified to eliminate the actual size difference.",
+    "sourcePapers": [
+      "Muller-Lyer (1889) — original illusion",
+      "Affonso (2026) — adapted for AI detection"
+    ],
+    "contributions": [
+      {
+        "id": "affonso-2026-original",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "original",
+        "description": "Initial submission with human validation, model testing, and agent deployment data"
+      }
+    ],
+    "humanStudies": [
+      {
+        "label": "Validation study",
+        "passRate": 0.911,
+        "sampleSize": 207,
+        "platform": "Prolific",
+        "date": "2025-10",
+        "source": "Affonso (2026), Table 3",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-validation"
+      },
+      {
+        "label": "Deployment study",
+        "passRate": 0.928,
+        "sampleSize": 1007,
+        "platform": "Prolific",
+        "date": "2025-11",
+        "source": "Affonso (2026), Table 5",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-deployment"
+      }
+    ],
+    "modelTests": [
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "GPT-5.1 Thinking",
+        "passRate": 0.3,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Pro",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Sonnet 4.5",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Haiku 4.5",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "agentTests": [
+      {
+        "agent": "Google Project Mariner",
+        "failureRate": null,
+        "sampleSize": 134,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Perplexity Comet",
+        "failureRate": null,
+        "sampleSize": 131,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "ChatGPT Agent",
+        "failureRate": null,
+        "sampleSize": 129,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Claude Sonnet 4.5 (Cursor)",
+        "failureRate": null,
+        "sampleSize": 132,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "pooledAgentResults": {
+      "failureRate": 0.941,
+      "sampleSize": 526,
+      "humanPassRate": 0.928,
+      "humanSampleSize": 1007,
+      "discriminationPP": 86.9,
+      "chiSq": 1117.6,
+      "source": "Affonso (2026), Table 5"
+    }
+  },
+  {
+    "id": "modified-cafe-wall",
+    "name": "Modified Cafe Wall",
+    "category": "Data Overfitting",
+    "description": "The Cafe Wall illusion is modified with diagonal lines added between alternating rows of black and white tiles. Humans correctly perceive the diagonal slant, but vision-language models report the canonical Cafe Wall response (that the lines appear slanted when they are actually straight), failing to recognize that in this modified version the lines genuinely are slanted.",
+    "question": "Are all the gray lines PERFECTLY STRAIGHT / HORIZONTAL or SLANTED / DIAGONAL?",
+    "correctAnswer": "Slanted / Diagonal",
+    "responseOptions": [
+      "Straight / Horizontal",
+      "Slanted / Diagonal"
+    ],
+    "image": "images/modified-cafe-wall.png",
+    "constraintExploited": "Training data overfitting. Models recognize the Cafe Wall pattern from training data and produce the canonical response without processing the actual geometric properties of the modified stimulus.",
+    "sourcePapers": [
+      "Gregory and Heard (1979) — original Cafe Wall illusion",
+      "Affonso (2026) — adapted for AI detection"
+    ],
+    "contributions": [
+      {
+        "id": "affonso-2026-original",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "original",
+        "description": "Initial submission with human validation, model testing, and agent deployment data"
+      }
+    ],
+    "humanStudies": [
+      {
+        "label": "Validation study",
+        "passRate": 0.832,
+        "sampleSize": 207,
+        "platform": "Prolific",
+        "date": "2025-10",
+        "source": "Affonso (2026), Table 3",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-validation"
+      },
+      {
+        "label": "Deployment study",
+        "passRate": 0.884,
+        "sampleSize": 1007,
+        "platform": "Prolific",
+        "date": "2025-11",
+        "source": "Affonso (2026), Table 5",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-deployment"
+      }
+    ],
+    "modelTests": [
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "GPT-5.1 Thinking",
+        "passRate": 0.2,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Pro",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Sonnet 4.5",
+        "passRate": 0.4,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Haiku 4.5",
+        "passRate": 0.3,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "agentTests": [
+      {
+        "agent": "Google Project Mariner",
+        "failureRate": null,
+        "sampleSize": 134,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Perplexity Comet",
+        "failureRate": null,
+        "sampleSize": 131,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "ChatGPT Agent",
+        "failureRate": null,
+        "sampleSize": 129,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Claude Sonnet 4.5 (Cursor)",
+        "failureRate": null,
+        "sampleSize": 132,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "pooledAgentResults": {
+      "failureRate": 0.949,
+      "sampleSize": 526,
+      "humanPassRate": 0.884,
+      "humanSampleSize": 1007,
+      "discriminationPP": 83.3,
+      "chiSq": 996.2,
+      "source": "Affonso (2026), Table 5"
+    }
+  },
+  {
+    "id": "modified-ebbinghaus",
+    "name": "Modified Ebbinghaus",
+    "category": "Data Overfitting",
+    "description": "The Ebbinghaus (Titchener circles) illusion is modified so that the red circle is objectively larger than the blue circle, while the surrounding context circles create the standard size-contrast illusion. Models trained on the canonical illusion report that the circles are the same size or that the blue circle is larger.",
+    "question": "Which is bigger, the blue circle or the red circle?",
+    "correctAnswer": "NONE (they are the same size)",
+    "responseOptions": [
+      "Blue Circle",
+      "Red Circle",
+      "NONE (they are the same size)"
+    ],
+    "image": "images/modified-ebbinghaus.jpg",
+    "constraintExploited": "Training data overfitting. The Ebbinghaus illusion is well-documented in training data. Models reproduce the learned canonical response rather than performing direct visual measurement on the modified stimulus.",
+    "sourcePapers": [
+      "Ebbinghaus (1902) — original illusion",
+      "Affonso (2026) — adapted for AI detection"
+    ],
+    "contributions": [
+      {
+        "id": "affonso-2026-original",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "original",
+        "description": "Initial submission with human validation, model testing, and agent deployment data"
+      }
+    ],
+    "humanStudies": [
+      {
+        "label": "Validation study",
+        "passRate": 0.901,
+        "sampleSize": 207,
+        "platform": "Prolific",
+        "date": "2025-10",
+        "source": "Affonso (2026), Table 3",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-validation"
+      },
+      {
+        "label": "Deployment study",
+        "passRate": 0.956,
+        "sampleSize": 1007,
+        "platform": "Prolific",
+        "date": "2025-11",
+        "source": "Affonso (2026), Table 5",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-deployment"
+      }
+    ],
+    "modelTests": [
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.1,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "GPT-5.1 Thinking",
+        "passRate": 0.6,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Pro",
+        "passRate": 0.3,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Sonnet 4.5",
+        "passRate": 0.6,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Haiku 4.5",
+        "passRate": 0.8,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "agentTests": [
+      {
+        "agent": "Google Project Mariner",
+        "failureRate": null,
+        "sampleSize": 134,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Perplexity Comet",
+        "failureRate": null,
+        "sampleSize": 131,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "ChatGPT Agent",
+        "failureRate": null,
+        "sampleSize": 129,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Claude Sonnet 4.5 (Cursor)",
+        "failureRate": null,
+        "sampleSize": 132,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "pooledAgentResults": {
+      "failureRate": 0.776,
+      "sampleSize": 526,
+      "humanPassRate": 0.956,
+      "humanSampleSize": 1007,
+      "discriminationPP": 73.2,
+      "chiSq": 890.4,
+      "source": "Affonso (2026), Table 5"
+    }
+  },
+  {
+    "id": "moving-robot",
+    "name": "Moving Robot",
+    "category": "Spatiotemporal Reasoning",
+    "description": "A robot moves progressively across four steps with consistent speed and trajectory. The task requires extrapolating the robot's position at Step 4 based on the pattern shown in Steps 1-3. Vision-language models fail because they process each frame independently rather than integrating motion across the temporal sequence.",
+    "question": "Across each step, the robot moves with the same speed and trajectory. Where is it most likely that the robot will be located on Step 4?",
+    "correctAnswer": "Mostly around the center of the square",
+    "responseOptions": [
+      "Mostly on the bottom right",
+      "Mostly on the bottom left",
+      "Mostly on the upper right",
+      "Mostly on the upper left",
+      "Mostly around the center of the square",
+      "Off-screen (outside the square)"
+    ],
+    "image": "images/moving-robot.png",
+    "constraintExploited": "Spatiotemporal reasoning. Models process each frame independently rather than integrating motion across a temporal sequence. They cannot extrapolate trajectories from sequential visual information.",
+    "sourcePapers": [
+      "Affonso (2026) — original design for AI detection"
+    ],
+    "contributions": [
+      {
+        "id": "affonso-2026-original",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "original",
+        "description": "Initial submission with human validation, model testing, and agent deployment data"
+      }
+    ],
+    "humanStudies": [
+      {
+        "label": "Validation study",
+        "passRate": 0.757,
+        "sampleSize": 207,
+        "platform": "Prolific",
+        "date": "2025-10",
+        "source": "Affonso (2026), Table 3",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-validation"
+      },
+      {
+        "label": "Deployment study",
+        "passRate": 0.779,
+        "sampleSize": 1007,
+        "platform": "Prolific",
+        "date": "2025-11",
+        "source": "Affonso (2026), Table 5",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-deployment"
+      }
+    ],
+    "modelTests": [
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "GPT-5.1 Thinking",
+        "passRate": 0.4,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Pro",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Sonnet 4.5",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Haiku 4.5",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "agentTests": [
+      {
+        "agent": "Google Project Mariner",
+        "failureRate": null,
+        "sampleSize": 134,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Perplexity Comet",
+        "failureRate": null,
+        "sampleSize": 131,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "ChatGPT Agent",
+        "failureRate": null,
+        "sampleSize": 129,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Claude Sonnet 4.5 (Cursor)",
+        "failureRate": null,
+        "sampleSize": 132,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "pooledAgentResults": {
+      "failureRate": 0.996,
+      "sampleSize": 526,
+      "humanPassRate": 0.779,
+      "humanSampleSize": 1007,
+      "discriminationPP": 77.5,
+      "chiSq": 830.1,
+      "source": "Affonso (2026), Table 5"
+    }
+  },
+  {
+    "id": "colliding-oranges",
+    "name": "Colliding Oranges",
+    "category": "Spatial Reasoning",
+    "description": "A set of shapes in a 2D display where the participant predicts which objects would collide if the largest circle moved in a straight line toward the smallest circle. This requires mental simulation of physical movement and spatial reasoning about object positions and sizes.",
+    "question": "The largest circle will move straight to the left towards the smallest circle. What are the objects in the way, if any?",
+    "correctAnswer": "Green Triangle",
+    "responseOptions": [
+      "Green Triangle",
+      "Other object combinations"
+    ],
+    "image": "images/colliding-oranges.png",
+    "constraintExploited": "Spatial reasoning with mental simulation. Models struggle to simulate physical movement through 2D space and reason about which objects lie in the path of motion, especially when object sizes and positions require integrated spatial judgment.",
+    "sourcePapers": [
+      "Affonso (2026) — original design for AI detection"
+    ],
+    "contributions": [
+      {
+        "id": "affonso-2026-original",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "original",
+        "description": "Initial submission with human validation, model testing, and agent deployment data"
+      }
+    ],
+    "humanStudies": [
+      {
+        "label": "Validation study",
+        "passRate": 0.866,
+        "sampleSize": 207,
+        "platform": "Prolific",
+        "date": "2025-10",
+        "source": "Affonso (2026), Table 3",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-validation"
+      },
+      {
+        "label": "Deployment study",
+        "passRate": 0.887,
+        "sampleSize": 1007,
+        "platform": "Prolific",
+        "date": "2025-11",
+        "source": "Affonso (2026), Table 5",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-deployment"
+      }
+    ],
+    "modelTests": [
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.4,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "GPT-5.1 Thinking",
+        "passRate": 0.8,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Pro",
+        "passRate": 0.3,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Sonnet 4.5",
+        "passRate": 0.3,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Haiku 4.5",
+        "passRate": 0.1,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "agentTests": [
+      {
+        "agent": "Google Project Mariner",
+        "failureRate": null,
+        "sampleSize": 134,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Perplexity Comet",
+        "failureRate": null,
+        "sampleSize": 131,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "ChatGPT Agent",
+        "failureRate": null,
+        "sampleSize": 129,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Claude Sonnet 4.5 (Cursor)",
+        "failureRate": null,
+        "sampleSize": 132,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "pooledAgentResults": {
+      "failureRate": 0.506,
+      "sampleSize": 526,
+      "humanPassRate": 0.887,
+      "humanSampleSize": 1007,
+      "discriminationPP": 39.3,
+      "chiSq": 285.5,
+      "source": "Affonso (2026), Table 5"
+    }
+  },
+  {
+    "id": "surrounded-planets",
+    "name": "Surrounded Planets",
+    "category": "Cross-Modal Binding",
+    "description": "Six colored planets are each surrounded by several geometric shapes. Five planets have 5 shapes surrounding them; one planet has only 4. The task requires counting shapes around each planet and identifying the one with fewer shapes. Models struggle to correctly bind shapes to specific planets when visual elements overlap and occlude each other.",
+    "question": "Each planet is surrounded by several shapes. Five planets have 5 shapes surrounding them. One planet has 4 shapes. What color is the planet that has only 4 shapes?",
+    "correctAnswer": "Orange",
+    "responseOptions": [
+      "Orange",
+      "Purple",
+      "Blue",
+      "Red",
+      "Green",
+      "Gray"
+    ],
+    "image": "images/surrounded-planets.png",
+    "constraintExploited": "Cross-modal binding with occluded stimuli. Models fail to correctly bind visual elements (shapes) to specific referents (planets) when elements overlap and partially occlude each other.",
+    "sourcePapers": [
+      "Affonso (2026) — original design for AI detection"
+    ],
+    "contributions": [
+      {
+        "id": "affonso-2026-original",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "original",
+        "description": "Initial submission with human validation, model testing, and agent deployment data"
+      }
+    ],
+    "humanStudies": [
+      {
+        "label": "Validation study",
+        "passRate": 0.921,
+        "sampleSize": 207,
+        "platform": "Prolific",
+        "date": "2025-10",
+        "source": "Affonso (2026), Table 3",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-validation"
+      },
+      {
+        "label": "Deployment study",
+        "passRate": 0.965,
+        "sampleSize": 1007,
+        "platform": "Prolific",
+        "date": "2025-11",
+        "source": "Affonso (2026), Table 5",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-deployment"
+      }
+    ],
+    "modelTests": [
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.7,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "GPT-5.1 Thinking",
+        "passRate": 0.8,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Pro",
+        "passRate": 0.2,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Sonnet 4.5",
+        "passRate": 0.4,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Haiku 4.5",
+        "passRate": 0.2,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "agentTests": [
+      {
+        "agent": "Google Project Mariner",
+        "failureRate": null,
+        "sampleSize": 134,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Perplexity Comet",
+        "failureRate": null,
+        "sampleSize": 131,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "ChatGPT Agent",
+        "failureRate": null,
+        "sampleSize": 129,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "agent": "Claude Sonnet 4.5 (Cursor)",
+        "failureRate": null,
+        "sampleSize": 132,
+        "date": "2025-11",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "pooledAgentResults": {
+      "failureRate": 0.555,
+      "sampleSize": 526,
+      "humanPassRate": 0.965,
+      "humanSampleSize": 1007,
+      "discriminationPP": 52.0,
+      "chiSq": 557.6,
+      "source": "Affonso (2026), Table 5"
+    }
+  },
+  {
+    "id": "shape-overload",
+    "name": "Shape Overload",
+    "category": "Compositional Counting",
+    "description": "An image contains circles, rectangles, triangles, and hexagons in various colors. The participant must first identify which shape type appears in the most different colors, then count how many of that shape are present. This requires compositional reasoning: integrating shape identity, color variation, and counting in sequence.",
+    "question": "One of these shape types appears in more different colors than the other three. First, identify which shape appears with most colors. Then, count how many of those shapes are in the image.",
+    "correctAnswer": "14",
+    "responseOptions": [
+      "Open-ended numeric response"
+    ],
+    "image": "images/shape-overload.png",
+    "constraintExploited": "Compositional counting. Models struggle with multi-step visual reasoning that requires identifying a category, applying a criterion, and then counting instances.",
+    "sourcePapers": [
+      "Affonso (2026) — original design for AI detection"
+    ],
+    "contributions": [
+      {
+        "id": "affonso-2026-original",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "original",
+        "description": "Initial submission with human validation and model testing data"
+      }
+    ],
+    "humanStudies": [
+      {
+        "label": "Validation study",
+        "passRate": 0.47,
+        "sampleSize": 207,
+        "platform": "Prolific",
+        "date": "2025-10",
+        "source": "Affonso (2026), Table 3",
+        "contributionId": "affonso-2026-original",
+        "cohortId": "affonso-2026-validation"
+      }
+    ],
+    "modelTests": [
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.4,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "GPT-5.1 Thinking",
+        "passRate": 0.7,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Pro",
+        "passRate": 0.5,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Gemini 2.5 Flash",
+        "passRate": 0.1,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Sonnet 4.5",
+        "passRate": 0.6,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      },
+      {
+        "model": "Claude Haiku 4.5",
+        "passRate": 0.4,
+        "trials": 10,
+        "date": "2025-10",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-original"
+      }
+    ],
+    "agentTests": [],
+    "pooledAgentResults": null
+  }
+]

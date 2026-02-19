@@ -1,0 +1,162 @@
+name: "Submit a Cognitive Trap"
+description: "Submit a new cognitive trap for the repository"
+title: "[Trap Submission] "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Submit a Cognitive Trap
+
+        Thank you for contributing to the Cognitive Trap Repository! Please fill in the fields below.
+        Fields marked with * are required. Everything else is optional but makes your submission more useful.
+
+        **Stimulus image:** Drag and drop your stimulus image into any text field below, or attach it at the bottom of the form.
+
+  - type: input
+    id: trap-name
+    attributes:
+      label: "Trap Name *"
+      description: "A short descriptive name for the trap"
+      placeholder: "e.g., Modified Ponzo Illusion"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: "Constraint Category *"
+      description: "Which architectural constraint does this trap exploit?"
+      options:
+        - Data Overfitting
+        - Spatial Reasoning
+        - Spatiotemporal Reasoning
+        - Cross-Modal Binding
+        - Compositional Counting
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description *"
+      description: "Describe the trap: what it shows, why humans get it right, and why models get it wrong"
+      placeholder: "This trap presents a modified version of..."
+    validations:
+      required: true
+
+  - type: input
+    id: question
+    attributes:
+      label: "Question Text *"
+      description: "The exact question presented to participants"
+      placeholder: "e.g., Which line is longer, A or B?"
+    validations:
+      required: true
+
+  - type: input
+    id: correct-answer
+    attributes:
+      label: "Correct Answer *"
+      description: "The correct response"
+      placeholder: "e.g., They are the same length"
+    validations:
+      required: true
+
+  - type: textarea
+    id: response-options
+    attributes:
+      label: "Response Options"
+      description: "List all response options (one per line)"
+      placeholder: |
+        Line A is longer
+        Line B is longer
+        They are the same length
+
+  - type: textarea
+    id: stimulus-image
+    attributes:
+      label: "Stimulus Image *"
+      description: "Drag and drop your stimulus image here. GitHub will upload it and insert a link."
+      placeholder: "Drag and drop your image here..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraint-detail
+    attributes:
+      label: "Constraint Exploited"
+      description: "Explain the specific architectural limitation this trap targets"
+      placeholder: "Models trained on the canonical illusion reproduce the learned response..."
+
+  - type: textarea
+    id: source-paper
+    attributes:
+      label: "Source Paper(s)"
+      description: "Papers documenting the constraint or describing the trap design (one per line)"
+      placeholder: |
+        Smith et al. (2025) - Documented the constraint in GPT-5 vision
+        Original illusion: Ponzo (1911)
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ## Validation Data (optional)
+
+        If you have tested this trap against models and/or humans, please share what you have.
+        Any amount of data is useful.
+
+  - type: textarea
+    id: model-results
+    attributes:
+      label: "Model Testing Results"
+      description: "Which models were tested, how many trials, and what pass rates? One model per line."
+      placeholder: |
+        GPT-5 Instant: 0/10 passed (0%)
+        Claude Sonnet 4.5: 3/10 passed (30%)
+        Gemini 2.5 Pro: 1/10 passed (10%)
+
+  - type: input
+    id: human-pass-rate
+    attributes:
+      label: "Human Pass Rate"
+      description: "What proportion of humans answered correctly?"
+      placeholder: "e.g., 92% (184/200)"
+
+  - type: input
+    id: human-sample
+    attributes:
+      label: "Human Sample Details"
+      description: "Sample size, platform, and any relevant details"
+      placeholder: "e.g., N=200 on Prolific, November 2025"
+
+  - type: textarea
+    id: deployment-results
+    attributes:
+      label: "Deployment Results"
+      description: "If you deployed this trap in a real survey with both humans and agents, share the results"
+      placeholder: |
+        Agent failure rate: 95% (190/200 agents)
+        Human pass rate: 91% (910/1000 humans)
+        Discrimination: 86 percentage points
+
+  - type: markdown
+    attributes:
+      value: "---"
+
+  - type: input
+    id: submitter
+    attributes:
+      label: "Your Name / Affiliation *"
+      description: "For attribution on the repository"
+      placeholder: "e.g., Jane Smith, University of Example"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: "Anything Else"
+      description: "Any additional context, notes, or caveats"

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cognitive Trap Repository</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <h1>Cognitive Trap Repository</h1>
+      <p class="hero-subtitle">Community tools for detecting AI agents in online surveys</p>
+      <p class="hero-description">
+        Cognitive traps are visual-perceptual tasks that exploit architectural constraints in
+        vision-language models. Humans pass them easily; AI agents fail systematically.
+        Browse the collection, click any trap to see full details and download the stimulus.
+      </p>
+      <div class="hero-actions">
+        <a href="#traps" class="btn btn-primary">Browse Traps</a>
+        <a href="submit.html" class="btn btn-secondary">Submit a Trap</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="stats-bar">
+    <div class="container stats-grid">
+      <div class="stat">
+        <span class="stat-number" id="stat-traps">0</span>
+        <span class="stat-label">Total Traps</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" id="stat-models">0</span>
+        <span class="stat-label">LLM Models</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" id="stat-agents">0</span>
+        <span class="stat-label">Agent Platforms</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" id="stat-humans">0</span>
+        <span class="stat-label">Human Participants</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="container" id="traps">
+    <div class="controls">
+      <div class="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+          <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+        </svg>
+        <input type="text" id="search" placeholder="Search by name, category, model..." autocomplete="off">
+      </div>
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+      </div>
+    </div>
+
+    <div class="sort-bar">
+      <span class="sort-label">Sort by</span>
+      <div class="sort-options" id="sort-options">
+        <button class="sort-btn active" data-sort="discrimination">Discrimination</button>
+        <button class="sort-btn" data-sort="agent-fail">Agent Failure</button>
+        <button class="sort-btn" data-sort="human-pass">Human Pass</button>
+        <button class="sort-btn" data-sort="name">Name</button>
+      </div>
+      <span class="results-count" id="results-count"></span>
+    </div>
+
+    <div class="trap-grid" id="trap-grid"></div>
+
+    <div class="empty-state" id="empty-state" style="display:none;">
+      <p>No traps match your search.</p>
+    </div>
+  </main>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Have a cognitive trap to share?</h2>
+      <p>Help the community detect AI survey contamination. Submit your trap with whatever validation data you have.</p>
+      <a href="submit.html" class="btn btn-primary">Submit a Trap</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-cite">
+        <p class="footer-heading">How to Cite</p>
+        <p>Affonso, F.M. (2026). Are Your Survey Respondents Human? A Framework for Detecting AI Agents in Online Research. <em>Journal of Consumer Research</em>.</p>
+      </div>
+      <div class="footer-links">
+        <p class="footer-heading">Links</p>
+        <ul>
+          <li><a href="submit.html">Submit a Trap</a></li>
+          <li><a href="https://github.com/FelipeMAffonso/cognitive-trap-repository" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>Maintained by Felipe M. Affonso. Built for the behavioral science community.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal"></div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
