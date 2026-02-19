@@ -28,7 +28,7 @@
     ],
     "humanStudies": [
       {
-        "label": "Validation study",
+        "label": "Affonso (2026), validation study",
         "passRate": 0.911,
         "sampleSize": 207,
         "platform": "Prolific",
@@ -38,7 +38,7 @@
         "cohortId": "affonso-2026-validation"
       },
       {
-        "label": "Deployment study",
+        "label": "Affonso (2026), deployment study",
         "passRate": 0.928,
         "sampleSize": 1007,
         "platform": "Prolific",
@@ -170,7 +170,7 @@
     ],
     "humanStudies": [
       {
-        "label": "Validation study",
+        "label": "Affonso (2026), validation study",
         "passRate": 0.832,
         "sampleSize": 207,
         "platform": "Prolific",
@@ -180,7 +180,7 @@
         "cohortId": "affonso-2026-validation"
       },
       {
-        "label": "Deployment study",
+        "label": "Affonso (2026), deployment study",
         "passRate": 0.884,
         "sampleSize": 1007,
         "platform": "Prolific",
@@ -313,7 +313,7 @@
     ],
     "humanStudies": [
       {
-        "label": "Validation study",
+        "label": "Affonso (2026), validation study",
         "passRate": 0.901,
         "sampleSize": 207,
         "platform": "Prolific",
@@ -323,7 +323,7 @@
         "cohortId": "affonso-2026-validation"
       },
       {
-        "label": "Deployment study",
+        "label": "Affonso (2026), deployment study",
         "passRate": 0.956,
         "sampleSize": 1007,
         "platform": "Prolific",
@@ -458,7 +458,7 @@
     ],
     "humanStudies": [
       {
-        "label": "Validation study",
+        "label": "Affonso (2026), validation study",
         "passRate": 0.757,
         "sampleSize": 207,
         "platform": "Prolific",
@@ -468,7 +468,7 @@
         "cohortId": "affonso-2026-validation"
       },
       {
-        "label": "Deployment study",
+        "label": "Affonso (2026), deployment study",
         "passRate": 0.779,
         "sampleSize": 1007,
         "platform": "Prolific",
@@ -599,7 +599,7 @@
     ],
     "humanStudies": [
       {
-        "label": "Validation study",
+        "label": "Affonso (2026), validation study",
         "passRate": 0.866,
         "sampleSize": 207,
         "platform": "Prolific",
@@ -609,7 +609,7 @@
         "cohortId": "affonso-2026-validation"
       },
       {
-        "label": "Deployment study",
+        "label": "Affonso (2026), deployment study",
         "passRate": 0.887,
         "sampleSize": 1007,
         "platform": "Prolific",
@@ -744,7 +744,7 @@
     ],
     "humanStudies": [
       {
-        "label": "Validation study",
+        "label": "Affonso (2026), validation study",
         "passRate": 0.921,
         "sampleSize": 207,
         "platform": "Prolific",
@@ -754,7 +754,7 @@
         "cohortId": "affonso-2026-validation"
       },
       {
-        "label": "Deployment study",
+        "label": "Affonso (2026), deployment study",
         "passRate": 0.965,
         "sampleSize": 1007,
         "platform": "Prolific",
@@ -884,7 +884,7 @@
     ],
     "humanStudies": [
       {
-        "label": "Validation study",
+        "label": "Affonso (2026), validation study",
         "passRate": 0.47,
         "sampleSize": 207,
         "platform": "Prolific",
