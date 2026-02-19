@@ -33,7 +33,7 @@ You need: a stimulus image, the question/answer, and the constraint it exploits.
 
 If you use traps from this repository, please cite:
 
-> Affonso, F.M. (2026). Are Your Survey Respondents Human? A Framework for Detecting AI Agents in Online Research. *Journal of Consumer Research*.
+> Affonso, F.M. (2026). Brief Commentary: Are Your Survey Respondents Human? A Framework for Detecting AI Agents in Online Research. *Journal of Consumer Research*.
 
 ## Setup (for maintainers)
 
