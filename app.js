@@ -129,13 +129,27 @@
       modelFailRate = 1 - (mSum / t.modelTests.length);
     }
 
+    // Always compute discrimination dynamically from data
     var discriminationPP = 0;
-    if (t.pooledAgentResults && t.pooledAgentResults.discriminationPP != null) {
-      discriminationPP = t.pooledAgentResults.discriminationPP;
-    } else if (agentFailRate !== null && humanPassRate !== null) {
-      discriminationPP = (agentFailRate - (1 - humanPassRate)) * 100;
-    } else if (modelFailRate !== null && humanPassRate !== null) {
-      discriminationPP = (modelFailRate - (1 - humanPassRate)) * 100;
+    var effectiveFailRate = agentFailRate !== null ? agentFailRate : modelFailRate;
+    if (effectiveFailRate !== null && humanPassRate !== null) {
+      discriminationPP = (effectiveFailRate - (1 - humanPassRate)) * 100;
+    }
+
+    // Chi-square: 2x2 contingency table (AI/human x pass/fail)
+    var chiSq = null;
+    var aiN = agentFailRate !== null ? agentN : 0;
+    if (aiN === 0 && t.modelTests && t.modelTests.length > 0) {
+      t.modelTests.forEach(function (m) { aiN += m.trials; });
+    }
+    if (effectiveFailRate !== null && humanPassRate !== null && aiN > 0 && humanN > 0) {
+      var a = Math.round(effectiveFailRate * aiN);
+      var b = aiN - a;
+      var c = Math.round((1 - humanPassRate) * humanN);
+      var d = humanN - c;
+      var total = a + b + c + d;
+      var denom = (a + b) * (c + d) * (a + c) * (b + d);
+      if (denom > 0) chiSq = total * Math.pow(a * d - b * c, 2) / denom;
     }
 
     return {
@@ -145,6 +159,7 @@
       agentN: agentN,
       modelFailRate: modelFailRate,
       discriminationPP: discriminationPP,
+      chiSq: chiSq,
       hasAgentData: agentFailRate !== null,
       hasHumanData: humanPassRate !== null,
       hasModelData: modelFailRate !== null
@@ -178,7 +193,7 @@
     var seenCohorts = {};
     allTraps.forEach(function (t) {
       if (t.humanStudies) t.humanStudies.forEach(function (h) {
-        var key = h.cohortId || (h.platform + "|" + h.date + "|" + h.sampleSize);
+        var key = h.cohortId || (h.platform + "|" + h.source + "|" + h.sampleSize);
         if (!seenCohorts[key]) {
           seenCohorts[key] = h.sampleSize;
         }
@@ -350,12 +365,21 @@
       var failLabel = p.hasAgentData ? "Pooled Agent Failure" : "Avg Model Failure";
       var failVal = p.hasAgentData ? p.agentFailRate : p.modelFailRate;
       var failSub = p.hasAgentData ? "N=" + p.agentN + " agents" : t.modelTests.length + " models";
+      var discrimVal = p.hasHumanData ? p.discriminationPP.toFixed(1) + "pp" : "--";
+      var discrimSub = "";
+      var discrimCls = "neutral";
+      if (!p.hasHumanData) {
+        discrimSub = "Requires human data";
+        discrimCls = "muted";
+      } else if (p.chiSq !== null) {
+        discrimSub = "\u03C7\u00B2=" + p.chiSq.toFixed(1) + ", p<.001";
+      }
       summaryHtml = '<div class="modal-section">' +
         '<div class="modal-section-title">Summary</div>' +
         '<div class="modal-stats">' +
           mStat(pct(failVal), failLabel, failSub, "good") +
           mStat(p.hasHumanData ? pct(p.humanPassRate) : "--", "Human Pass Rate", p.hasHumanData ? "N=" + p.humanN + " humans" : "No data", p.hasHumanData ? "good" : "muted") +
-          mStat(p.discriminationPP.toFixed(1) + "pp", "Discrimination", p.hasAgentData && t.pooledAgentResults ? "\u03C7\u00B2=" + t.pooledAgentResults.chiSq.toFixed(1) + ", p<.001" : "", "neutral") +
+          mStat(discrimVal, "Discrimination", discrimSub, discrimCls, "discrim") +
         '</div></div>';
     }
 
@@ -365,7 +389,7 @@
       humanHtml = '<div class="modal-section" data-layer="human">' +
         '<div class="modal-section-title">Human Performance</div>' +
         '<table class="model-table"><thead><tr>' +
-          '<th>Study</th><th>Pass Rate</th><th>N</th><th>Platform</th><th>Date</th>' +
+          '<th>Study</th><th>Pass Rate</th><th>N</th><th>Platform</th>' +
           (hasMultiple ? '<th>Source</th>' : '') +
         '</tr></thead><tbody>';
       t.humanStudies.forEach(function (h) {
@@ -377,7 +401,6 @@
           '<td><span class="rate ' + (h.passRate >= 0.75 ? 'rate-high' : 'rate-low') + '">' + pct(h.passRate) + '</span></td>' +
           '<td>' + h.sampleSize + '</td>' +
           '<td>' + esc(h.platform) + '</td>' +
-          '<td>' + esc(h.date) + '</td>' +
           srcTag +
         '</tr>';
       });
@@ -390,7 +413,7 @@
       modelHtml = '<div class="modal-section" data-layer="model">' +
         '<div class="modal-section-title">Base Model Testing (API / Chat)</div>' +
         '<table class="model-table"><thead><tr>' +
-          '<th>Model</th><th>Pass Rate</th><th>Trials</th><th></th><th>Date</th>' +
+          '<th>Model</th><th>Pass Rate</th><th>Trials</th><th></th>' +
           (hasMultiple ? '<th>Source</th>' : '') +
         '</tr></thead><tbody>';
       t.modelTests.forEach(function (m) {
@@ -404,7 +427,6 @@
           '<td><span class="rate ' + rc + '">' + pr + '%</span></td>' +
           '<td>' + m.trials + '</td>' +
           '<td class="pass-bar-cell"><div class="pass-bar"><div class="pass-bar-fill" style="width:' + pr + '%"></div></div></td>' +
-          '<td style="color:var(--gray-600);font-size:12px;">' + esc(m.date) + '</td>' +
           srcTag +
         '</tr>';
       });
@@ -419,7 +441,7 @@
       agentHtml = '<div class="modal-section" data-layer="agent">' +
         '<div class="modal-section-title">Autonomous Agent Deployment (Real Survey)</div>' +
         '<table class="model-table"><thead><tr>' +
-          '<th>Agent Platform</th><th>N Deployed</th><th>Date</th>' +
+          '<th>Agent Platform</th><th>N Deployed</th>' +
           (hasMultiple ? '<th>Source</th>' : '') +
         '</tr></thead><tbody>';
       t.agentTests.forEach(function (a) {
@@ -429,7 +451,6 @@
         agentHtml += '<tr data-contribution="' + esc(cId) + '">' +
           '<td>' + esc(a.agent) + '</td>' +
           '<td>' + a.sampleSize + '</td>' +
-          '<td style="color:var(--gray-600);font-size:12px;">' + esc(a.date) + '</td>' +
           srcTag +
         '</tr>';
       });
@@ -542,6 +563,50 @@
         });
       }
     }
+
+    // Wire up discrimination tooltip (hover to show, stays open while hovering)
+    var tooltipTimer = null;
+    modal.querySelectorAll(".has-tooltip[data-popover]").forEach(function (el) {
+      el.addEventListener("mouseenter", function () {
+        clearTimeout(tooltipTimer);
+        closeTooltip();
+        var rect = el.getBoundingClientRect();
+        var tip = document.createElement("div");
+        tip.className = "stat-tooltip-float";
+        tip.id = "active-tooltip";
+        tip.innerHTML =
+          '<div class="stat-popover-title">How Discrimination Is Calculated</div>' +
+          '<div class="stat-popover-formula">Discrimination = AI Failure Rate \u2212 Human Failure Rate</div>' +
+          '<p>Measured in percentage points (pp). If agents fail 94.1% and humans fail 7.2%, discrimination = 86.9pp.</p>' +
+          '<p>Higher values mean the trap better separates AI from humans.</p>' +
+          '<div class="stat-popover-title" style="margin-top:10px">\u03C7\u00B2 (Chi-Square)</div>' +
+          '<p>Tests statistical significance via 2\u00D72 contingency table (AI vs. human \u00D7 pass vs. fail).</p>' +
+          '<p class="stat-popover-note">All values recompute automatically when new data is submitted.</p>';
+        document.body.appendChild(tip);
+        // Position: centered below the element, fixed to viewport
+        var tipW = 300;
+        var left = rect.left + rect.width / 2 - tipW / 2;
+        var top = rect.bottom + 10;
+        if (left < 8) left = 8;
+        if (left + tipW > window.innerWidth - 8) left = window.innerWidth - tipW - 8;
+        if (top + tip.offsetHeight > window.innerHeight - 8) top = rect.top - tip.offsetHeight - 10;
+        tip.style.left = left + "px";
+        tip.style.top = top + "px";
+        // Keep tooltip open when hovering over it
+        tip.addEventListener("mouseenter", function () { clearTimeout(tooltipTimer); });
+        tip.addEventListener("mouseleave", function () {
+          tooltipTimer = setTimeout(closeTooltip, 200);
+        });
+      });
+      el.addEventListener("mouseleave", function () {
+        tooltipTimer = setTimeout(closeTooltip, 200);
+      });
+    });
+  }
+
+  function closeTooltip() {
+    var t = document.getElementById("active-tooltip");
+    if (t) t.remove();
   }
 
   function filterModalRows() {
@@ -561,6 +626,7 @@
   }
 
   function closeModal() {
+    closeTooltip();
     var o = document.getElementById("modal-overlay");
     if (o) o.classList.remove("open");
     document.body.style.overflow = "";
@@ -598,10 +664,13 @@
     return '<div class="trap-stat"><span class="trap-stat-value ' + cls + '">' + val + '</span>' +
       '<span class="trap-stat-label">' + label + '</span></div>';
   }
-  function mStat(val, label, sub, cls) {
-    return '<div class="modal-stat"><span class="modal-stat-value ' + cls + '">' + val + '</span>' +
+  function mStat(val, label, sub, cls, popoverId) {
+    return '<div class="modal-stat' + (popoverId ? ' has-tooltip' : '') + '"' +
+      (popoverId ? ' data-popover="' + popoverId + '"' : '') + '>' +
+      '<span class="modal-stat-value ' + cls + '">' + val + '</span>' +
       '<span class="modal-stat-label">' + label + '</span>' +
-      (sub ? '<span class="modal-stat-sub">' + sub + '</span>' : '') + '</div>';
+      (sub ? '<span class="modal-stat-sub">' + sub + '</span>' : '') +
+      '</div>';
   }
   function pct(v) { return v !== null ? (v * 100).toFixed(1) + "%" : "--"; }
   function shortContrib(source) {

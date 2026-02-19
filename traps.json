@@ -3,19 +3,20 @@
     "id": "modified-muller-lyer",
     "name": "Modified Muller-Lyer",
     "category": "Data Overfitting",
-    "description": "The classic Muller-Lyer illusion is modified so that the two lines are actually identical in length, but the arrowhead fins create the standard perceptual illusion. Vision-language models, trained on the canonical illusion, report the expected illusory response rather than the actual physical equality.",
+    "description": "The classic Muller-Lyer illusion is modified so that the blue line is objectively longer than the red line, while the arrowhead fins create the perceptual illusion that the red line is longer or that both are equal. Vision-language models, trained on the canonical illusion, report that the lines are equal or that the red line is longer, failing to perceive the actual size difference.",
     "question": "Which is longer, the blue line or the red line?",
-    "correctAnswer": "NONE (they are the same size)",
+    "correctAnswer": "Blue Line",
     "responseOptions": [
       "Blue Line",
       "Red Line",
       "NONE (they are the same size)"
     ],
     "image": "images/modified-muller-lyer.png",
-    "constraintExploited": "Training data overfitting. Models learn the canonical illusion response from extensive training examples and reproduce it even when the stimulus has been modified to eliminate the actual size difference.",
+    "constraintExploited": "Training data overfitting. Models learn the canonical illusion response from extensive training examples and reproduce it even when the stimulus has been modified so that the blue line is objectively longer.",
     "sourcePapers": [
       "Muller-Lyer (1889) — original illusion",
-      "Affonso (2026) — adapted for AI detection"
+      "Ullman (2024) — illusion-illusion concept; adapted for AI detection",
+      "Affonso (2026) — survey implementation and validation"
     ],
     "contributions": [
       {
@@ -32,7 +33,6 @@
         "passRate": 0.911,
         "sampleSize": 207,
         "platform": "Prolific",
-        "date": "2025-10",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-validation"
@@ -42,7 +42,6 @@
         "passRate": 0.928,
         "sampleSize": 1007,
         "platform": "Prolific",
-        "date": "2025-11",
         "source": "Affonso (2026), Table 5",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-deployment"
@@ -53,7 +52,6 @@
         "model": "GPT-5 Instant",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -61,7 +59,6 @@
         "model": "GPT-5.1 Thinking",
         "passRate": 0.3,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -69,7 +66,6 @@
         "model": "Gemini 2.5 Pro",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -77,7 +73,6 @@
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -85,7 +80,6 @@
         "model": "Claude Sonnet 4.5",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -93,7 +87,6 @@
         "model": "Claude Haiku 4.5",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -103,7 +96,6 @@
         "agent": "Google Project Mariner",
         "failureRate": null,
         "sampleSize": 134,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -111,7 +103,6 @@
         "agent": "Perplexity Comet",
         "failureRate": null,
         "sampleSize": 131,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -119,7 +110,6 @@
         "agent": "ChatGPT Agent",
         "failureRate": null,
         "sampleSize": 129,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -127,7 +117,6 @@
         "agent": "Claude Sonnet 4.5 (Cursor)",
         "failureRate": null,
         "sampleSize": 132,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -157,7 +146,8 @@
     "constraintExploited": "Training data overfitting. Models recognize the Cafe Wall pattern from training data and produce the canonical response without processing the actual geometric properties of the modified stimulus.",
     "sourcePapers": [
       "Gregory and Heard (1979) — original Cafe Wall illusion",
-      "Affonso (2026) — adapted for AI detection"
+      "Ullman (2024) — illusion-illusion concept",
+      "Affonso (2026) — survey implementation and validation"
     ],
     "contributions": [
       {
@@ -174,7 +164,6 @@
         "passRate": 0.832,
         "sampleSize": 207,
         "platform": "Prolific",
-        "date": "2025-10",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-validation"
@@ -184,7 +173,6 @@
         "passRate": 0.884,
         "sampleSize": 1007,
         "platform": "Prolific",
-        "date": "2025-11",
         "source": "Affonso (2026), Table 5",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-deployment"
@@ -195,7 +183,6 @@
         "model": "GPT-5 Instant",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -203,7 +190,6 @@
         "model": "GPT-5.1 Thinking",
         "passRate": 0.2,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -211,7 +197,6 @@
         "model": "Gemini 2.5 Pro",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -219,7 +204,6 @@
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -227,7 +211,6 @@
         "model": "Claude Sonnet 4.5",
         "passRate": 0.4,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -235,7 +218,6 @@
         "model": "Claude Haiku 4.5",
         "passRate": 0.3,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -245,7 +227,6 @@
         "agent": "Google Project Mariner",
         "failureRate": null,
         "sampleSize": 134,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -253,7 +234,6 @@
         "agent": "Perplexity Comet",
         "failureRate": null,
         "sampleSize": 131,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -261,7 +241,6 @@
         "agent": "ChatGPT Agent",
         "failureRate": null,
         "sampleSize": 129,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -269,7 +248,6 @@
         "agent": "Claude Sonnet 4.5 (Cursor)",
         "failureRate": null,
         "sampleSize": 132,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -290,7 +268,7 @@
     "category": "Data Overfitting",
     "description": "The Ebbinghaus (Titchener circles) illusion is modified so that the red circle is objectively larger than the blue circle, while the surrounding context circles create the standard size-contrast illusion. Models trained on the canonical illusion report that the circles are the same size or that the blue circle is larger.",
     "question": "Which is bigger, the blue circle or the red circle?",
-    "correctAnswer": "NONE (they are the same size)",
+    "correctAnswer": "Red Circle",
     "responseOptions": [
       "Blue Circle",
       "Red Circle",
@@ -300,7 +278,8 @@
     "constraintExploited": "Training data overfitting. The Ebbinghaus illusion is well-documented in training data. Models reproduce the learned canonical response rather than performing direct visual measurement on the modified stimulus.",
     "sourcePapers": [
       "Ebbinghaus (1902) — original illusion",
-      "Affonso (2026) — adapted for AI detection"
+      "Ullman (2024) — illusion-illusion concept",
+      "Affonso (2026) — survey implementation and validation"
     ],
     "contributions": [
       {
@@ -317,7 +296,6 @@
         "passRate": 0.901,
         "sampleSize": 207,
         "platform": "Prolific",
-        "date": "2025-10",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-validation"
@@ -327,7 +305,6 @@
         "passRate": 0.956,
         "sampleSize": 1007,
         "platform": "Prolific",
-        "date": "2025-11",
         "source": "Affonso (2026), Table 5",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-deployment"
@@ -338,7 +315,6 @@
         "model": "GPT-5 Instant",
         "passRate": 0.1,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -346,7 +322,6 @@
         "model": "GPT-5.1 Thinking",
         "passRate": 0.6,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -354,7 +329,6 @@
         "model": "Gemini 2.5 Pro",
         "passRate": 0.3,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -362,7 +336,6 @@
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -370,7 +343,6 @@
         "model": "Claude Sonnet 4.5",
         "passRate": 0.6,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -378,7 +350,6 @@
         "model": "Claude Haiku 4.5",
         "passRate": 0.8,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -388,7 +359,6 @@
         "agent": "Google Project Mariner",
         "failureRate": null,
         "sampleSize": 134,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -396,7 +366,6 @@
         "agent": "Perplexity Comet",
         "failureRate": null,
         "sampleSize": 131,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -404,7 +373,6 @@
         "agent": "ChatGPT Agent",
         "failureRate": null,
         "sampleSize": 129,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -412,7 +380,6 @@
         "agent": "Claude Sonnet 4.5 (Cursor)",
         "failureRate": null,
         "sampleSize": 132,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -445,7 +412,8 @@
     "image": "images/moving-robot.png",
     "constraintExploited": "Spatiotemporal reasoning. Models process each frame independently rather than integrating motion across a temporal sequence. They cannot extrapolate trajectories from sequential visual information.",
     "sourcePapers": [
-      "Affonso (2026) — original design for AI detection"
+      "Zhou et al. (2025) — VLM4D benchmark documenting spatiotemporal reasoning failures",
+      "Affonso (2026) — original design and validation"
     ],
     "contributions": [
       {
@@ -462,7 +430,6 @@
         "passRate": 0.757,
         "sampleSize": 207,
         "platform": "Prolific",
-        "date": "2025-10",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-validation"
@@ -472,7 +439,6 @@
         "passRate": 0.779,
         "sampleSize": 1007,
         "platform": "Prolific",
-        "date": "2025-11",
         "source": "Affonso (2026), Table 5",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-deployment"
@@ -483,7 +449,6 @@
         "model": "GPT-5 Instant",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -491,7 +456,6 @@
         "model": "GPT-5.1 Thinking",
         "passRate": 0.4,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -499,7 +463,6 @@
         "model": "Gemini 2.5 Pro",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -507,7 +470,6 @@
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -515,7 +477,6 @@
         "model": "Claude Sonnet 4.5",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -523,7 +484,6 @@
         "model": "Claude Haiku 4.5",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -533,7 +493,6 @@
         "agent": "Google Project Mariner",
         "failureRate": null,
         "sampleSize": 134,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -541,7 +500,6 @@
         "agent": "Perplexity Comet",
         "failureRate": null,
         "sampleSize": 131,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -549,7 +507,6 @@
         "agent": "ChatGPT Agent",
         "failureRate": null,
         "sampleSize": 129,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -557,7 +514,6 @@
         "agent": "Claude Sonnet 4.5 (Cursor)",
         "failureRate": null,
         "sampleSize": 132,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -586,7 +542,8 @@
     "image": "images/colliding-oranges.png",
     "constraintExploited": "Spatial reasoning with mental simulation. Models struggle to simulate physical movement through 2D space and reason about which objects lie in the path of motion, especially when object sizes and positions require integrated spatial judgment.",
     "sourcePapers": [
-      "Affonso (2026) — original design for AI detection"
+      "Qi et al. (2025); Stogiannidis et al. (2025) — spatial reasoning and mental simulation benchmarks",
+      "Affonso (2026) — original design and validation"
     ],
     "contributions": [
       {
@@ -603,7 +560,6 @@
         "passRate": 0.866,
         "sampleSize": 207,
         "platform": "Prolific",
-        "date": "2025-10",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-validation"
@@ -613,7 +569,6 @@
         "passRate": 0.887,
         "sampleSize": 1007,
         "platform": "Prolific",
-        "date": "2025-11",
         "source": "Affonso (2026), Table 5",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-deployment"
@@ -624,7 +579,6 @@
         "model": "GPT-5 Instant",
         "passRate": 0.4,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -632,7 +586,6 @@
         "model": "GPT-5.1 Thinking",
         "passRate": 0.8,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -640,7 +593,6 @@
         "model": "Gemini 2.5 Pro",
         "passRate": 0.3,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -648,7 +600,6 @@
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -656,7 +607,6 @@
         "model": "Claude Sonnet 4.5",
         "passRate": 0.3,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -664,7 +614,6 @@
         "model": "Claude Haiku 4.5",
         "passRate": 0.1,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -674,7 +623,6 @@
         "agent": "Google Project Mariner",
         "failureRate": null,
         "sampleSize": 134,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -682,7 +630,6 @@
         "agent": "Perplexity Comet",
         "failureRate": null,
         "sampleSize": 131,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -690,7 +637,6 @@
         "agent": "ChatGPT Agent",
         "failureRate": null,
         "sampleSize": 129,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -698,7 +644,6 @@
         "agent": "Claude Sonnet 4.5 (Cursor)",
         "failureRate": null,
         "sampleSize": 132,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -731,7 +676,8 @@
     "image": "images/surrounded-planets.png",
     "constraintExploited": "Cross-modal binding with occluded stimuli. Models fail to correctly bind visual elements (shapes) to specific referents (planets) when elements overlap and partially occlude each other.",
     "sourcePapers": [
-      "Affonso (2026) — original design for AI detection"
+      "Campbell et al. (2024); Kamath et al. (2023) — cross-modal binding benchmarks",
+      "Affonso (2026) — original design and validation"
     ],
     "contributions": [
       {
@@ -748,7 +694,6 @@
         "passRate": 0.921,
         "sampleSize": 207,
         "platform": "Prolific",
-        "date": "2025-10",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-validation"
@@ -758,7 +703,6 @@
         "passRate": 0.965,
         "sampleSize": 1007,
         "platform": "Prolific",
-        "date": "2025-11",
         "source": "Affonso (2026), Table 5",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-deployment"
@@ -769,7 +713,6 @@
         "model": "GPT-5 Instant",
         "passRate": 0.7,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -777,7 +720,6 @@
         "model": "GPT-5.1 Thinking",
         "passRate": 0.8,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -785,7 +727,6 @@
         "model": "Gemini 2.5 Pro",
         "passRate": 0.2,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -793,7 +734,6 @@
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -801,7 +741,6 @@
         "model": "Claude Sonnet 4.5",
         "passRate": 0.4,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -809,7 +748,6 @@
         "model": "Claude Haiku 4.5",
         "passRate": 0.2,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -819,7 +757,6 @@
         "agent": "Google Project Mariner",
         "failureRate": null,
         "sampleSize": 134,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -827,7 +764,6 @@
         "agent": "Perplexity Comet",
         "failureRate": null,
         "sampleSize": 131,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -835,7 +771,6 @@
         "agent": "ChatGPT Agent",
         "failureRate": null,
         "sampleSize": 129,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -843,7 +778,6 @@
         "agent": "Claude Sonnet 4.5 (Cursor)",
         "failureRate": null,
         "sampleSize": 132,
-        "date": "2025-11",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
@@ -871,7 +805,8 @@
     "image": "images/shape-overload.png",
     "constraintExploited": "Compositional counting. Models struggle with multi-step visual reasoning that requires identifying a category, applying a criterion, and then counting instances.",
     "sourcePapers": [
-      "Affonso (2026) — original design for AI detection"
+      "Guo et al. (2025) — compositional counting benchmarks",
+      "Affonso (2026) — original design and validation"
     ],
     "contributions": [
       {
@@ -888,7 +823,6 @@
         "passRate": 0.47,
         "sampleSize": 207,
         "platform": "Prolific",
-        "date": "2025-10",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
         "cohortId": "affonso-2026-validation"
@@ -899,7 +833,6 @@
         "model": "GPT-5 Instant",
         "passRate": 0.4,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -907,7 +840,6 @@
         "model": "GPT-5.1 Thinking",
         "passRate": 0.7,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -915,7 +847,6 @@
         "model": "Gemini 2.5 Pro",
         "passRate": 0.5,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -923,7 +854,6 @@
         "model": "Gemini 2.5 Flash",
         "passRate": 0.1,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -931,7 +861,6 @@
         "model": "Claude Sonnet 4.5",
         "passRate": 0.6,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       },
@@ -939,7 +868,6 @@
         "model": "Claude Haiku 4.5",
         "passRate": 0.4,
         "trials": 10,
-        "date": "2025-10",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-original"
       }
