@@ -410,20 +410,43 @@
     // ---- Layer 2: Base Model Tests ----
     var modelHtml = "";
     if (t.modelTests && t.modelTests.length > 0) {
+      // Sort models by pass rate descending
+      var sortedModels = t.modelTests.slice().sort(function (a, b) {
+        return b.passRate - a.passRate;
+      });
+      var hasProvider = sortedModels.some(function (m) { return m.provider; });
+      var hasMethod = sortedModels.some(function (m) { return m.method; });
       modelHtml = '<div class="modal-section" data-layer="model">' +
-        '<div class="modal-section-title">Base Model Testing (API / Chat)</div>' +
+        '<div class="modal-section-title">Base Model Testing (' + sortedModels.length + ' models)</div>' +
         '<table class="model-table"><thead><tr>' +
-          '<th>Model</th><th>Pass Rate</th><th>Trials</th><th></th>' +
+          '<th>Model</th>' +
+          (hasProvider ? '<th>Provider</th>' : '') +
+          (hasMethod ? '<th>Method</th>' : '') +
+          '<th>Pass Rate</th><th>Trials</th><th></th>' +
           (hasMultiple ? '<th>Source</th>' : '') +
         '</tr></thead><tbody>';
-      t.modelTests.forEach(function (m) {
+      sortedModels.forEach(function (m) {
         var pr = Math.round(m.passRate * 100);
         var rc = pr === 0 ? "rate-zero" : pr <= 30 ? "rate-low" : "rate-high";
         var cId = m.contributionId || "";
         var cIndex = contributors.findIndex(function (c) { return c.id === cId; });
         var srcTag = hasMultiple ? '<td><span class="source-tag" style="background:' + getContributorColor(cIndex) + '">' + shortContrib(m.source) + '</span></td>' : '';
+        var providerTag = "";
+        if (hasProvider) {
+          var prov = m.provider || "";
+          var provCls = prov === "Anthropic" ? "provider-anthropic" : prov === "OpenAI" ? "provider-openai" : prov === "Google" ? "provider-google" : "";
+          providerTag = '<td><span class="provider-badge ' + provCls + '">' + esc(prov) + '</span></td>';
+        }
+        var methodTag = "";
+        if (hasMethod) {
+          var meth = m.method || "";
+          var methCls = meth === "Chat Interface" ? "method-chat" : meth === "API" ? "method-api" : "";
+          methodTag = '<td><span class="method-badge ' + methCls + '">' + esc(meth) + '</span></td>';
+        }
         modelHtml += '<tr data-contribution="' + esc(cId) + '">' +
           '<td>' + esc(m.model) + '</td>' +
+          providerTag +
+          methodTag +
           '<td><span class="rate ' + rc + '">' + pr + '%</span></td>' +
           '<td>' + m.trials + '</td>' +
           '<td class="pass-bar-cell"><div class="pass-bar"><div class="pass-bar-fill" style="width:' + pr + '%"></div></div></td>' +
@@ -431,7 +454,7 @@
         '</tr>';
       });
       modelHtml += '</tbody></table>' +
-        '<p style="font-size:11px;color:var(--gray-500);margin-top:4px;">Each trial uses an independent session (incognito/temporary chat).</p>' +
+        '<p style="font-size:11px;color:var(--gray-500);margin-top:4px;">\u2020 = extended thinking variant. Each trial uses an independent API call or chat session.</p>' +
         '</div>';
     }
 

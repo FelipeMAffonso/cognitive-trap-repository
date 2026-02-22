@@ -622,6 +622,30 @@ a:hover { text-decoration: underline; }
 .model-table .rate-low { color: var(--warning); }
 .model-table .rate-high { color: var(--success); }
 
+/* Provider badges in model table */
+.provider-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.provider-anthropic { background: #fce7e1; color: #b94c2e; }
+.provider-openai { background: #e1f5e4; color: #2e7d32; }
+.provider-google { background: #dbeafe; color: #1e40af; }
+
+.method-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.method-chat { background: #fef3c7; color: #92400e; }
+.method-api { background: #e0e7ff; color: #3730a3; }
+
 .pass-bar-cell { width: 100px; }
 .pass-bar {
   background: #fee2e2;

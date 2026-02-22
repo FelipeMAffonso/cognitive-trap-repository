@@ -25,13 +25,20 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Initial submission with human validation, model testing, and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-extended",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "model-data",
+        "description": "Extended Validation Study: 34 vision-language models tested via API (10 trials per trap per model, 2,040 total trials)"
       }
     ],
     "humanStudies": [
       {
         "label": "Affonso (2026), validation study",
         "passRate": 0.911,
-        "sampleSize": 207,
+        "sampleSize": 171,
         "platform": "Prolific",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
@@ -49,46 +56,310 @@
     ],
     "modelTests": [
       {
-        "model": "GPT-5 Instant",
+        "model": "GPT-5.1 Instant",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
-        "model": "GPT-5.1 Thinking",
+        "model": "GPT-5.1†",
         "passRate": 0.3,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Pro",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Sonnet 4.5",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Haiku 4.5",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
+      },
+      {
+        "model": "Claude Haiku 3.0",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 3.5",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.0 Flash",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Pro†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite†",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.5†",
+        "passRate": 0.8,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 4.5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Pro",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Pro",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash",
+        "passRate": 0.2,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6†",
+        "passRate": 0.3,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
       }
     ],
     "agentTests": [
@@ -156,13 +427,20 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Initial submission with human validation, model testing, and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-extended",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "model-data",
+        "description": "Extended Validation Study: 34 vision-language models tested via API (10 trials per trap per model, 2,040 total trials)"
       }
     ],
     "humanStudies": [
       {
         "label": "Affonso (2026), validation study",
         "passRate": 0.832,
-        "sampleSize": 207,
+        "sampleSize": 171,
         "platform": "Prolific",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
@@ -180,46 +458,310 @@
     ],
     "modelTests": [
       {
-        "model": "GPT-5 Instant",
+        "model": "GPT-5.1 Instant",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
-        "model": "GPT-5.1 Thinking",
+        "model": "GPT-5.1†",
         "passRate": 0.2,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Pro",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Sonnet 4.5",
         "passRate": 0.4,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Haiku 4.5",
         "passRate": 0.3,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
+      },
+      {
+        "model": "Claude Haiku 3.0",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o Mini",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 3.5",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.0 Flash",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Pro†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 4.5†",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Pro",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Pro",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
       }
     ],
     "agentTests": [
@@ -288,13 +830,20 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Initial submission with human validation, model testing, and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-extended",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "model-data",
+        "description": "Extended Validation Study: 34 vision-language models tested via API (10 trials per trap per model, 2,040 total trials)"
       }
     ],
     "humanStudies": [
       {
         "label": "Affonso (2026), validation study",
         "passRate": 0.901,
-        "sampleSize": 207,
+        "sampleSize": 171,
         "platform": "Prolific",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
@@ -312,46 +861,310 @@
     ],
     "modelTests": [
       {
-        "model": "GPT-5 Instant",
+        "model": "GPT-5.1 Instant",
         "passRate": 0.1,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
-        "model": "GPT-5.1 Thinking",
+        "model": "GPT-5.1†",
         "passRate": 0.6,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Pro",
         "passRate": 0.3,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Sonnet 4.5",
         "passRate": 0.6,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Haiku 4.5",
         "passRate": 0.8,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
+      },
+      {
+        "model": "Claude Haiku 3.0",
+        "passRate": 0.5,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o Mini",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 3.5",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.0 Flash",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Pro†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite†",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash†",
+        "passRate": 0.2,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5†",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 4.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5†",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Pro",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Pro",
+        "passRate": 0.3,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6†",
+        "passRate": 0.6,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
       }
     ],
     "agentTests": [
@@ -422,13 +1235,20 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Initial submission with human validation, model testing, and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-extended",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "model-data",
+        "description": "Extended Validation Study: 34 vision-language models tested via API (10 trials per trap per model, 2,040 total trials)"
       }
     ],
     "humanStudies": [
       {
         "label": "Affonso (2026), validation study",
         "passRate": 0.757,
-        "sampleSize": 207,
+        "sampleSize": 171,
         "platform": "Prolific",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
@@ -446,46 +1266,310 @@
     ],
     "modelTests": [
       {
-        "model": "GPT-5 Instant",
+        "model": "GPT-5.1 Instant",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
-        "model": "GPT-5.1 Thinking",
+        "model": "GPT-5.1†",
         "passRate": 0.4,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Pro",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Sonnet 4.5",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Haiku 4.5",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
+      },
+      {
+        "model": "Claude Haiku 3.0",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o Mini",
+        "passRate": 0.2,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 3.5",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.0 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Pro†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1",
+        "passRate": 0.3,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 4.5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Pro",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Pro",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash†",
+        "passRate": 0.2,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
       }
     ],
     "agentTests": [
@@ -552,13 +1636,20 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Initial submission with human validation, model testing, and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-extended",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "model-data",
+        "description": "Extended Validation Study: 34 vision-language models tested via API (10 trials per trap per model, 2,040 total trials)"
       }
     ],
     "humanStudies": [
       {
         "label": "Affonso (2026), validation study",
         "passRate": 0.866,
-        "sampleSize": 207,
+        "sampleSize": 171,
         "platform": "Prolific",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
@@ -576,46 +1667,310 @@
     ],
     "modelTests": [
       {
-        "model": "GPT-5 Instant",
+        "model": "GPT-5.1 Instant",
         "passRate": 0.4,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
-        "model": "GPT-5.1 Thinking",
+        "model": "GPT-5.1†",
         "passRate": 0.8,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Pro",
         "passRate": 0.3,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Sonnet 4.5",
         "passRate": 0.3,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Haiku 4.5",
         "passRate": 0.1,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
+      },
+      {
+        "model": "Claude Haiku 3.0",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 3.5",
+        "passRate": 0.3,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.0 Flash",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Pro†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash†",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Mini",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5†",
+        "passRate": 0.6,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 4.5†",
+        "passRate": 0.2,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5†",
+        "passRate": 0.8,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Pro",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Instant",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Pro",
+        "passRate": 0.8,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2†",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash†",
+        "passRate": 0.7,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
       }
     ],
     "agentTests": [
@@ -686,13 +2041,20 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Initial submission with human validation, model testing, and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-extended",
+        "contributor": "Affonso (2026)",
+        "date": "2026-02-18",
+        "type": "model-data",
+        "description": "Extended Validation Study: 34 vision-language models tested via API (10 trials per trap per model, 2,040 total trials)"
       }
     ],
     "humanStudies": [
       {
         "label": "Affonso (2026), validation study",
         "passRate": 0.921,
-        "sampleSize": 207,
+        "sampleSize": 171,
         "platform": "Prolific",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
@@ -710,46 +2072,310 @@
     ],
     "modelTests": [
       {
-        "model": "GPT-5 Instant",
+        "model": "GPT-5.1 Instant",
         "passRate": 0.7,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
-        "model": "GPT-5.1 Thinking",
+        "model": "GPT-5.1†",
         "passRate": 0.8,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Pro",
         "passRate": 0.2,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Flash",
         "passRate": 0.0,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Sonnet 4.5",
         "passRate": 0.4,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Haiku 4.5",
         "passRate": 0.2,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
+      },
+      {
+        "model": "Claude Haiku 3.0",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4o Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 3.5",
+        "passRate": 0.3,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.0 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Pro†",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-4.1 Mini",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash Lite†",
+        "passRate": 0.5,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 2.5 Flash†",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Instant",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5 Mini",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.5†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Haiku 4.5†",
+        "passRate": 0.6,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Pro",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Instant",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2 Pro",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "GPT-5.2†",
+        "passRate": 0.5,
+        "trials": 10,
+        "provider": "OpenAI",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Gemini 3 Flash†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.6†",
+        "passRate": 0.5,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
+      },
+      {
+        "model": "Claude Sonnet 4.6†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "source": "Extended Validation Study",
+        "contributionId": "affonso-2026-extended",
+        "method": "API"
       }
     ],
     "agentTests": [
@@ -821,7 +2447,7 @@
       {
         "label": "Affonso (2026), validation study",
         "passRate": 0.47,
-        "sampleSize": 207,
+        "sampleSize": 171,
         "platform": "Prolific",
         "source": "Affonso (2026), Table 3",
         "contributionId": "affonso-2026-original",
@@ -830,46 +2456,58 @@
     ],
     "modelTests": [
       {
-        "model": "GPT-5 Instant",
+        "model": "GPT-5.1 Instant",
         "passRate": 0.4,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
-        "model": "GPT-5.1 Thinking",
+        "model": "GPT-5.1†",
         "passRate": 0.7,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "OpenAI",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Pro",
         "passRate": 0.5,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Gemini 2.5 Flash",
         "passRate": 0.1,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Google",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Sonnet 4.5",
         "passRate": 0.6,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
       },
       {
         "model": "Claude Haiku 4.5",
         "passRate": 0.4,
         "trials": 10,
         "source": "Affonso (2026)",
-        "contributionId": "affonso-2026-original"
+        "contributionId": "affonso-2026-original",
+        "provider": "Anthropic",
+        "method": "Chat Interface"
       }
     ],
     "agentTests": [],

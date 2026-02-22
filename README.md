@@ -8,6 +8,8 @@ Community collection of visual-perceptual tasks for detecting AI agents in onlin
 
 Cognitive traps exploit architectural constraints in vision-language models: tasks that humans pass easily but AI agents fail systematically. Researchers embed them in surveys to screen for AI respondents.
 
+The repository currently includes 7 traps validated against 34 vision-language models (Anthropic, OpenAI, Google) spanning March 2024 through February 2026, with 10 independent API trials per trap per model (2,040 total trials). Human validation comes from 171 participants (Prolific) and deployment data from 1,007 participants across 4 autonomous agent platforms.
+
 ## Using a trap in your survey
 
 1. Browse the repository at the link above
