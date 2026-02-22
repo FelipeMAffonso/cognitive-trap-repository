@@ -410,61 +410,103 @@
     // ---- Layer 2: Base Model Tests ----
     var modelHtml = "";
     if (t.modelTests && t.modelTests.length > 0) {
-      // Sort models by pass rate descending
       var sortedModels = t.modelTests.slice().sort(function (a, b) {
         return b.passRate - a.passRate;
       });
       var hasProvider = sortedModels.some(function (m) { return m.provider; });
-      var hasMethod = sortedModels.some(function (m) { return m.method; });
+
+      // Compute summary stats
+      var totalTrials = 0;
+      var zeroCount = 0;
+      var passSum = 0;
+      var providers = {};
+      sortedModels.forEach(function (m) {
+        totalTrials += m.trials;
+        passSum += m.passRate;
+        if (m.passRate === 0) zeroCount++;
+        if (m.provider) providers[m.provider] = (providers[m.provider] || 0) + 1;
+      });
+      var avgPass = (passSum / sortedModels.length * 100).toFixed(1);
+      var zeroPct = Math.round(zeroCount / sortedModels.length * 100);
+
+      // Separate initial validation (chat) from extended validation (API)
+      var initialModels = sortedModels.filter(function (m) { return m.method === "Chat Interface"; });
+      var extendedModels = sortedModels.filter(function (m) { return m.method !== "Chat Interface"; });
+
       modelHtml = '<div class="modal-section" data-layer="model">' +
-        '<div class="modal-section-title">Base Model Testing (' + sortedModels.length + ' models)</div>' +
-        '<table class="model-table"><thead><tr>' +
-          '<th>Model</th>' +
-          (hasProvider ? '<th>Provider</th>' : '') +
-          (hasMethod ? '<th>Method</th>' : '') +
-          '<th>Pass Rate</th><th>Trials</th><th></th>' +
-          (hasMultiple ? '<th>Source</th>' : '') +
-        '</tr></thead><tbody>';
+        '<div class="modal-section-title">Base Model Testing</div>' +
+        '<div class="model-summary-bar">' +
+          '<span class="model-summary-item">' + sortedModels.length + ' models</span>' +
+          '<span class="model-summary-item">' + totalTrials + ' trials</span>' +
+          '<span class="model-summary-item">' + zeroPct + '% score 0%</span>' +
+          '<span class="model-summary-item">Avg: ' + avgPass + '%</span>' +
+        '</div>';
+
+      // Provider filter chips
+      if (hasProvider) {
+        var provList = Object.keys(providers).sort();
+        modelHtml += '<div class="model-filters" id="model-provider-filter">' +
+          '<button class="provider-chip active" data-provider="all">All (' + sortedModels.length + ')</button>';
+        provList.forEach(function (prov) {
+          var cls = prov === "Anthropic" ? "chip-anthropic" : prov === "OpenAI" ? "chip-openai" : prov === "Google" ? "chip-google" : "";
+          modelHtml += '<button class="provider-chip ' + cls + '" data-provider="' + esc(prov) + '">' + esc(prov) + ' (' + providers[prov] + ')</button>';
+        });
+        modelHtml += '</div>';
+      }
+
+      // Build model table with sortable headers
+      modelHtml += '<table class="model-table" id="model-table"><thead><tr>' +
+        '<th class="sortable" data-sort-key="model">Model <span class="sort-arrow"></span></th>' +
+        (hasProvider ? '<th class="sortable" data-sort-key="provider">Provider <span class="sort-arrow"></span></th>' : '') +
+        '<th>Study</th>' +
+        '<th class="sortable active-sort desc" data-sort-key="passRate">Pass Rate <span class="sort-arrow">\u25BC</span></th>' +
+        '<th>Trials</th><th></th>' +
+      '</tr></thead><tbody>';
+
       sortedModels.forEach(function (m) {
         var pr = Math.round(m.passRate * 100);
         var rc = pr === 0 ? "rate-zero" : pr <= 30 ? "rate-low" : "rate-high";
         var cId = m.contributionId || "";
-        var cIndex = contributors.findIndex(function (c) { return c.id === cId; });
-        var srcTag = hasMultiple ? '<td><span class="source-tag" style="background:' + getContributorColor(cIndex) + '">' + shortContrib(m.source) + '</span></td>' : '';
         var providerTag = "";
         if (hasProvider) {
           var prov = m.provider || "";
           var provCls = prov === "Anthropic" ? "provider-anthropic" : prov === "OpenAI" ? "provider-openai" : prov === "Google" ? "provider-google" : "";
           providerTag = '<td><span class="provider-badge ' + provCls + '">' + esc(prov) + '</span></td>';
         }
-        var methodTag = "";
-        if (hasMethod) {
-          var meth = m.method || "";
-          var methCls = meth === "Chat Interface" ? "method-chat" : meth === "API" ? "method-api" : "";
-          methodTag = '<td><span class="method-badge ' + methCls + '">' + esc(meth) + '</span></td>';
-        }
-        modelHtml += '<tr data-contribution="' + esc(cId) + '">' +
+        var studyLabel = m.method === "Chat Interface" ? "Initial" : "Extended";
+        var studyCls = m.method === "Chat Interface" ? "study-initial" : "study-extended";
+        modelHtml += '<tr data-contribution="' + esc(cId) + '" data-provider="' + esc(m.provider || '') + '" data-pass-rate="' + m.passRate + '" data-model="' + esc(m.model) + '">' +
           '<td>' + esc(m.model) + '</td>' +
           providerTag +
-          methodTag +
+          '<td><span class="study-badge ' + studyCls + '">' + studyLabel + '</span></td>' +
           '<td><span class="rate ' + rc + '">' + pr + '%</span></td>' +
           '<td>' + m.trials + '</td>' +
           '<td class="pass-bar-cell"><div class="pass-bar"><div class="pass-bar-fill" style="width:' + pr + '%"></div></div></td>' +
-          srcTag +
         '</tr>';
       });
+
       modelHtml += '</tbody></table>' +
-        '<p style="font-size:11px;color:var(--gray-500);margin-top:4px;">\u2020 = extended thinking variant. Each trial uses an independent API call or chat session.</p>' +
+        '<p style="font-size:11px;color:var(--gray-500);margin-top:4px;">\u2020 = extended thinking variant. ' +
+        'Initial = chat interface validation (6 models). Extended = API validation (' + extendedModels.length + ' models, 10 trials each).</p>' +
         '</div>';
     }
 
     // ---- Layer 3: Agent Deployment ----
     var agentHtml = "";
     if (t.agentTests && t.agentTests.length > 0) {
+      var totalAgentTrials = 0;
+      t.agentTests.forEach(function (a) { totalAgentTrials += a.sampleSize; });
+      var pooledFail = t.pooledAgentResults ? t.pooledAgentResults.failureRate : null;
+
       agentHtml = '<div class="modal-section" data-layer="agent">' +
         '<div class="modal-section-title">Autonomous Agent Deployment (Real Survey)</div>' +
+        '<div class="agent-summary-bar">' +
+          '<span class="agent-summary-item">' + t.agentTests.length + ' agent platforms</span>' +
+          '<span class="agent-summary-item">' + totalAgentTrials + ' total deployments</span>' +
+          (pooledFail !== null ? '<span class="agent-summary-item agent-fail-highlight">Pooled failure: ' + (pooledFail * 100).toFixed(1) + '%</span>' : '') +
+        '</div>' +
         '<table class="model-table"><thead><tr>' +
-          '<th>Agent Platform</th><th>N Deployed</th>' +
+          '<th>Agent Platform</th><th>Deployments</th>' +
           (hasMultiple ? '<th>Source</th>' : '') +
         '</tr></thead><tbody>';
       t.agentTests.forEach(function (a) {
@@ -477,7 +519,19 @@
           srcTag +
         '</tr>';
       });
-      agentHtml += '</tbody></table></div>';
+      agentHtml += '</tbody></table>';
+
+      // Model vs Agent trial comparison
+      var modelTrials = 0;
+      if (t.modelTests) t.modelTests.forEach(function (m) { modelTrials += m.trials; });
+      if (modelTrials > 0) {
+        agentHtml += '<div class="trial-comparison">' +
+          '<span class="trial-comparison-label">Trial breakdown:</span> ' +
+          '<span class="trial-comparison-item"><span class="trial-dot model-dot"></span>' + modelTrials + ' model trials (API)</span>' +
+          '<span class="trial-comparison-item"><span class="trial-dot agent-dot"></span>' + totalAgentTrials + ' agent deployments (real survey)</span>' +
+        '</div>';
+      }
+      agentHtml += '</div>';
     }
 
     // ---- Source Papers ----
@@ -585,6 +639,66 @@
           });
         });
       }
+    }
+
+    // Wire up provider filter chips (model table)
+    var provFilter = document.getElementById("model-provider-filter");
+    if (provFilter) {
+      provFilter.querySelectorAll(".provider-chip").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          var prov = chip.dataset.provider;
+          provFilter.querySelectorAll(".provider-chip").forEach(function (c) {
+            c.classList.toggle("active", c.dataset.provider === prov);
+          });
+          var modelTable = document.getElementById("model-table");
+          if (modelTable) {
+            modelTable.querySelectorAll("tbody tr").forEach(function (row) {
+              row.style.display = (prov === "all" || row.dataset.provider === prov) ? "" : "none";
+            });
+          }
+        });
+      });
+    }
+
+    // Wire up sortable column headers (model table)
+    var modelTable = document.getElementById("model-table");
+    if (modelTable) {
+      modelTable.querySelectorAll("th.sortable").forEach(function (th) {
+        th.style.cursor = "pointer";
+        th.addEventListener("click", function () {
+          var key = th.dataset.sortKey;
+          var wasDesc = th.classList.contains("desc");
+          modelTable.querySelectorAll("th.sortable").forEach(function (h) {
+            h.classList.remove("active-sort", "asc", "desc");
+            var arrow = h.querySelector(".sort-arrow");
+            if (arrow) arrow.textContent = "";
+          });
+          var newDir = wasDesc ? "asc" : "desc";
+          th.classList.add("active-sort", newDir);
+          var arrow = th.querySelector(".sort-arrow");
+          if (arrow) arrow.textContent = newDir === "desc" ? "\u25BC" : "\u25B2";
+          var tbody = modelTable.querySelector("tbody");
+          var rows = Array.from(tbody.querySelectorAll("tr"));
+          rows.sort(function (a, b) {
+            var va, vb;
+            if (key === "model") {
+              va = (a.dataset.model || "").toLowerCase();
+              vb = (b.dataset.model || "").toLowerCase();
+              return newDir === "asc" ? va.localeCompare(vb) : vb.localeCompare(va);
+            } else if (key === "provider") {
+              va = (a.dataset.provider || "").toLowerCase();
+              vb = (b.dataset.provider || "").toLowerCase();
+              return newDir === "asc" ? va.localeCompare(vb) : vb.localeCompare(va);
+            } else if (key === "passRate") {
+              va = parseFloat(a.dataset.passRate) || 0;
+              vb = parseFloat(b.dataset.passRate) || 0;
+              return newDir === "asc" ? va - vb : vb - va;
+            }
+            return 0;
+          });
+          rows.forEach(function (row) { tbody.appendChild(row); });
+        });
+      });
     }
 
     // Wire up discrimination tooltip (hover to show, stays open while hovering)

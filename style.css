@@ -786,6 +786,132 @@ a:hover { text-decoration: underline; }
 /* Row fade for source filtering */
 .model-table tr { transition: opacity 0.15s; }
 
+/* ---- Model Summary Bar ---- */
+.model-summary-bar {
+  display: flex;
+  gap: 16px;
+  padding: 8px 12px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.model-summary-item {
+  font-size: 12px;
+  color: var(--gray-600);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ---- Provider Filter Chips ---- */
+.model-filters {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.provider-chip {
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--gray-600);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+.provider-chip:hover { border-color: var(--coral); color: var(--coral); }
+.provider-chip.active {
+  background: var(--gray-900);
+  color: var(--white);
+  border-color: var(--gray-900);
+}
+.chip-anthropic.active { background: #b94c2e; border-color: #b94c2e; }
+.chip-openai.active { background: #2e7d32; border-color: #2e7d32; }
+.chip-google.active { background: #1e40af; border-color: #1e40af; }
+
+/* ---- Study Badges ---- */
+.study-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.study-initial { background: #fef3c7; color: #92400e; }
+.study-extended { background: #e0e7ff; color: #3730a3; }
+
+/* ---- Sortable Headers ---- */
+.model-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+.model-table th.sortable:hover { color: var(--coral); }
+.model-table th.sortable.active-sort { color: var(--gray-900); }
+.sort-arrow {
+  font-size: 10px;
+  margin-left: 2px;
+  display: inline-block;
+  width: 10px;
+}
+
+/* ---- Agent Summary Bar ---- */
+.agent-summary-bar {
+  display: flex;
+  gap: 16px;
+  padding: 8px 12px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.agent-summary-item {
+  font-size: 12px;
+  color: var(--gray-600);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.agent-fail-highlight { color: var(--danger); }
+
+/* ---- Trial Comparison (model vs agent) ---- */
+.trial-comparison {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 6px 0;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--gray-600);
+  flex-wrap: wrap;
+}
+.trial-comparison-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 10px;
+  color: var(--gray-500);
+}
+.trial-comparison-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.trial-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.model-dot { background: #e0e7ff; border: 1px solid #3730a3; }
+.agent-dot { background: #fce7e1; border: 1px solid var(--coral); }
+
 /* ---- Submit Page ---- */
 .submit-page { padding-top: 32px; padding-bottom: 48px; }
 
