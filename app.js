@@ -429,9 +429,7 @@
       var avgPass = (passSum / sortedModels.length * 100).toFixed(1);
       var zeroPct = Math.round(zeroCount / sortedModels.length * 100);
 
-      // Separate initial validation (chat) from extended validation (API)
-      var initialModels = sortedModels.filter(function (m) { return m.method === "Chat Interface"; });
-      var extendedModels = sortedModels.filter(function (m) { return m.method !== "Chat Interface"; });
+      var PAGE_SIZE = 10;
 
       modelHtml = '<div class="modal-section" data-layer="model">' +
         '<div class="modal-section-title">Base Model Testing</div>' +
@@ -458,12 +456,12 @@
       modelHtml += '<table class="model-table" id="model-table"><thead><tr>' +
         '<th class="sortable" data-sort-key="model">Model <span class="sort-arrow"></span></th>' +
         (hasProvider ? '<th class="sortable" data-sort-key="provider">Provider <span class="sort-arrow"></span></th>' : '') +
-        '<th>Study</th>' +
+        '<th>Interface</th>' +
         '<th class="sortable active-sort desc" data-sort-key="passRate">Pass Rate <span class="sort-arrow">\u25BC</span></th>' +
         '<th>Trials</th><th></th>' +
       '</tr></thead><tbody>';
 
-      sortedModels.forEach(function (m) {
+      sortedModels.forEach(function (m, idx) {
         var pr = Math.round(m.passRate * 100);
         var rc = pr === 0 ? "rate-zero" : pr <= 30 ? "rate-low" : "rate-high";
         var cId = m.contributionId || "";
@@ -473,21 +471,29 @@
           var provCls = prov === "Anthropic" ? "provider-anthropic" : prov === "OpenAI" ? "provider-openai" : prov === "Google" ? "provider-google" : "";
           providerTag = '<td><span class="provider-badge ' + provCls + '">' + esc(prov) + '</span></td>';
         }
-        var studyLabel = m.method === "Chat Interface" ? "Initial" : "Extended";
-        var studyCls = m.method === "Chat Interface" ? "study-initial" : "study-extended";
-        modelHtml += '<tr data-contribution="' + esc(cId) + '" data-provider="' + esc(m.provider || '') + '" data-pass-rate="' + m.passRate + '" data-model="' + esc(m.model) + '">' +
+        var methodLabel = m.method || "API";
+        var methodCls = methodLabel === "Chat Interface" ? "method-chat" : "method-api";
+        var hiddenCls = idx >= PAGE_SIZE ? ' class="model-row-hidden"' : '';
+        modelHtml += '<tr data-contribution="' + esc(cId) + '" data-provider="' + esc(m.provider || '') + '" data-pass-rate="' + m.passRate + '" data-model="' + esc(m.model) + '"' + hiddenCls + '>' +
           '<td>' + esc(m.model) + '</td>' +
           providerTag +
-          '<td><span class="study-badge ' + studyCls + '">' + studyLabel + '</span></td>' +
+          '<td><span class="method-badge ' + methodCls + '">' + esc(methodLabel) + '</span></td>' +
           '<td><span class="rate ' + rc + '">' + pr + '%</span></td>' +
           '<td>' + m.trials + '</td>' +
           '<td class="pass-bar-cell"><div class="pass-bar"><div class="pass-bar-fill" style="width:' + pr + '%"></div></div></td>' +
         '</tr>';
       });
 
-      modelHtml += '</tbody></table>' +
-        '<p style="font-size:11px;color:var(--gray-500);margin-top:4px;">\u2020 = extended thinking variant. ' +
-        'Initial = chat interface validation (6 models). Extended = API validation (' + extendedModels.length + ' models, 10 trials each).</p>' +
+      modelHtml += '</tbody></table>';
+
+      // Show more / show less toggle
+      if (sortedModels.length > PAGE_SIZE) {
+        modelHtml += '<button class="btn btn-secondary btn-sm model-show-toggle" id="model-show-toggle" style="margin-top:8px;width:100%;">' +
+          'Show all ' + sortedModels.length + ' models</button>';
+      }
+
+      modelHtml += '<p style="font-size:11px;color:var(--gray-500);margin-top:4px;">\u2020 = extended thinking variant. ' +
+        'Each model tested with 10 independent trials per trap.</p>' +
         '</div>';
     }
 
@@ -650,6 +656,9 @@
           provFilter.querySelectorAll(".provider-chip").forEach(function (c) {
             c.classList.toggle("active", c.dataset.provider === prov);
           });
+          // Auto-expand all rows when filtering by provider
+          var toggle = document.getElementById("model-show-toggle");
+          if (toggle) toggle.style.display = "none";
           var modelTable = document.getElementById("model-table");
           if (modelTable) {
             modelTable.querySelectorAll("tbody tr").forEach(function (row) {
@@ -699,6 +708,29 @@
           rows.forEach(function (row) { tbody.appendChild(row); });
         });
       });
+    }
+
+    // Wire up show more/less toggle for model table
+    var showToggle = document.getElementById("model-show-toggle");
+    if (showToggle) {
+      var expanded = false;
+      showToggle.addEventListener("click", function () {
+        expanded = !expanded;
+        var mt = document.getElementById("model-table");
+        if (mt) {
+          mt.querySelectorAll("tbody tr.model-row-hidden").forEach(function (row) {
+            row.style.display = expanded ? "" : "none";
+          });
+        }
+        showToggle.textContent = expanded ? "Show fewer models" : "Show all " + t.modelTests.length + " models";
+      });
+      // Initially hide overflow rows
+      var mt2 = document.getElementById("model-table");
+      if (mt2) {
+        mt2.querySelectorAll("tbody tr.model-row-hidden").forEach(function (row) {
+          row.style.display = "none";
+        });
+      }
     }
 
     // Wire up discrimination tooltip (hover to show, stays open while hovering)

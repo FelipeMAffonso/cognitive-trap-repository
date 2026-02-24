@@ -149,13 +149,13 @@ for csv_model in sorted(results):
 with open(REPO_DIR / "traps.json", encoding="utf-8") as f:
     traps = json.load(f)
 
-# ── New contribution entry ─────────────────────────────────────────
-EXTENDED_CONTRIBUTION = {
-    "id": "affonso-2026-extended",
+# ── Contribution entry (single unified ID) ─────────────────────────
+CONTRIBUTION = {
+    "id": "affonso-2026",
     "contributor": "Affonso (2026)",
     "date": "2026-02-18",
-    "type": "model-data",
-    "description": "Extended validation: 34 vision-language models tested via API (10 trials per trap per model, 2,040 total trials)"
+    "type": "original",
+    "description": "Human validation, 34-model testing (API and chat interface), and agent deployment data"
 }
 
 # ── Fix existing model name: "GPT-5 Instant" → "GPT-5.1 Instant" ──
@@ -187,10 +187,8 @@ for trap in traps:
         print(f"WARNING: No CSV mapping for trap {trap_id}")
         continue
 
-    # Add contribution if not already present
-    has_extended = any(c["id"] == "affonso-2026-extended" for c in trap.get("contributions", []))
-    if not has_extended:
-        trap.setdefault("contributions", []).append(EXTENDED_CONTRIBUTION.copy())
+    # Ensure single unified contribution entry
+    trap["contributions"] = [CONTRIBUTION.copy()]
 
     # Get existing model names to avoid exact duplicates
     existing_models = {mt["model"] for mt in trap.get("modelTests", [])}
@@ -210,16 +208,16 @@ for trap in traps:
             "passRate": r["passRate"],
             "trials": r["trials"],
             "provider": PROVIDERS.get(csv_model, "Unknown"),
-            "source": "Affonso (2026), Extended validation",
-            "contributionId": "affonso-2026-extended"
+            "source": "Affonso (2026)",
+            "contributionId": "affonso-2026",
+            "method": "API"
         }
         new_entries.append(entry)
 
     trap["modelTests"] = trap.get("modelTests", []) + new_entries
     print(f"\n{trap['name']}: {len(existing_models)} existing + {len(new_entries)} new = {len(trap['modelTests'])} total models")
 
-# ── Add provider field to existing entries too ─────────────────────
-# Map existing display names back to providers
+# ── Ensure all entries have provider, method, source, contributionId ──
 EXISTING_PROVIDERS = {
     "GPT-5.1 Instant": "OpenAI",
     "GPT-5.1\u2020": "OpenAI",
@@ -232,6 +230,13 @@ for trap in traps:
     for mt in trap.get("modelTests", []):
         if "provider" not in mt and mt["model"] in EXISTING_PROVIDERS:
             mt["provider"] = EXISTING_PROVIDERS[mt["model"]]
+        mt.setdefault("method", "API")
+        mt["source"] = "Affonso (2026)"
+        mt["contributionId"] = "affonso-2026"
+    for h in trap.get("humanStudies", []):
+        h["contributionId"] = "affonso-2026"
+    for a in trap.get("agentTests", []):
+        a["contributionId"] = "affonso-2026"
 
 # ── Write updated traps.json ───────────────────────────────────────
 output_path = REPO_DIR / "traps.json"

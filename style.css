@@ -834,17 +834,9 @@ a:hover { text-decoration: underline; }
 .chip-openai.active { background: #2e7d32; border-color: #2e7d32; }
 .chip-google.active { background: #1e40af; border-color: #1e40af; }
 
-/* ---- Study Badges ---- */
-.study-badge {
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 2px;
-  font-size: 10px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.study-initial { background: #fef3c7; color: #92400e; }
-.study-extended { background: #e0e7ff; color: #3730a3; }
+/* ---- Model Table Pagination ---- */
+.model-row-hidden { /* initially hidden, toggled by JS */ }
+.model-show-toggle { cursor: pointer; }
 
 /* ---- Sortable Headers ---- */
 .model-table th.sortable {
