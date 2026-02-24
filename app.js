@@ -411,7 +411,7 @@
     var modelHtml = "";
     if (t.modelTests && t.modelTests.length > 0) {
       var sortedModels = t.modelTests.slice().sort(function (a, b) {
-        return b.passRate - a.passRate;
+        return a.passRate - b.passRate;
       });
       var hasProvider = sortedModels.some(function (m) { return m.provider; });
 
@@ -456,9 +456,9 @@
       modelHtml += '<table class="model-table" id="model-table"><thead><tr>' +
         '<th class="sortable" data-sort-key="model">Model <span class="sort-arrow"></span></th>' +
         (hasProvider ? '<th class="sortable" data-sort-key="provider">Provider <span class="sort-arrow"></span></th>' : '') +
-        '<th>Interface</th>' +
-        '<th class="sortable active-sort desc" data-sort-key="passRate">Pass Rate <span class="sort-arrow">\u25BC</span></th>' +
-        '<th>Trials</th><th></th>' +
+        '<th class="sortable" data-sort-key="interface">Interface <span class="sort-arrow"></span></th>' +
+        '<th class="sortable active-sort asc" data-sort-key="passRate">Pass Rate <span class="sort-arrow">\u25B2</span></th>' +
+        '<th class="sortable" data-sort-key="trials">Trials <span class="sort-arrow"></span></th><th></th>' +
       '</tr></thead><tbody>';
 
       sortedModels.forEach(function (m, idx) {
@@ -474,7 +474,7 @@
         var methodLabel = m.method || "API";
         var methodCls = methodLabel === "Chat Interface" ? "method-chat" : "method-api";
         var hiddenCls = idx >= PAGE_SIZE ? ' class="model-row-hidden"' : '';
-        modelHtml += '<tr data-contribution="' + esc(cId) + '" data-provider="' + esc(m.provider || '') + '" data-pass-rate="' + m.passRate + '" data-model="' + esc(m.model) + '"' + hiddenCls + '>' +
+        modelHtml += '<tr data-contribution="' + esc(cId) + '" data-provider="' + esc(m.provider || '') + '" data-pass-rate="' + m.passRate + '" data-model="' + esc(m.model) + '" data-interface="' + esc(methodLabel) + '" data-trials="' + m.trials + '"' + hiddenCls + '>' +
           '<td>' + esc(m.model) + '</td>' +
           providerTag +
           '<td><span class="method-badge ' + methodCls + '">' + esc(methodLabel) + '</span></td>' +
@@ -698,9 +698,17 @@
               va = (a.dataset.provider || "").toLowerCase();
               vb = (b.dataset.provider || "").toLowerCase();
               return newDir === "asc" ? va.localeCompare(vb) : vb.localeCompare(va);
+            } else if (key === "interface") {
+              va = (a.dataset.interface || "").toLowerCase();
+              vb = (b.dataset.interface || "").toLowerCase();
+              return newDir === "asc" ? va.localeCompare(vb) : vb.localeCompare(va);
             } else if (key === "passRate") {
               va = parseFloat(a.dataset.passRate) || 0;
               vb = parseFloat(b.dataset.passRate) || 0;
+              return newDir === "asc" ? va - vb : vb - va;
+            } else if (key === "trials") {
+              va = parseInt(a.dataset.trials) || 0;
+              vb = parseInt(b.dataset.trials) || 0;
               return newDir === "asc" ? va - vb : vb - va;
             }
             return 0;
