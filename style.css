@@ -981,6 +981,12 @@ footer { background: var(--gray-900); color: rgba(255,255,255,0.6); padding-top:
 .footer-links li { margin-bottom: 4px; }
 .footer-links a { color: rgba(255,255,255,0.5); font-size: 13px; }
 .footer-links a:hover { color: var(--coral); }
+.footer-license { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); }
+.footer-license p { font-size: 12px; line-height: 1.5; }
+.footer-license img { vertical-align: middle; margin-right: 4px; }
+.footer-license a { color: rgba(255,255,255,0.7); }
+.footer-license a:hover { color: var(--coral); }
+
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
   padding: 12px 0;

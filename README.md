@@ -31,11 +31,17 @@ You need: a stimulus image, the question/answer, and the constraint it exploits.
 - Submissions come in as GitHub Issues using a structured form
 - Approved submissions are added to `traps.json` by the maintainer
 
-## Citation
+## Reference
 
 If you use traps from this repository, please cite:
 
-> Affonso, F.M. (2026). Brief Commentary: A Framework for Detecting AI Agents in Online Research. *Journal of Consumer Research*.
+> Affonso, Felipe M. (2026), "Brief Commentary: A Framework for Detecting AI Agents in Online Research," *Journal of Consumer Research*. [https://doi.org/10.1093/jcr/ucag006](https://doi.org/10.1093/jcr/ucag006)
+
+## License
+
+[![CC BY 4.0](https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by.svg)](https://creativecommons.org/licenses/by/4.0/)
+
+This repository is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Free to use, share, and adapt (including commercially), provided you cite the original work.
 
 ## Setup (for maintainers)
 
