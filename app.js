@@ -474,8 +474,20 @@
         var methodLabel = m.method || "API";
         var methodCls = methodLabel === "Chat Interface" ? "method-chat" : "method-api";
         var hiddenCls = idx >= PAGE_SIZE ? ' class="model-row-hidden"' : '';
-        modelHtml += '<tr data-contribution="' + esc(cId) + '" data-provider="' + esc(m.provider || '') + '" data-pass-rate="' + m.passRate + '" data-model="' + esc(m.model) + '" data-interface="' + esc(methodLabel) + '" data-trials="' + m.trials + '"' + hiddenCls + '>' +
-          '<td>' + esc(m.model) + '</td>' +
+        // Build a one-line tooltip describing the model's exact run parameters.
+        // Native title attribute: shows on hover, no extra UI clutter.
+        var tipParts = [];
+        tipParts.push("Method: " + methodLabel);
+        if (m.config) tipParts.push("Config: " + m.config);
+        tipParts.push("Trials: " + m.trials);
+        if (m.source) tipParts.push("Source: " + m.source);
+        var rowTitle = tipParts.join(" \u2022 ");
+        // Tiny subscript ⓘ marker if config is present (so users know there's a tooltip)
+        var configMarker = m.config
+          ? ' <span class="config-marker" title="' + esc(rowTitle) + '">\u24D8</span>'
+          : '';
+        modelHtml += '<tr data-contribution="' + esc(cId) + '" data-provider="' + esc(m.provider || '') + '" data-pass-rate="' + m.passRate + '" data-model="' + esc(m.model) + '" data-interface="' + esc(methodLabel) + '" data-trials="' + m.trials + '" title="' + esc(rowTitle) + '"' + hiddenCls + '>' +
+          '<td>' + esc(m.model) + configMarker + '</td>' +
           providerTag +
           '<td><span class="method-badge ' + methodCls + '">' + esc(methodLabel) + '</span></td>' +
           '<td><span class="rate ' + rc + '">' + pr + '%</span></td>' +

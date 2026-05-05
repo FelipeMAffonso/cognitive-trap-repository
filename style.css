@@ -646,6 +646,17 @@ a:hover { text-decoration: underline; }
 .method-chat { background: #fef3c7; color: #92400e; }
 .method-api { background: #e0e7ff; color: #3730a3; }
 
+/* Subtle "more info on hover" marker next to model names that have config metadata */
+.config-marker {
+  color: var(--gray-500);
+  font-size: 11px;
+  cursor: help;
+  margin-left: 2px;
+  opacity: 0.55;
+  transition: opacity 0.15s;
+}
+.model-table tr:hover .config-marker { opacity: 1; }
+
 .pass-bar-cell { width: 100px; }
 .pass-bar {
   background: #fee2e2;

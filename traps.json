@@ -25,6 +25,13 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Human validation, 34-model testing (API and chat interface), and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-may",
+        "contributor": "Affonso (2026)",
+        "date": "2026-05-05",
+        "type": "update",
+        "description": "May 2026 model refresh: Claude Opus 4.7, OpenAI GPT-5.4/5.5 (with reasoning-effort variants from none/medium/high/xhigh), and Google Gemini 3.1 family. 15 new variants × 6 traps × 10 trials each (900 total trials)."
       }
     ],
     "humanStudies": [
@@ -353,6 +360,156 @@
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026",
         "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.7",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "no thinking",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7† (xhigh)",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5 Instant",
+        "passRate": 0.5,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (high)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (xhigh)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4†",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=low (Pro min)",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite†",
+        "passRate": 0.3,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
       }
     ],
     "agentTests": [
@@ -420,6 +577,13 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Human validation, 34-model testing (API and chat interface), and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-may",
+        "contributor": "Affonso (2026)",
+        "date": "2026-05-05",
+        "type": "update",
+        "description": "May 2026 model refresh: Claude Opus 4.7, OpenAI GPT-5.4/5.5 (with reasoning-effort variants from none/medium/high/xhigh), and Google Gemini 3.1 family. 15 new variants × 6 traps × 10 trials each (900 total trials)."
       }
     ],
     "humanStudies": [
@@ -748,6 +912,156 @@
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026",
         "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.7",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "no thinking",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7† (xhigh)",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5 Instant",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (high)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (xhigh)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4 Instant",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4†",
+        "passRate": 0.3,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=low (Pro min)",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
       }
     ],
     "agentTests": [
@@ -816,6 +1130,13 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Human validation, 34-model testing (API and chat interface), and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-may",
+        "contributor": "Affonso (2026)",
+        "date": "2026-05-05",
+        "type": "update",
+        "description": "May 2026 model refresh: Claude Opus 4.7, OpenAI GPT-5.4/5.5 (with reasoning-effort variants from none/medium/high/xhigh), and Google Gemini 3.1 family. 15 new variants × 6 traps × 10 trials each (900 total trials)."
       }
     ],
     "humanStudies": [
@@ -1144,6 +1465,156 @@
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026",
         "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.7",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "no thinking",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7† (xhigh)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5 Instant",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (high)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (xhigh)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4 Instant",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=low (Pro min)",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite",
+        "passRate": 0.2,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite†",
+        "passRate": 0.8,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
       }
     ],
     "agentTests": [
@@ -1214,6 +1685,13 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Human validation, 34-model testing (API and chat interface), and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-may",
+        "contributor": "Affonso (2026)",
+        "date": "2026-05-05",
+        "type": "update",
+        "description": "May 2026 model refresh: Claude Opus 4.7, OpenAI GPT-5.4/5.5 (with reasoning-effort variants from none/medium/high/xhigh), and Google Gemini 3.1 family. 15 new variants × 6 traps × 10 trials each (900 total trials)."
       }
     ],
     "humanStudies": [
@@ -1542,6 +2020,156 @@
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026",
         "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.7",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "no thinking",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7† (xhigh)",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5 Instant",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (high)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (xhigh)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4 Instant",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4†",
+        "passRate": 0.8,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro",
+        "passRate": 0.2,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=low (Pro min)",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro†",
+        "passRate": 0.2,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
       }
     ],
     "agentTests": [
@@ -1608,6 +2236,13 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Human validation, 34-model testing (API and chat interface), and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-may",
+        "contributor": "Affonso (2026)",
+        "date": "2026-05-05",
+        "type": "update",
+        "description": "May 2026 model refresh: Claude Opus 4.7, OpenAI GPT-5.4/5.5 (with reasoning-effort variants from none/medium/high/xhigh), and Google Gemini 3.1 family. 15 new variants × 6 traps × 10 trials each (900 total trials)."
       }
     ],
     "humanStudies": [
@@ -1936,6 +2571,156 @@
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026",
         "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.7",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "no thinking",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7†",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7† (xhigh)",
+        "passRate": 0.4,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5 Instant",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (high)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (xhigh)",
+        "passRate": 0.6,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4 Instant",
+        "passRate": 0.7,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=low (Pro min)",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro†",
+        "passRate": 0.7,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite†",
+        "passRate": 0.6,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
       }
     ],
     "agentTests": [
@@ -2006,6 +2791,13 @@
         "date": "2026-02-18",
         "type": "original",
         "description": "Human validation, 34-model testing (API and chat interface), and agent deployment data"
+      },
+      {
+        "id": "affonso-2026-may",
+        "contributor": "Affonso (2026)",
+        "date": "2026-05-05",
+        "type": "update",
+        "description": "May 2026 model refresh: Claude Opus 4.7, OpenAI GPT-5.4/5.5 (with reasoning-effort variants from none/medium/high/xhigh), and Google Gemini 3.1 family. 15 new variants × 6 traps × 10 trials each (900 total trials)."
       }
     ],
     "humanStudies": [
@@ -2334,6 +3126,156 @@
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026",
         "method": "API"
+      },
+      {
+        "model": "Claude Opus 4.7",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "no thinking",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Claude Opus 4.7† (xhigh)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Anthropic",
+        "method": "API",
+        "config": "adaptive thinking, effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5 Instant",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (high)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.5† (xhigh)",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=xhigh",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4 Instant",
+        "passRate": 0.1,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=none",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "GPT-5.4†",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "OpenAI",
+        "method": "API",
+        "config": "reasoning_effort=medium",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro",
+        "passRate": 1.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=low (Pro min)",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Pro†",
+        "passRate": 0.9,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash†",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite",
+        "passRate": 0.0,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=minimal",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
+      },
+      {
+        "model": "Gemini 3.1 Flash Lite†",
+        "passRate": 0.2,
+        "trials": 10,
+        "provider": "Google",
+        "method": "API",
+        "config": "thinking_level=high",
+        "source": "Affonso (2026)",
+        "contributionId": "affonso-2026-may"
       }
     ],
     "agentTests": [
