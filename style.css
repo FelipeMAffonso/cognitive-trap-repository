@@ -1764,6 +1764,7 @@ footer { background: var(--gray-900); color: rgba(255,255,255,0.6); padding-top:
   flex-wrap: wrap;
   gap: 8px 18px;
   padding: 12px 4px 0;
+  margin-bottom: 48px;       /* breathing room before the CTA section */
   font-size: 12.5px;
   color: var(--gray-700);
   align-items: center;
