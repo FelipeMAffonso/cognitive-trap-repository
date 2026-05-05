@@ -51,6 +51,7 @@
     <div class="view-toggle" id="view-toggle">
       <button class="view-btn active" data-view="traps">Browse by Trap</button>
       <button class="view-btn" data-view="models">Browse by Model</button>
+      <button class="view-btn" data-view="evolution">Evolution over time</button>
     </div>
 
     <!-- ===== TRAP VIEW (default) ===== -->
@@ -85,61 +86,106 @@
       </div>
     </div>
 
-    <!-- ===== MODEL VIEW (toggled) ===== -->
-    <div id="model-view" style="display:none;">
-      <div class="controls">
-        <div class="search-wrapper">
-          <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
-          </svg>
-          <input type="text" id="model-search" placeholder="Search models..." autocomplete="off">
-        </div>
-        <div class="filters" id="model-filters">
-          <button class="filter-btn active" data-mfilter="all">All providers</button>
-          <button class="filter-btn" data-mfilter="Anthropic">Anthropic</button>
-          <button class="filter-btn" data-mfilter="OpenAI">OpenAI</button>
-          <button class="filter-btn" data-mfilter="Google">Google</button>
-          <button class="filter-btn" data-mfilter="thinking">Thinking only</button>
-          <button class="filter-btn" data-mfilter="no-thinking">No thinking only</button>
-        </div>
-      </div>
-
-      <div class="sort-bar">
-        <span class="sort-label">Sort by</span>
-        <div class="sort-options" id="model-sort-options">
-          <button class="sort-btn" data-msort="avgAsc">Avg pass (low → high)</button>
-          <button class="sort-btn active" data-msort="avgDesc">Avg pass (high → low)</button>
-          <button class="sort-btn" data-msort="name">Name</button>
-          <button class="sort-btn" data-msort="provider">Provider</button>
-        </div>
-        <span class="results-count" id="model-count"></span>
-      </div>
-
-      <div class="model-control-row">
-        <div class="control-group">
-          <span class="control-label">View</span>
-          <div class="sub-view-toggle" id="model-sub-toggle">
-            <button class="sub-view-btn active" data-subview="cards">Cards</button>
-            <button class="sub-view-btn" data-subview="list">List</button>
-            <button class="sub-view-btn" data-subview="matrix">Matrix</button>
+    <!-- ===== EVOLUTION VIEW (toggled) ===== -->
+    <div id="evolution-view" style="display:none;">
+      <div class="mv-controls">
+        <div class="mv-grid">
+          <div class="mv-row">
+            <span class="mv-label">Traps</span>
+            <div class="mv-segmented evo-trap-filter" id="evo-trap-filter"></div>
+          </div>
+          <div class="mv-row">
+            <span class="mv-label">Provider</span>
+            <div class="mv-segmented" id="evo-provider-toggle">
+              <button class="mv-seg active" data-evoprov="all">All</button>
+              <button class="mv-seg" data-evoprov="Anthropic">Anthropic</button>
+              <button class="mv-seg" data-evoprov="OpenAI">OpenAI</button>
+              <button class="mv-seg" data-evoprov="Google">Google</button>
+            </div>
+            <span class="mv-label mv-label-mid">Models</span>
+            <div class="mv-segmented" id="evo-thinking-toggle">
+              <button class="mv-seg active" data-evothink="all">All</button>
+              <button class="mv-seg" data-evothink="thinking">Thinking only</button>
+              <button class="mv-seg" data-evothink="no-thinking">No thinking only</button>
+            </div>
+          </div>
+          <div class="mv-row">
+            <span class="mv-label">Overlay</span>
+            <label class="evo-toggle-label"><input type="checkbox" id="evo-show-trend" checked> Trend line</label>
+            <label class="evo-toggle-label"><input type="checkbox" id="evo-show-human" checked> Human baseline</label>
+            <label class="evo-toggle-label"><input type="checkbox" id="evo-show-labels" checked> Model labels</label>
           </div>
         </div>
-        <div class="control-group">
-          <span class="control-label">Group by</span>
-          <div class="sub-view-toggle" id="model-group-toggle">
-            <button class="sub-view-btn active" data-group="none">None</button>
-            <button class="sub-view-btn" data-group="provider">Provider</button>
-            <button class="sub-view-btn" data-group="family">Family</button>
-            <button class="sub-view-btn" data-group="thinking">Thinking on/off</button>
+      </div>
+      <p class="view-help">
+        Each dot is one model variant. <strong>X-axis = release date</strong>,
+        <strong>Y-axis = pass rate</strong> on the selected traps. <strong>Filled</strong> dots = thinking on, <strong>hollow</strong> = no thinking.
+        Hover any dot for details. Pick traps above to overlay 1–N at once; "All (avg)" shows the average across every trap.
+      </p>
+      <div class="evo-chart-wrapper">
+        <svg id="evo-svg" class="evo-svg" preserveAspectRatio="xMidYMid meet"></svg>
+      </div>
+      <div class="evo-legend" id="evo-legend"></div>
+    </div>
+
+    <!-- ===== MODEL VIEW (toggled) ===== -->
+    <div id="model-view" style="display:none;">
+
+      <!-- Single, consolidated control panel ----------------------------- -->
+      <div class="mv-controls">
+        <div class="mv-search">
+          <svg class="mv-search-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+          </svg>
+          <input type="text" id="model-search" placeholder="Search models, providers, configurations..." autocomplete="off">
+          <span class="mv-count" id="model-count"></span>
+        </div>
+
+        <div class="mv-grid">
+          <div class="mv-row">
+            <span class="mv-label">Provider</span>
+            <div class="mv-segmented">
+              <button class="mv-seg active" data-mfilter="all">All</button>
+              <button class="mv-seg" data-mfilter="Anthropic">Anthropic</button>
+              <button class="mv-seg" data-mfilter="OpenAI">OpenAI</button>
+              <button class="mv-seg" data-mfilter="Google">Google</button>
+              <button class="mv-seg mv-seg-divider" data-mfilter="thinking">Thinking only</button>
+              <button class="mv-seg" data-mfilter="no-thinking">No thinking only</button>
+            </div>
+          </div>
+
+          <div class="mv-row">
+            <span class="mv-label">View</span>
+            <div class="mv-segmented">
+              <button class="mv-seg active" data-subview="cards">Cards</button>
+              <button class="mv-seg" data-subview="list">List</button>
+              <button class="mv-seg" data-subview="matrix">Matrix</button>
+            </div>
+            <span class="mv-label mv-label-mid">Group by</span>
+            <div class="mv-segmented">
+              <button class="mv-seg active" data-group="none">None</button>
+              <button class="mv-seg" data-group="provider">Provider</button>
+              <button class="mv-seg" data-group="family">Family</button>
+              <button class="mv-seg" data-group="thinking">Thinking</button>
+            </div>
+          </div>
+
+          <div class="mv-row">
+            <span class="mv-label">Sort</span>
+            <div class="mv-segmented">
+              <button class="mv-seg active" data-msort="avgDesc">Avg pass ↓</button>
+              <button class="mv-seg" data-msort="avgAsc">Avg pass ↑</button>
+              <button class="mv-seg" data-msort="name">Name</button>
+              <button class="mv-seg" data-msort="provider">Provider</button>
+            </div>
           </div>
         </div>
       </div>
 
       <p class="view-help">
         <strong>Pass rate</strong> = how often the model answers correctly (humans pass; cognitive traps work when models fail).
-        Models are profiled by <strong>architectural-constraint category</strong> rather than individual traps,
-        so this view stays meaningful as new traps are added.
-        Click any model to see its full per-trap breakdown.
+        Models are profiled by <strong>architectural-constraint category</strong>, so the view stays meaningful as new traps are added.
+        Click any model for its full per-trap breakdown.
       </p>
 
       <div class="model-leaderboard" id="model-leaderboard"></div>

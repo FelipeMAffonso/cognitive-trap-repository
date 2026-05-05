@@ -163,7 +163,8 @@ a:hover { text-decoration: underline; }
   color: var(--gray-500);
   pointer-events: none;
 }
-#search {
+#search,
+.search-wrapper input[type="text"] {
   width: 100%;
   height: 40px;
   padding: 0 16px 0 40px;
@@ -175,12 +176,14 @@ a:hover { text-decoration: underline; }
   color: var(--gray-900);
   transition: border-color 0.15s, box-shadow 0.15s;
 }
-#search:focus {
+#search:focus,
+.search-wrapper input[type="text"]:focus {
   outline: none;
   border-color: var(--coral);
   box-shadow: 0 0 0 3px var(--coral-subtle);
 }
-#search::placeholder { color: var(--gray-600); }
+#search::placeholder,
+.search-wrapper input[type="text"]::placeholder { color: var(--gray-600); }
 
 .filters { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
 .filter-btn {
@@ -685,10 +688,10 @@ a:hover { text-decoration: underline; }
 }
 .view-btn.active {
   background: white;
-  color: var(--ink);
+  color: var(--gray-900);
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
-.view-btn:hover:not(.active) { color: var(--ink); }
+.view-btn:hover:not(.active) { color: var(--gray-900); }
 
 .view-help {
   margin: 4px 0 20px;
@@ -697,7 +700,7 @@ a:hover { text-decoration: underline; }
   color: var(--gray-600);
   max-width: 720px;
 }
-.view-help strong { color: var(--ink); font-weight: 600; }
+.view-help strong { color: var(--gray-900); font-weight: 600; }
 
 /* Sub-view + group-by control row */
 .model-control-row {
@@ -743,10 +746,10 @@ a:hover { text-decoration: underline; }
   transition: background 0.12s, color 0.12s;
 }
 .sub-view-btn.active {
-  background: var(--ink);
+  background: var(--gray-900);
   color: white;
 }
-.sub-view-btn:hover:not(.active) { color: var(--ink); background: var(--gray-100); }
+.sub-view-btn:hover:not(.active) { color: var(--gray-900); background: var(--gray-100); }
 
 /* ===========================================================
    Top summary banner (shared by all model sub-views)
@@ -774,7 +777,7 @@ a:hover { text-decoration: underline; }
 .msb-num {
   font-size: 28px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--gray-900);
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
@@ -815,7 +818,7 @@ a:hover { text-decoration: underline; }
 .mg-title {
   font-size: 15px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--gray-900);
 }
 .mg-meta {
   font-size: 12px;
@@ -922,7 +925,7 @@ a:hover { text-decoration: underline; }
   margin: 4px 0 0;
   font-size: 17px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--gray-900);
   line-height: 1.25;
 }
 .mc-subtitle {
@@ -954,7 +957,7 @@ a:hover { text-decoration: underline; }
 .mc-stat-num {
   font-size: 18px;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--gray-900);
   font-variant-numeric: tabular-nums;
   line-height: 1.1;
 }
@@ -1004,7 +1007,7 @@ a:hover { text-decoration: underline; }
 }
 .mc-cat-name {
   font-size: 13px;
-  color: var(--ink);
+  color: var(--gray-900);
   font-weight: 500;
 }
 .mc-cat-n {
@@ -1040,7 +1043,7 @@ a:hover { text-decoration: underline; }
   color: var(--gray-500);
   font-style: italic;
 }
-.model-card:hover .mc-footer { color: var(--ink); }
+.model-card:hover .mc-footer { color: var(--gray-900); }
 
 /* ===========================================================
    SUB-VIEW: List (compact table)
@@ -1091,7 +1094,7 @@ a:hover { text-decoration: underline; }
   border: 1px solid var(--gray-200);
   font-size: 11.5px;
 }
-.lt-model strong { color: var(--ink); font-weight: 600; }
+.lt-model strong { color: var(--gray-900); font-weight: 600; }
 
 /* ===========================================================
    SUB-VIEW: Matrix (model × trap; horizontally scrollable)
@@ -1130,7 +1133,7 @@ a:hover { text-decoration: underline; }
 .mt-trap-name {
   font-size: 12px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--gray-900);
   margin-bottom: 2px;
 }
 .mt-trap-cat {
@@ -1155,7 +1158,7 @@ a:hover { text-decoration: underline; }
 .model-matrix-table tbody tr:hover { background: var(--gray-50); }
 .mt-rank   { color: var(--gray-400); width: 40px; }
 .mt-model  { text-align: left !important; min-width: 200px; padding: 10px 14px !important; font-family: inherit; font-weight: normal; }
-.mt-model strong { color: var(--ink); font-weight: 600; font-size: 13.5px; }
+.mt-model strong { color: var(--gray-900); font-weight: 600; font-size: 13.5px; }
 .mt-model-sub { margin-top: 4px; }
 .mt-cell.rate-high  { background: #d1fae5; color: #047857; }
 .mt-cell.rate-mid   { background: #fef3c7; color: #b45309; }
@@ -1191,7 +1194,7 @@ a:hover { text-decoration: underline; }
   font-size: 13px;
   color: var(--gray-600);
 }
-.modal-meta-text strong { color: var(--ink); }
+.modal-meta-text strong { color: var(--gray-900); }
 .modal-title-block h2 { margin: 0; }
 
 /* ===========================================================
@@ -1585,4 +1588,375 @@ footer { background: var(--gray-900); color: rgba(255,255,255,0.6); padding-top:
   .footer-content { grid-template-columns: 1fr; gap: 20px; }
   .modal-overlay { padding: 16px; }
   .modal-stats { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+/* ===========================================================
+   Model-detail modal (clean header + meta + stats)
+   =========================================================== */
+.model-detail-header {
+  margin-bottom: 18px;
+  padding-right: 40px;          /* leave room for close button */
+}
+.model-detail-title {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.2;
+}
+.model-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--gray-700);
+}
+.model-detail-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.model-detail-chip strong {
+  color: var(--gray-900);
+  font-weight: 600;
+}
+.model-detail-chip code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--gray-900);
+}
+.model-detail-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+  padding: 14px 16px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+}
+
+/* ===========================================================
+   Evolution view — chart + controls
+   =========================================================== */
+.evo-chart-wrapper {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 12px 16px 8px;
+  overflow: hidden;
+}
+.evo-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  font-family: var(--font);
+}
+.evo-grid {
+  stroke: var(--gray-200);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.evo-axis {
+  stroke: var(--gray-400);
+  stroke-width: 1;
+}
+.evo-tick {
+  stroke: var(--gray-400);
+  stroke-width: 1;
+}
+.evo-axis-label {
+  font-size: 11px;
+  fill: var(--gray-600);
+}
+.evo-axis-title {
+  font-size: 12px;
+  fill: var(--gray-700);
+  font-weight: 600;
+}
+.evo-human {
+  stroke: #c0392b;
+  stroke-width: 1.4;
+  stroke-dasharray: 4 3;
+  opacity: 0.7;
+}
+.evo-human-label {
+  font-size: 10.5px;
+  fill: #c0392b;
+  font-weight: 600;
+}
+.evo-trend {
+  stroke: #94a3b8;
+  stroke-width: 1.5;
+  opacity: 0.7;
+}
+.evo-pt {
+  cursor: pointer;
+  transition: opacity 0.12s, transform 0.12s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+.evo-pt:hover { opacity: 1; transform: scale(1.5); }
+.evo-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.evo-tooltip {
+  position: absolute;
+  background: var(--gray-900);
+  color: white;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  font-family: var(--font);
+  white-space: nowrap;
+}
+.evo-trap-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.evo-trap-chip {
+  padding: 5px 12px;
+  border: 1px solid var(--gray-200);
+  background: white;
+  border-radius: 999px;
+  color: var(--gray-700);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.evo-trap-chip:hover {
+  border-color: var(--gray-300);
+  background: var(--gray-50);
+}
+.evo-trap-chip.active {
+  background: var(--gray-900);
+  border-color: var(--gray-900);
+  color: white;
+}
+.evo-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--gray-700);
+  cursor: pointer;
+  user-select: none;
+}
+.evo-toggle-label input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: var(--coral);
+}
+.evo-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding: 12px 4px 0;
+  font-size: 12.5px;
+  color: var(--gray-700);
+  align-items: center;
+}
+.evo-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.evo-legend-text {
+  margin-left: auto;
+  color: var(--gray-600);
+  font-style: italic;
+}
+.evo-legend-divider {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background: var(--gray-200);
+  margin: 0 4px;
+}
+.evo-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid;
+}
+.evo-dot-anthropic { background: #c44e2d; border-color: #c44e2d; }
+.evo-dot-openai    { background: #3a7d5e; border-color: #3a7d5e; }
+.evo-dot-google    { background: #2c5f7c; border-color: #2c5f7c; }
+.evo-dot-filled    { background: var(--gray-900); border-color: var(--gray-900); }
+.evo-dot-hollow    { background: white; border-color: var(--gray-900); }
+
+/* ===========================================================
+   Tightening: model-control-row spacing on smaller widths
+   =========================================================== */
+@media (max-width: 980px) {
+  .model-control-row {
+    gap: 14px;
+    padding: 12px;
+  }
+  .model-detail-stats { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===========================================================
+   Consolidated Model-View / Evolution control panel
+   ===========================================================
+   One panel with: search bar, then a 3-row grid of label + segmented
+   control. Replaces the previous scattered 4-row layout.
+   =========================================================== */
+.mv-controls {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 18px 0 18px;
+  box-shadow: var(--shadow-sm);
+}
+.mv-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.mv-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-500);
+  pointer-events: none;
+}
+.mv-search input[type="text"] {
+  flex: 1;
+  height: 38px;
+  padding: 0 16px 0 38px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: var(--font);
+  background: var(--gray-50);
+  color: var(--gray-900);
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.mv-search input[type="text"]:focus {
+  outline: none;
+  background: white;
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px var(--coral-subtle);
+}
+.mv-search input[type="text"]::placeholder { color: var(--gray-500); }
+.mv-count {
+  font-size: 12.5px;
+  color: var(--gray-600);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.mv-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mv-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+.mv-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  width: 70px;
+  flex-shrink: 0;
+}
+.mv-label-mid {
+  width: auto;
+  margin-left: 12px;
+  border-left: 1px solid var(--gray-200);
+  padding-left: 14px;
+}
+
+.mv-segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  background: var(--gray-100);
+  border-radius: 8px;
+  padding: 3px;
+}
+.mv-seg {
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  color: var(--gray-700);
+  font-weight: 500;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s, box-shadow 0.12s;
+}
+.mv-seg:hover:not(.active) {
+  color: var(--gray-900);
+  background: white;
+}
+.mv-seg.active {
+  background: white;
+  color: var(--gray-900);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.mv-seg-divider {
+  margin-left: 6px;
+  border-left: 1px solid var(--gray-300);
+  padding-left: 14px !important;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Evolution-view trap filter chips: same look as segmented, but in
+   "free-form chip" mode (multi-select) instead of segmented (single) */
+.evo-trap-filter {
+  background: transparent;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.evo-trap-filter .evo-trap-chip {
+  padding: 6px 12px;
+  background: var(--gray-100);
+  border: 1px solid transparent;
+  color: var(--gray-700);
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.evo-trap-filter .evo-trap-chip:hover { background: var(--gray-50); border-color: var(--gray-200); }
+.evo-trap-filter .evo-trap-chip.active {
+  background: var(--gray-900);
+  color: white;
+  border-color: var(--gray-900);
+}
+
+@media (max-width: 720px) {
+  .mv-label { width: auto; }
+  .mv-label-mid { margin-left: 0; padding-left: 0; border-left: none; }
 }

@@ -1350,26 +1350,26 @@
 
     modal.innerHTML =
       '<button class="modal-close" id="modal-close">\u00D7</button>' +
-      '<div class="modal-header">' +
-        '<div class="modal-title-block">' +
-          '<h2>' + esc(r.model) + '</h2>' +
-          '<div class="modal-meta-row">' +
+      '<div class="modal-body">' +
+        '<div class="model-detail-header">' +
+          '<h2 class="model-detail-title">' + esc(r.model) + '</h2>' +
+          '<div class="model-detail-meta">' +
             '<span class="provider-badge ' + provCls + '">' + esc(r.provider) + '</span>' +
-            '<span class="modal-meta-text">Method: <strong>' + esc(r.method) + '</strong></span>' +
-            '<span class="modal-meta-text">Config: <strong>' + esc(r.config || "n/a") + '</strong></span>' +
+            '<span class="model-detail-chip">Method · <strong>' + esc(r.method) + '</strong></span>' +
+            '<span class="model-detail-chip">Config · <code>' + esc(r.config || "n/a") + '</code></span>' +
           '</div>' +
         '</div>' +
-        '<div class="modal-stats" style="margin-top:12px;">' +
+        '<div class="model-detail-stats">' +
           mStat(avgPct + "%", "Avg pass", r.trapCount + " traps", avgPct >= 80 ? "good" : avgPct >= 30 ? "warn" : "neutral") +
           mStat(r.totalTrials, "Total trials", r.source, "neutral") +
         '</div>' +
-      '</div>' +
-      '<div class="modal-section">' +
-        '<div class="modal-section-title">Per-trap pass rate</div>' +
-        '<table class="model-table">' +
-          '<thead><tr><th>Trap</th><th>Pass</th><th>Correct/Trials</th><th></th></tr></thead>' +
-          '<tbody>' + rowsHtml + '</tbody>' +
-        '</table>' +
+        '<div class="modal-section">' +
+          '<div class="modal-section-title">Per-trap pass rate</div>' +
+          '<table class="model-table">' +
+            '<thead><tr><th>Trap</th><th>Pass</th><th>Correct/Trials</th><th></th></tr></thead>' +
+            '<tbody>' + rowsHtml + '</tbody>' +
+          '</table>' +
+        '</div>' +
       '</div>';
 
     overlay.classList.add("open");
@@ -1389,17 +1389,298 @@
     });
   }
 
+  // ====================================================================
+  //   EVOLUTION VIEW (release date × pass rate, multi-trap selectable)
+  // ====================================================================
+  var evoSelectedTraps = [];           // array of trap ids; [] = "all (average)"
+  var evoProvider = "all";             // 'all' | 'Anthropic' | 'OpenAI' | 'Google'
+  var evoThinking = "all";             // 'all' | 'thinking' | 'no-thinking'
+  var evoShowTrend = true;
+  var evoShowHuman = true;
+  var evoShowLabels = true;
+  var EVO_HUMAN_BASELINE = 0.868;      // 86.8% — from paper figure 2 caption
+
+  // Provider plot colors (match figure 2)
+  var EVO_PROVIDER_COLORS = {
+    "Anthropic": "#c44e2d",
+    "OpenAI":    "#3a7d5e",
+    "Google":    "#2c5f7c",
+  };
+
+  function renderEvoTrapFilter() {
+    var container = document.getElementById("evo-trap-filter");
+    if (!container) return;
+    var traps = allTraps.filter(function (t) { return t.modelTests && t.modelTests.length > 0; });
+    var html = '<button class="evo-trap-chip ' + (evoSelectedTraps.length === 0 ? 'active' : '') + '" data-evotrap="">All (avg)</button>';
+    traps.forEach(function (t) {
+      var on = evoSelectedTraps.indexOf(t.id) !== -1;
+      html += '<button class="evo-trap-chip ' + (on ? 'active' : '') + '" data-evotrap="' + esc(t.id) + '">' + esc(t.name) + '</button>';
+    });
+    container.innerHTML = html;
+    container.querySelectorAll("[data-evotrap]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var id = b.dataset.evotrap;
+        if (id === "") {
+          evoSelectedTraps = [];
+        } else if (evoSelectedTraps.indexOf(id) !== -1) {
+          evoSelectedTraps = evoSelectedTraps.filter(function (x) { return x !== id; });
+        } else {
+          evoSelectedTraps = evoSelectedTraps.concat([id]);
+        }
+        renderEvoTrapFilter();
+        renderEvoChart();
+      });
+    });
+  }
+
+  // Build evolution data points: one point per (model, contributionId)
+  function evoBuildPoints() {
+    var rows = aggregateModels();
+    rows = rows.filter(function (r) {
+      if (evoProvider !== "all" && r.provider !== evoProvider) return false;
+      if (evoThinking === "thinking" && !r.isThinking) return false;
+      if (evoThinking === "no-thinking" && r.isThinking) return false;
+      return true;
+    });
+    var points = rows.map(function (r) {
+      // Release date: pull from any modelTests entry of this model (they should all match)
+      var releaseDate = null;
+      allTraps.forEach(function (t) {
+        if (!t.modelTests) return;
+        t.modelTests.forEach(function (m) {
+          if (m.model !== r.model || (m.contributionId || "") !== r.contributionId) return;
+          if (m.releaseDate && !releaseDate) releaseDate = m.releaseDate;
+        });
+      });
+      // Compute Y based on selected traps
+      var y;
+      var nUsed;
+      if (evoSelectedTraps.length === 0) {
+        y = r.avgPass;
+        nUsed = r.trapCount;
+      } else {
+        var sum = 0, n = 0;
+        evoSelectedTraps.forEach(function (id) {
+          var pt = r.perTrap[id];
+          if (pt) { sum += pt.passRate; n++; }
+        });
+        if (n === 0) return null;
+        y = sum / n;
+        nUsed = n;
+      }
+      return {
+        model: r.model,
+        provider: r.provider,
+        isThinking: r.isThinking,
+        releaseDate: releaseDate,
+        date: releaseDate ? new Date(releaseDate + "T00:00:00Z").getTime() : null,
+        passRate: y,
+        nTraps: nUsed,
+      };
+    }).filter(function (p) { return p && p.date !== null; });
+    return points;
+  }
+
+  function renderEvoChart() {
+    var svg = document.getElementById("evo-svg");
+    var legend = document.getElementById("evo-legend");
+    if (!svg) return;
+
+    var points = evoBuildPoints();
+    if (points.length === 0) {
+      svg.innerHTML = '<text x="50%" y="50%" text-anchor="middle" fill="#888">No data for this combination of filters.</text>';
+      svg.setAttribute("viewBox", "0 0 600 200");
+      if (legend) legend.innerHTML = "";
+      return;
+    }
+
+    // Chart geometry
+    var W = 880, H = 480;
+    var margin = { top: 24, right: 100, bottom: 56, left: 60 };
+    var iw = W - margin.left - margin.right;
+    var ih = H - margin.top - margin.bottom;
+
+    // Scales
+    var xMin = Math.min.apply(null, points.map(function (p) { return p.date; }));
+    var xMax = Math.max.apply(null, points.map(function (p) { return p.date; }));
+    // Pad x range by 30 days on each side
+    xMin -= 30 * 86400000;
+    xMax += 30 * 86400000;
+    var xScale = function (d) { return margin.left + (d - xMin) / (xMax - xMin) * iw; };
+    var yScale = function (v) { return margin.top + (1 - v) * ih; };
+
+    // X ticks: one per quarter (Jan/Apr/Jul/Oct)
+    var ticks = [];
+    var startYear = new Date(xMin).getUTCFullYear();
+    var endYear = new Date(xMax).getUTCFullYear();
+    for (var y = startYear; y <= endYear + 1; y++) {
+      [0, 3, 6, 9].forEach(function (m) {
+        var d = Date.UTC(y, m, 1);
+        if (d >= xMin && d <= xMax) ticks.push(d);
+      });
+    }
+    var fmtTick = function (d) {
+      var dt = new Date(d);
+      var months = ["Jan","Apr","Jul","Oct"];
+      var monthIdx = dt.getUTCMonth();
+      var monthLabel = monthIdx === 0 ? "Jan" : monthIdx === 3 ? "Apr" : monthIdx === 6 ? "Jul" : "Oct";
+      return monthLabel + " " + dt.getUTCFullYear();
+    };
+
+    // Build SVG content
+    var parts = [];
+    // Y gridlines + labels
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (yv) {
+      parts.push('<line class="evo-grid" x1="' + margin.left + '" y1="' + yScale(yv) + '" x2="' + (margin.left + iw) + '" y2="' + yScale(yv) + '"/>');
+      parts.push('<text class="evo-axis-label" x="' + (margin.left - 8) + '" y="' + (yScale(yv) + 4) + '" text-anchor="end">' + Math.round(yv * 100) + '%</text>');
+    });
+    // X axis line + ticks
+    parts.push('<line class="evo-axis" x1="' + margin.left + '" y1="' + (margin.top + ih) + '" x2="' + (margin.left + iw) + '" y2="' + (margin.top + ih) + '"/>');
+    ticks.forEach(function (d) {
+      var x = xScale(d);
+      parts.push('<line class="evo-tick" x1="' + x + '" y1="' + (margin.top + ih) + '" x2="' + x + '" y2="' + (margin.top + ih + 4) + '"/>');
+      parts.push('<text class="evo-axis-label" x="' + x + '" y="' + (margin.top + ih + 18) + '" text-anchor="middle">' + fmtTick(d) + '</text>');
+    });
+    // Axis titles
+    parts.push('<text class="evo-axis-title" x="' + (margin.left + iw / 2) + '" y="' + (H - 8) + '" text-anchor="middle">Model release date</text>');
+    parts.push('<text class="evo-axis-title" x="0" y="0" text-anchor="middle" transform="translate(' + (margin.left - 42) + ',' + (margin.top + ih / 2) + ') rotate(-90)">Pass rate</text>');
+
+    // Human baseline line
+    if (evoShowHuman) {
+      var hy = yScale(EVO_HUMAN_BASELINE);
+      parts.push('<line class="evo-human" x1="' + margin.left + '" y1="' + hy + '" x2="' + (margin.left + iw) + '" y2="' + hy + '"/>');
+      parts.push('<text class="evo-human-label" x="' + (margin.left + iw + 6) + '" y="' + (hy + 4) + '">Human ' + Math.round(EVO_HUMAN_BASELINE * 100) + '%</text>');
+    }
+
+    // Trend line: simple OLS through points
+    if (evoShowTrend && points.length > 1) {
+      var meanX = 0, meanY = 0;
+      points.forEach(function (p) { meanX += p.date; meanY += p.passRate; });
+      meanX /= points.length; meanY /= points.length;
+      var num = 0, den = 0;
+      points.forEach(function (p) {
+        num += (p.date - meanX) * (p.passRate - meanY);
+        den += (p.date - meanX) * (p.date - meanX);
+      });
+      var slope = den > 0 ? num / den : 0;
+      var intercept = meanY - slope * meanX;
+      var x1 = xMin, x2 = xMax;
+      var yAt = function (x) { return Math.max(0, Math.min(1, slope * x + intercept)); };
+      parts.push('<line class="evo-trend" x1="' + xScale(x1) + '" y1="' + yScale(yAt(x1)) + '" x2="' + xScale(x2) + '" y2="' + yScale(yAt(x2)) + '"/>');
+    }
+
+    // Plot points (group by provider so coloring is consistent)
+    points.forEach(function (p) {
+      var color = EVO_PROVIDER_COLORS[p.provider] || "#888";
+      var cx = xScale(p.date);
+      var cy = yScale(p.passRate);
+      var r = p.isThinking ? 6 : 4.5;
+      var stroke = p.isThinking ? color : "white";
+      var fill = p.isThinking ? color : "white";
+      var tip = p.model + "  |  " + (Math.round(p.passRate * 100)) + "% pass  |  released " + p.releaseDate + "  |  " + p.nTraps + " trap" + (p.nTraps !== 1 ? "s" : "");
+      parts.push('<circle class="evo-pt" cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + fill + '" stroke="' + color + '" stroke-width="1.6" data-tip="' + esc(tip) + '"></circle>');
+    });
+
+    // Optional model labels for high-information points (the highest model per month, capped)
+    if (evoShowLabels) {
+      // Pick the top 1 point per month per provider to label
+      var keep = {};
+      points.forEach(function (p) {
+        var monthKey = (p.releaseDate || "").slice(0, 7) + "|" + p.provider;
+        if (!keep[monthKey] || p.passRate > keep[monthKey].passRate) keep[monthKey] = p;
+      });
+      Object.values(keep).forEach(function (p) {
+        var color = EVO_PROVIDER_COLORS[p.provider] || "#666";
+        var cx = xScale(p.date);
+        var cy = yScale(p.passRate);
+        parts.push('<text class="evo-label" x="' + (cx + 7) + '" y="' + (cy - 5) + '" fill="' + color + '">' + esc(p.model.replace(/\u2020/g, "†")) + '</text>');
+      });
+    }
+
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    svg.innerHTML = parts.join("");
+
+    // Tooltip on hover
+    svg.querySelectorAll(".evo-pt").forEach(function (c) {
+      c.addEventListener("mouseenter", function () {
+        var tip = c.getAttribute("data-tip");
+        var t = document.getElementById("evo-tooltip") || document.createElement("div");
+        t.id = "evo-tooltip";
+        t.className = "evo-tooltip";
+        t.textContent = tip;
+        document.body.appendChild(t);
+        var rect = c.getBoundingClientRect();
+        t.style.left = (rect.left + window.scrollX + 12) + "px";
+        t.style.top = (rect.top + window.scrollY - 8) + "px";
+      });
+      c.addEventListener("mouseleave", function () {
+        var t = document.getElementById("evo-tooltip");
+        if (t) t.remove();
+      });
+    });
+
+    // Legend
+    if (legend) {
+      legend.innerHTML =
+        '<span class="evo-legend-item"><span class="evo-dot evo-dot-anthropic"></span>Anthropic</span>' +
+        '<span class="evo-legend-item"><span class="evo-dot evo-dot-openai"></span>OpenAI</span>' +
+        '<span class="evo-legend-item"><span class="evo-dot evo-dot-google"></span>Google</span>' +
+        '<span class="evo-legend-divider"></span>' +
+        '<span class="evo-legend-item"><span class="evo-dot evo-dot-filled"></span>filled = thinking on</span>' +
+        '<span class="evo-legend-item"><span class="evo-dot evo-dot-hollow"></span>hollow = no thinking</span>' +
+        '<span class="evo-legend-divider"></span>' +
+        '<span class="evo-legend-item evo-legend-text">' + points.length + ' models · '
+        + (evoSelectedTraps.length === 0 ? 'avg of all traps' : (evoSelectedTraps.length + ' selected trap' + (evoSelectedTraps.length !== 1 ? 's' : '')))
+        + '</span>';
+    }
+  }
+
+  function initEvolutionView() {
+    renderEvoTrapFilter();
+    document.querySelectorAll("[data-evoprov]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        evoProvider = b.dataset.evoprov;
+        document.querySelectorAll("[data-evoprov]").forEach(function (x) {
+          x.classList.toggle("active", x.dataset.evoprov === evoProvider);
+        });
+        renderEvoChart();
+      });
+    });
+    document.querySelectorAll("[data-evothink]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        evoThinking = b.dataset.evothink;
+        document.querySelectorAll("[data-evothink]").forEach(function (x) {
+          x.classList.toggle("active", x.dataset.evothink === evoThinking);
+        });
+        renderEvoChart();
+      });
+    });
+    var trendCb = document.getElementById("evo-show-trend");
+    if (trendCb) trendCb.addEventListener("change", function () { evoShowTrend = trendCb.checked; renderEvoChart(); });
+    var humanCb = document.getElementById("evo-show-human");
+    if (humanCb) humanCb.addEventListener("change", function () { evoShowHuman = humanCb.checked; renderEvoChart(); });
+    var labelsCb = document.getElementById("evo-show-labels");
+    if (labelsCb) labelsCb.addEventListener("change", function () { evoShowLabels = labelsCb.checked; renderEvoChart(); });
+  }
+
   // ---- View toggle wiring ----
   function setActiveView(v) {
     var traps = document.getElementById("trap-view");
     var models = document.getElementById("model-view");
+    var evolution = document.getElementById("evolution-view");
     if (!traps || !models) return;
     traps.style.display = (v === "traps") ? "" : "none";
     models.style.display = (v === "models") ? "" : "none";
+    if (evolution) evolution.style.display = (v === "evolution") ? "" : "none";
     document.querySelectorAll(".view-btn").forEach(function (b) {
       b.classList.toggle("active", b.dataset.view === v);
     });
     if (v === "models") renderModels();
+    if (v === "evolution") {
+      // Lazy-init on first switch (waits for data load)
+      if (!window.__evoInited) { initEvolutionView(); window.__evoInited = true; }
+      renderEvoChart();
+    }
   }
 
   function initViewToggle() {
