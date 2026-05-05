@@ -936,11 +936,31 @@
       r.failedCount = trapIds.filter(function (id) { return r.perTrap[id].passRate <= 0.2; }).length;
       r.mixedCount = r.trapCount - r.passedCount - r.failedCount;
 
-      // Thinking flag: canonical signal is the dagger † in the display name.
-      // We use that exclusively — every model variant tested with extended-thinking
-      // mode is labeled with † by convention in this repository. This makes the
-      // filter unambiguous (regex on the config string was over-matching "no thinking").
-      r.isThinking = r.model.indexOf("\u2020") !== -1;
+      // Thinking flag: read directly from the data (set by audit_thinking_flag.py).
+      // Every modelTests entry has an explicit isThinking: true|false written by
+      // the audit script after manual classification of every model variant.
+      // We aggregate across all entries for this (model, contributionId) — they
+      // should all agree, but if any are true the model is classified as thinking.
+      // Fallback (legacy entries without the field): use the canonical † signal.
+      var anyExplicit = false;
+      var anyTrue = false;
+      var anyFalse = false;
+      allTraps.forEach(function (t) {
+        if (!t.modelTests) return;
+        t.modelTests.forEach(function (m) {
+          var k = m.model + "|" + (m.contributionId || "");
+          if (k !== r.model + "|" + r.contributionId) return;
+          if (typeof m.isThinking === "boolean") {
+            anyExplicit = true;
+            if (m.isThinking) anyTrue = true; else anyFalse = true;
+          }
+        });
+      });
+      if (anyExplicit) {
+        r.isThinking = anyTrue && !anyFalse ? true : (anyFalse && !anyTrue ? false : anyTrue);
+      } else {
+        r.isThinking = r.model.indexOf("\u2020") !== -1;
+      }
 
       // Per-category aggregation (works for any number of categories / traps)
       var byCat = {};

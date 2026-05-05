@@ -64,7 +64,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": false
       },
       {
         "model": "GPT-5.1†",
@@ -75,7 +76,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Pro",
@@ -86,7 +88,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=128 (Pro minimum)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash",
@@ -97,7 +100,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=0 (off)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.5",
@@ -108,7 +112,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 4.5",
@@ -119,7 +124,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.0",
@@ -130,7 +136,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-03-13"
+        "releaseDate": "2024-03-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o",
@@ -141,7 +148,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-05-13"
+        "releaseDate": "2024-05-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o Mini",
@@ -152,7 +160,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-07-18"
+        "releaseDate": "2024-07-18",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.5",
@@ -163,7 +172,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-11-04"
+        "releaseDate": "2024-11-04",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.0 Flash",
@@ -174,7 +184,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2025-02-05"
+        "releaseDate": "2025-02-05",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Pro†",
@@ -185,7 +196,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": true
       },
       {
         "model": "GPT-4.1",
@@ -196,7 +208,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "GPT-4.1 Mini",
@@ -207,7 +220,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite",
@@ -218,7 +232,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking config (Flash Lite default)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite†",
@@ -229,7 +244,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Flash†",
@@ -240,7 +256,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "GPT-5 Instant",
@@ -251,7 +268,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5 Mini",
@@ -262,7 +280,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "default reasoning",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5†",
@@ -273,7 +292,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.5†",
@@ -284,7 +304,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": true
       },
       {
         "model": "Claude Haiku 4.5†",
@@ -295,7 +316,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.5",
@@ -306,7 +328,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.5†",
@@ -317,7 +340,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Pro",
@@ -328,7 +352,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=low (Pro minimum)",
-        "releaseDate": "2025-11-18"
+        "releaseDate": "2025-11-18",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Instant",
@@ -339,7 +364,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Pro",
@@ -350,7 +376,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "Responses API, reasoning_effort=high (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "GPT-5.2†",
@@ -361,7 +388,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Flash",
@@ -372,7 +400,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=minimal",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": false
       },
       {
         "model": "Gemini 3 Flash†",
@@ -383,7 +412,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=high",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.6",
@@ -394,7 +424,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.6†",
@@ -405,7 +436,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.6",
@@ -416,7 +448,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.6†",
@@ -427,7 +460,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7",
@@ -438,7 +472,8 @@
         "config": "no thinking",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.7†",
@@ -449,7 +484,8 @@
         "config": "adaptive thinking, effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7† (xhigh)",
@@ -460,7 +496,8 @@
         "config": "adaptive thinking, effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5 Instant",
@@ -471,7 +508,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": false
       },
       {
         "model": "GPT-5.5†",
@@ -482,7 +520,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (high)",
@@ -493,7 +532,8 @@
         "config": "reasoning_effort=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (xhigh)",
@@ -504,7 +544,8 @@
         "config": "reasoning_effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.4 Instant",
@@ -515,7 +556,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": false
       },
       {
         "model": "GPT-5.4†",
@@ -526,7 +568,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Pro",
@@ -537,7 +580,8 @@
         "config": "thinking_level=low (Pro min)",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Pro†",
@@ -548,7 +592,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash",
@@ -559,7 +604,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash†",
@@ -570,7 +616,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash Lite",
@@ -581,7 +628,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash Lite†",
@@ -592,7 +640,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       }
     ],
     "agentTests": [
@@ -699,7 +748,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": false
       },
       {
         "model": "GPT-5.1†",
@@ -710,7 +760,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Pro",
@@ -721,7 +772,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=128 (Pro minimum)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash",
@@ -732,7 +784,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=0 (off)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.5",
@@ -743,7 +796,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 4.5",
@@ -754,7 +808,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.0",
@@ -765,7 +820,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-03-13"
+        "releaseDate": "2024-03-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o",
@@ -776,7 +832,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-05-13"
+        "releaseDate": "2024-05-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o Mini",
@@ -787,7 +844,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-07-18"
+        "releaseDate": "2024-07-18",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.5",
@@ -798,7 +856,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-11-04"
+        "releaseDate": "2024-11-04",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.0 Flash",
@@ -809,7 +868,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2025-02-05"
+        "releaseDate": "2025-02-05",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Pro†",
@@ -820,7 +880,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": true
       },
       {
         "model": "GPT-4.1",
@@ -831,7 +892,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "GPT-4.1 Mini",
@@ -842,7 +904,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite",
@@ -853,7 +916,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking config (Flash Lite default)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite†",
@@ -864,7 +928,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Flash†",
@@ -875,7 +940,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "GPT-5 Instant",
@@ -886,7 +952,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5 Mini",
@@ -897,7 +964,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "default reasoning",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5†",
@@ -908,7 +976,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.5†",
@@ -919,7 +988,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": true
       },
       {
         "model": "Claude Haiku 4.5†",
@@ -930,7 +1000,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.5",
@@ -941,7 +1012,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.5†",
@@ -952,7 +1024,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Pro",
@@ -963,7 +1036,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=low (Pro minimum)",
-        "releaseDate": "2025-11-18"
+        "releaseDate": "2025-11-18",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Instant",
@@ -974,7 +1048,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Pro",
@@ -985,7 +1060,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "Responses API, reasoning_effort=high (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "GPT-5.2†",
@@ -996,7 +1072,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Flash",
@@ -1007,7 +1084,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=minimal",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": false
       },
       {
         "model": "Gemini 3 Flash†",
@@ -1018,7 +1096,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=high",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.6",
@@ -1029,7 +1108,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.6†",
@@ -1040,7 +1120,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.6",
@@ -1051,7 +1132,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.6†",
@@ -1062,7 +1144,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7",
@@ -1073,7 +1156,8 @@
         "config": "no thinking",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.7†",
@@ -1084,7 +1168,8 @@
         "config": "adaptive thinking, effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7† (xhigh)",
@@ -1095,7 +1180,8 @@
         "config": "adaptive thinking, effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5 Instant",
@@ -1106,7 +1192,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": false
       },
       {
         "model": "GPT-5.5†",
@@ -1117,7 +1204,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (high)",
@@ -1128,7 +1216,8 @@
         "config": "reasoning_effort=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (xhigh)",
@@ -1139,7 +1228,8 @@
         "config": "reasoning_effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.4 Instant",
@@ -1150,7 +1240,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": false
       },
       {
         "model": "GPT-5.4†",
@@ -1161,7 +1252,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Pro",
@@ -1172,7 +1264,8 @@
         "config": "thinking_level=low (Pro min)",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Pro†",
@@ -1183,7 +1276,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash",
@@ -1194,7 +1288,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash†",
@@ -1205,7 +1300,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash Lite",
@@ -1216,7 +1312,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash Lite†",
@@ -1227,7 +1324,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       }
     ],
     "agentTests": [
@@ -1335,7 +1433,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": false
       },
       {
         "model": "GPT-5.1†",
@@ -1346,7 +1445,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Pro",
@@ -1357,7 +1457,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=128 (Pro minimum)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash",
@@ -1368,7 +1469,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=0 (off)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.5",
@@ -1379,7 +1481,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 4.5",
@@ -1390,7 +1493,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.0",
@@ -1401,7 +1505,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-03-13"
+        "releaseDate": "2024-03-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o",
@@ -1412,7 +1517,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-05-13"
+        "releaseDate": "2024-05-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o Mini",
@@ -1423,7 +1529,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-07-18"
+        "releaseDate": "2024-07-18",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.5",
@@ -1434,7 +1541,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-11-04"
+        "releaseDate": "2024-11-04",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.0 Flash",
@@ -1445,7 +1553,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2025-02-05"
+        "releaseDate": "2025-02-05",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Pro†",
@@ -1456,7 +1565,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": true
       },
       {
         "model": "GPT-4.1",
@@ -1467,7 +1577,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "GPT-4.1 Mini",
@@ -1478,7 +1589,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite",
@@ -1489,7 +1601,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking config (Flash Lite default)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite†",
@@ -1500,7 +1613,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Flash†",
@@ -1511,7 +1625,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "GPT-5 Instant",
@@ -1522,7 +1637,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5 Mini",
@@ -1533,7 +1649,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "default reasoning",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5†",
@@ -1544,7 +1661,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.5†",
@@ -1555,7 +1673,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": true
       },
       {
         "model": "Claude Haiku 4.5†",
@@ -1566,7 +1685,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.5",
@@ -1577,7 +1697,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.5†",
@@ -1588,7 +1709,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Pro",
@@ -1599,7 +1721,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=low (Pro minimum)",
-        "releaseDate": "2025-11-18"
+        "releaseDate": "2025-11-18",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Instant",
@@ -1610,7 +1733,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Pro",
@@ -1621,7 +1745,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "Responses API, reasoning_effort=high (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "GPT-5.2†",
@@ -1632,7 +1757,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Flash",
@@ -1643,7 +1769,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=minimal",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": false
       },
       {
         "model": "Gemini 3 Flash†",
@@ -1654,7 +1781,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=high",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.6",
@@ -1665,7 +1793,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.6†",
@@ -1676,7 +1805,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.6",
@@ -1687,7 +1817,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.6†",
@@ -1698,7 +1829,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7",
@@ -1709,7 +1841,8 @@
         "config": "no thinking",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.7†",
@@ -1720,7 +1853,8 @@
         "config": "adaptive thinking, effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7† (xhigh)",
@@ -1731,7 +1865,8 @@
         "config": "adaptive thinking, effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5 Instant",
@@ -1742,7 +1877,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": false
       },
       {
         "model": "GPT-5.5†",
@@ -1753,7 +1889,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (high)",
@@ -1764,7 +1901,8 @@
         "config": "reasoning_effort=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (xhigh)",
@@ -1775,7 +1913,8 @@
         "config": "reasoning_effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.4 Instant",
@@ -1786,7 +1925,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": false
       },
       {
         "model": "GPT-5.4†",
@@ -1797,7 +1937,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Pro",
@@ -1808,7 +1949,8 @@
         "config": "thinking_level=low (Pro min)",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Pro†",
@@ -1819,7 +1961,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash",
@@ -1830,7 +1973,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash†",
@@ -1841,7 +1985,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash Lite",
@@ -1852,7 +1997,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash Lite†",
@@ -1863,7 +2009,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       }
     ],
     "agentTests": [
@@ -1973,7 +2120,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": false
       },
       {
         "model": "GPT-5.1†",
@@ -1984,7 +2132,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Pro",
@@ -1995,7 +2144,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=128 (Pro minimum)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash",
@@ -2006,7 +2156,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=0 (off)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.5",
@@ -2017,7 +2168,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 4.5",
@@ -2028,7 +2180,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.0",
@@ -2039,7 +2192,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-03-13"
+        "releaseDate": "2024-03-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o",
@@ -2050,7 +2204,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-05-13"
+        "releaseDate": "2024-05-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o Mini",
@@ -2061,7 +2216,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-07-18"
+        "releaseDate": "2024-07-18",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.5",
@@ -2072,7 +2228,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-11-04"
+        "releaseDate": "2024-11-04",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.0 Flash",
@@ -2083,7 +2240,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2025-02-05"
+        "releaseDate": "2025-02-05",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Pro†",
@@ -2094,7 +2252,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": true
       },
       {
         "model": "GPT-4.1",
@@ -2105,7 +2264,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "GPT-4.1 Mini",
@@ -2116,7 +2276,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite",
@@ -2127,7 +2288,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking config (Flash Lite default)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite†",
@@ -2138,7 +2300,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Flash†",
@@ -2149,7 +2312,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "GPT-5 Instant",
@@ -2160,7 +2324,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5 Mini",
@@ -2171,7 +2336,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "default reasoning",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5†",
@@ -2182,7 +2348,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.5†",
@@ -2193,7 +2360,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": true
       },
       {
         "model": "Claude Haiku 4.5†",
@@ -2204,7 +2372,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.5",
@@ -2215,7 +2384,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.5†",
@@ -2226,7 +2396,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Pro",
@@ -2237,7 +2408,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=low (Pro minimum)",
-        "releaseDate": "2025-11-18"
+        "releaseDate": "2025-11-18",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Instant",
@@ -2248,7 +2420,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Pro",
@@ -2259,7 +2432,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "Responses API, reasoning_effort=high (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "GPT-5.2†",
@@ -2270,7 +2444,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Flash",
@@ -2281,7 +2456,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=minimal",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": false
       },
       {
         "model": "Gemini 3 Flash†",
@@ -2292,7 +2468,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=high",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.6",
@@ -2303,7 +2480,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.6†",
@@ -2314,7 +2492,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.6",
@@ -2325,7 +2504,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.6†",
@@ -2336,7 +2516,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7",
@@ -2347,7 +2528,8 @@
         "config": "no thinking",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.7†",
@@ -2358,7 +2540,8 @@
         "config": "adaptive thinking, effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7† (xhigh)",
@@ -2369,7 +2552,8 @@
         "config": "adaptive thinking, effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5 Instant",
@@ -2380,7 +2564,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": false
       },
       {
         "model": "GPT-5.5†",
@@ -2391,7 +2576,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (high)",
@@ -2402,7 +2588,8 @@
         "config": "reasoning_effort=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (xhigh)",
@@ -2413,7 +2600,8 @@
         "config": "reasoning_effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.4 Instant",
@@ -2424,7 +2612,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": false
       },
       {
         "model": "GPT-5.4†",
@@ -2435,7 +2624,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Pro",
@@ -2446,7 +2636,8 @@
         "config": "thinking_level=low (Pro min)",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Pro†",
@@ -2457,7 +2648,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash",
@@ -2468,7 +2660,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash†",
@@ -2479,7 +2672,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash Lite",
@@ -2490,7 +2684,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash Lite†",
@@ -2501,7 +2696,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       }
     ],
     "agentTests": [
@@ -2607,7 +2803,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": false
       },
       {
         "model": "GPT-5.1†",
@@ -2618,7 +2815,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Pro",
@@ -2629,7 +2827,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=128 (Pro minimum)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash",
@@ -2640,7 +2839,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=0 (off)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.5",
@@ -2651,7 +2851,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 4.5",
@@ -2662,7 +2863,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.0",
@@ -2673,7 +2875,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-03-13"
+        "releaseDate": "2024-03-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o",
@@ -2684,7 +2887,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-05-13"
+        "releaseDate": "2024-05-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o Mini",
@@ -2695,7 +2899,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-07-18"
+        "releaseDate": "2024-07-18",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.5",
@@ -2706,7 +2911,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-11-04"
+        "releaseDate": "2024-11-04",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.0 Flash",
@@ -2717,7 +2923,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2025-02-05"
+        "releaseDate": "2025-02-05",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Pro†",
@@ -2728,7 +2935,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": true
       },
       {
         "model": "GPT-4.1",
@@ -2739,7 +2947,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "GPT-4.1 Mini",
@@ -2750,7 +2959,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite",
@@ -2761,7 +2971,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking config (Flash Lite default)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite†",
@@ -2772,7 +2983,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Flash†",
@@ -2783,7 +2995,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "GPT-5 Instant",
@@ -2794,7 +3007,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5 Mini",
@@ -2805,7 +3019,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "default reasoning",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5†",
@@ -2816,7 +3031,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.5†",
@@ -2827,7 +3043,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": true
       },
       {
         "model": "Claude Haiku 4.5†",
@@ -2838,7 +3055,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.5",
@@ -2849,7 +3067,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.5†",
@@ -2860,7 +3079,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Pro",
@@ -2871,7 +3091,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=low (Pro minimum)",
-        "releaseDate": "2025-11-18"
+        "releaseDate": "2025-11-18",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Instant",
@@ -2882,7 +3103,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Pro",
@@ -2893,7 +3115,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "Responses API, reasoning_effort=high (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "GPT-5.2†",
@@ -2904,7 +3127,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Flash",
@@ -2915,7 +3139,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=minimal",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": false
       },
       {
         "model": "Gemini 3 Flash†",
@@ -2926,7 +3151,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=high",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.6",
@@ -2937,7 +3163,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.6†",
@@ -2948,7 +3175,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.6",
@@ -2959,7 +3187,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.6†",
@@ -2970,7 +3199,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7",
@@ -2981,7 +3211,8 @@
         "config": "no thinking",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.7†",
@@ -2992,7 +3223,8 @@
         "config": "adaptive thinking, effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7† (xhigh)",
@@ -3003,7 +3235,8 @@
         "config": "adaptive thinking, effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5 Instant",
@@ -3014,7 +3247,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": false
       },
       {
         "model": "GPT-5.5†",
@@ -3025,7 +3259,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (high)",
@@ -3036,7 +3271,8 @@
         "config": "reasoning_effort=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (xhigh)",
@@ -3047,7 +3283,8 @@
         "config": "reasoning_effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.4 Instant",
@@ -3058,7 +3295,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": false
       },
       {
         "model": "GPT-5.4†",
@@ -3069,7 +3307,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Pro",
@@ -3080,7 +3319,8 @@
         "config": "thinking_level=low (Pro min)",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Pro†",
@@ -3091,7 +3331,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash",
@@ -3102,7 +3343,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash†",
@@ -3113,7 +3355,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash Lite",
@@ -3124,7 +3367,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash Lite†",
@@ -3135,7 +3379,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       }
     ],
     "agentTests": [
@@ -3245,7 +3490,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": false
       },
       {
         "model": "GPT-5.1†",
@@ -3256,7 +3502,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Pro",
@@ -3267,7 +3514,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=128 (Pro minimum)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash",
@@ -3278,7 +3526,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=0 (off)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.5",
@@ -3289,7 +3538,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 4.5",
@@ -3300,7 +3550,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.0",
@@ -3311,7 +3562,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-03-13"
+        "releaseDate": "2024-03-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o",
@@ -3322,7 +3574,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-05-13"
+        "releaseDate": "2024-05-13",
+        "isThinking": false
       },
       {
         "model": "GPT-4o Mini",
@@ -3333,7 +3586,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2024-07-18"
+        "releaseDate": "2024-07-18",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 3.5",
@@ -3344,7 +3598,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2024-11-04"
+        "releaseDate": "2024-11-04",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.0 Flash",
@@ -3355,7 +3610,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (model does not support reasoning)",
-        "releaseDate": "2025-02-05"
+        "releaseDate": "2025-02-05",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Pro†",
@@ -3366,7 +3622,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": true
       },
       {
         "model": "GPT-4.1",
@@ -3377,7 +3634,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "GPT-4.1 Mini",
@@ -3388,7 +3646,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no reasoning (pre-reasoning architecture)",
-        "releaseDate": "2025-04-14"
+        "releaseDate": "2025-04-14",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite",
@@ -3399,7 +3658,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking config (Flash Lite default)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash Lite†",
@@ -3410,7 +3670,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Flash†",
@@ -3421,7 +3682,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_budget=-1 (dynamic)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": true
       },
       {
         "model": "GPT-5 Instant",
@@ -3432,7 +3694,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5 Mini",
@@ -3443,7 +3706,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "default reasoning",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": false
       },
       {
         "model": "GPT-5†",
@@ -3454,7 +3718,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-08-07"
+        "releaseDate": "2025-08-07",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.5†",
@@ -3465,7 +3730,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": true
       },
       {
         "model": "Claude Haiku 4.5†",
@@ -3476,7 +3742,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.5",
@@ -3487,7 +3754,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.5†",
@@ -3498,7 +3766,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2025-11-24"
+        "releaseDate": "2025-11-24",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Pro",
@@ -3509,7 +3778,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=low (Pro minimum)",
-        "releaseDate": "2025-11-18"
+        "releaseDate": "2025-11-18",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Instant",
@@ -3520,7 +3790,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": false
       },
       {
         "model": "GPT-5.2 Pro",
@@ -3531,7 +3802,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "Responses API, reasoning_effort=high (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "GPT-5.2†",
@@ -3542,7 +3814,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-12-11"
+        "releaseDate": "2025-12-11",
+        "isThinking": true
       },
       {
         "model": "Gemini 3 Flash",
@@ -3553,7 +3826,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=minimal",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": false
       },
       {
         "model": "Gemini 3 Flash†",
@@ -3564,7 +3838,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "thinking_level=high",
-        "releaseDate": "2025-12-09"
+        "releaseDate": "2025-12-09",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.6",
@@ -3575,7 +3850,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.6†",
@@ -3586,7 +3862,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Sonnet 4.6",
@@ -3597,7 +3874,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.6†",
@@ -3608,7 +3886,8 @@
         "contributionId": "affonso-2026",
         "method": "API",
         "config": "extended thinking, budget_tokens=1024",
-        "releaseDate": "2026-02-17"
+        "releaseDate": "2026-02-17",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7",
@@ -3619,7 +3898,8 @@
         "config": "no thinking",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": false
       },
       {
         "model": "Claude Opus 4.7†",
@@ -3630,7 +3910,8 @@
         "config": "adaptive thinking, effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "Claude Opus 4.7† (xhigh)",
@@ -3641,7 +3922,8 @@
         "config": "adaptive thinking, effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-16"
+        "releaseDate": "2026-04-16",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5 Instant",
@@ -3652,7 +3934,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": false
       },
       {
         "model": "GPT-5.5†",
@@ -3663,7 +3946,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (high)",
@@ -3674,7 +3958,8 @@
         "config": "reasoning_effort=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.5† (xhigh)",
@@ -3685,7 +3970,8 @@
         "config": "reasoning_effort=xhigh",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-04-23"
+        "releaseDate": "2026-04-23",
+        "isThinking": true
       },
       {
         "model": "GPT-5.4 Instant",
@@ -3696,7 +3982,8 @@
         "config": "reasoning_effort=none",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": false
       },
       {
         "model": "GPT-5.4†",
@@ -3707,7 +3994,8 @@
         "config": "reasoning_effort=medium",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-05"
+        "releaseDate": "2026-03-05",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Pro",
@@ -3718,7 +4006,8 @@
         "config": "thinking_level=low (Pro min)",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Pro†",
@@ -3729,7 +4018,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-02-20"
+        "releaseDate": "2026-02-20",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash",
@@ -3740,7 +4030,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash†",
@@ -3751,7 +4042,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       },
       {
         "model": "Gemini 3.1 Flash Lite",
@@ -3762,7 +4054,8 @@
         "config": "thinking_level=minimal",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": false
       },
       {
         "model": "Gemini 3.1 Flash Lite†",
@@ -3773,7 +4066,8 @@
         "config": "thinking_level=high",
         "source": "Affonso (2026)",
         "contributionId": "affonso-2026-may",
-        "releaseDate": "2026-03-03"
+        "releaseDate": "2026-03-03",
+        "isThinking": true
       }
     ],
     "agentTests": [
@@ -3862,7 +4156,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "chat-latest (no reasoning tokens)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": false
       },
       {
         "model": "GPT-5.1†",
@@ -3873,7 +4168,8 @@
         "provider": "OpenAI",
         "method": "Chat Interface",
         "config": "reasoning_effort=medium (default)",
-        "releaseDate": "2025-11-13"
+        "releaseDate": "2025-11-13",
+        "isThinking": true
       },
       {
         "model": "Gemini 2.5 Pro",
@@ -3884,7 +4180,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=128 (Pro minimum)",
-        "releaseDate": "2025-03-25"
+        "releaseDate": "2025-03-25",
+        "isThinking": false
       },
       {
         "model": "Gemini 2.5 Flash",
@@ -3895,7 +4192,8 @@
         "provider": "Google",
         "method": "Chat Interface",
         "config": "thinking_budget=0 (off)",
-        "releaseDate": "2025-06-17"
+        "releaseDate": "2025-06-17",
+        "isThinking": false
       },
       {
         "model": "Claude Sonnet 4.5",
@@ -3906,7 +4204,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-09-29"
+        "releaseDate": "2025-09-29",
+        "isThinking": false
       },
       {
         "model": "Claude Haiku 4.5",
@@ -3917,7 +4216,8 @@
         "provider": "Anthropic",
         "method": "Chat Interface",
         "config": "no thinking (extended thinking disabled)",
-        "releaseDate": "2025-10-15"
+        "releaseDate": "2025-10-15",
+        "isThinking": false
       }
     ],
     "agentTests": [],
