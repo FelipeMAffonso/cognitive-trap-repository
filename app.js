@@ -179,6 +179,35 @@
     });
     animNum("stat-models", models.length);
 
+    // Hero description placeholders — keep in sync with actual data
+    var heroCount = document.getElementById("hero-model-count");
+    if (heroCount) heroCount.textContent = models.length;
+
+    // Date range from contributions: earliest -> most recent contribution date
+    var allDates = [];
+    allTraps.forEach(function (t) {
+      if (t.contributions) t.contributions.forEach(function (c) {
+        if (c.date) allDates.push(c.date);
+      });
+    });
+    var heroRange = document.getElementById("hero-date-range");
+    if (heroRange && allDates.length > 0) {
+      allDates.sort();
+      var fmt = function (d) {
+        // "2026-02-18" -> "Feb 2026"
+        var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        var p = d.split("-");
+        if (p.length < 2) return d;
+        return months[parseInt(p[1], 10) - 1] + " " + p[0];
+      };
+      // We use the underlying study date span. The earliest model in our set
+      // is Claude Haiku 3.0 (Mar 2024); the latest is what is currently in the
+      // contribution stream. Hard date floor reflects the earliest model release.
+      var firstDate = "2024-03";
+      var lastDate = allDates[allDates.length - 1].slice(0, 7);
+      heroRange.textContent = fmt(firstDate + "-01") + " – " + fmt(lastDate + "-01");
+    }
+
     // Unique agent platforms (autonomous agents deployed in real surveys)
     var agents = [];
     allTraps.forEach(function (t) {
@@ -725,7 +754,29 @@
             }
             return 0;
           });
+          // Re-append in sorted order
           rows.forEach(function (row) { tbody.appendChild(row); });
+          // Re-apply pagination so the visible top-N reflects the new sort,
+          // not the original render order. Otherwise sorting "Pass Rate desc"
+          // would still show the original first-10 rows even after reordering.
+          var toggle = document.getElementById("model-show-toggle");
+          var expanded = toggle && /fewer/i.test(toggle.textContent);
+          var PAGE_SIZE = 10;
+          rows.forEach(function (row, idx) {
+            if (expanded) {
+              row.classList.remove("model-row-hidden");
+              row.style.display = "";
+            } else if (idx >= PAGE_SIZE) {
+              row.classList.add("model-row-hidden");
+              row.style.display = "none";
+            } else {
+              row.classList.remove("model-row-hidden");
+              row.style.display = "";
+            }
+          });
+          if (toggle && !expanded) {
+            toggle.textContent = "Show all " + rows.length + " models";
+          }
         });
       });
     }
@@ -831,6 +882,8 @@
   var activeModelFilter = "all";          // provider OR thinking/no-thinking
   var activeModelSort = "avgDesc";
   var modelSearchQuery = "";
+  var activeSubView = "cards";            // 'cards' | 'list' | 'matrix'
+  var activeGroupBy = "none";             // 'none' | 'provider' | 'family' | 'thinking'
 
   // Aggregate: walk allTraps and produce one row per (model, contributionId) pair
   function aggregateModels() {
@@ -859,6 +912,13 @@
         };
       });
     });
+    // Build a category lookup from the trap data itself (so categories are NOT hardcoded —
+    // adding new traps with new categories Just Works).
+    var trapCategoryById = {};
+    allTraps.forEach(function (t) {
+      trapCategoryById[t.id] = t.category || "Uncategorized";
+    });
+
     // Compute aggregates
     var rows = Object.keys(byKey).map(function (k) {
       var r = byKey[k];
@@ -872,23 +932,37 @@
       r.avgPass = trapIds.length > 0 ? passSum / trapIds.length : 0;
       r.totalTrials = trialSum;
       r.trapCount = trapIds.length;
-      // Stable thinking flag from display name (†) or config heuristic
-      r.isThinking = r.model.indexOf("\u2020") !== -1
-        || /thinking|effort=(low|medium|high|xhigh)|reasoning_effort=(low|medium|high|xhigh)|budget_tokens=\d+|thinking_(level|budget)/.test(r.config || "");
+      r.passedCount = trapIds.filter(function (id) { return r.perTrap[id].passRate >= 0.8; }).length;
+      r.failedCount = trapIds.filter(function (id) { return r.perTrap[id].passRate <= 0.2; }).length;
+      r.mixedCount = r.trapCount - r.passedCount - r.failedCount;
+
+      // Thinking flag: canonical signal is the dagger † in the display name.
+      // We use that exclusively — every model variant tested with extended-thinking
+      // mode is labeled with † by convention in this repository. This makes the
+      // filter unambiguous (regex on the config string was over-matching "no thinking").
+      r.isThinking = r.model.indexOf("\u2020") !== -1;
+
+      // Per-category aggregation (works for any number of categories / traps)
+      var byCat = {};
+      trapIds.forEach(function (id) {
+        var cat = trapCategoryById[id] || "Uncategorized";
+        if (!byCat[cat]) byCat[cat] = { sum: 0, n: 0, traps: [] };
+        byCat[cat].sum += r.perTrap[id].passRate;
+        byCat[cat].n += 1;
+        byCat[cat].traps.push({ id: id, name: r.perTrap[id].trapName, passRate: r.perTrap[id].passRate });
+      });
+      r.byCategory = Object.keys(byCat).sort().map(function (cat) {
+        return { category: cat, avgPass: byCat[cat].sum / byCat[cat].n, n: byCat[cat].n, traps: byCat[cat].traps };
+      });
+
       return r;
     });
     return rows;
   }
 
-  function renderModels() {
-    var container = document.getElementById("model-leaderboard");
-    var countEl = document.getElementById("model-count");
-    if (!container) return;
-
-    var rows = aggregateModels();
-
-    // Filter
-    rows = rows.filter(function (r) {
+  // ---- Filter + sort applied to the aggregated rows ----
+  function applyModelFilters(rows) {
+    var filtered = rows.filter(function (r) {
       if (activeModelFilter === "Anthropic" && r.provider !== "Anthropic") return false;
       if (activeModelFilter === "OpenAI" && r.provider !== "OpenAI") return false;
       if (activeModelFilter === "Google" && r.provider !== "Google") return false;
@@ -900,9 +974,7 @@
       }
       return true;
     });
-
-    // Sort
-    rows.sort(function (a, b) {
+    filtered.sort(function (a, b) {
       switch (activeModelSort) {
         case "avgAsc":   return a.avgPass - b.avgPass;
         case "avgDesc":  return b.avgPass - a.avgPass;
@@ -911,145 +983,320 @@
       }
       return 0;
     });
+    return filtered;
+  }
 
-    if (countEl) {
-      countEl.textContent = rows.length + " model" + (rows.length !== 1 ? "s" : "")
-        + (activeModelFilter !== "all" ? " (" + activeModelFilter + ")" : "");
-    }
+  // ---- Provider CSS-class lookup ----
+  function providerClass(p) {
+    return p === "Anthropic" ? "provider-anthropic"
+      : p === "OpenAI" ? "provider-openai"
+      : p === "Google" ? "provider-google" : "";
+  }
 
-    // Build a stable canonical order of trap IDs for the heatmap (use the order of allTraps)
-    var trapOrder = allTraps.filter(function (t) { return t.modelTests && t.modelTests.length > 0; })
-      .map(function (t) { return { id: t.id, name: t.name }; });
+  // ---- Pass-rate semantic class ----
+  function passClass(rate) {
+    if (rate >= 0.8) return "rate-high";
+    if (rate >= 0.5) return "rate-mid";
+    if (rate > 0)    return "rate-low";
+    return "rate-zero";
+  }
 
-    // ---- Summary banner: how many models pass / fail / are mixed ----
-    var allRows = aggregateModels();      // unfiltered for top stats
-    var perfectCount = 0, zeroCount = 0, mixedCount = 0;
+  // ---- Render top stats banner (shared by all sub-views) ----
+  function summaryBannerHtml(allRows) {
+    if (allRows.length === 0) return "";
+    var perfectCount = allRows.filter(function (r) {
+      return r.trapCount > 0 && r.byCategory.every(function (c) { return c.avgPass === 1.0; });
+    }).length;
+    var zeroCount = allRows.filter(function (r) {
+      return r.trapCount > 0 && r.byCategory.every(function (c) { return c.avgPass === 0; });
+    }).length;
+    var providerCounts = {};
     allRows.forEach(function (r) {
-      var hasZero = false, hasNonZero = false, allHigh = true;
-      Object.values(r.perTrap).forEach(function (pt) {
-        if (pt.passRate === 0) hasZero = true; else hasNonZero = true;
-        if (pt.passRate < 1.0) allHigh = false;
-      });
-      if (allHigh) perfectCount++;
-      else if (!hasNonZero) zeroCount++;
-      else mixedCount++;
+      var p = r.provider || "Unknown";
+      providerCounts[p] = (providerCounts[p] || 0) + 1;
     });
-    // Per-trap "still robust" stats: trap pass rate averaged across all models
-    var trapBreakers = trapOrder.map(function (to) {
-      var sum = 0, n = 0;
-      allRows.forEach(function (r) {
-        var pt = r.perTrap[to.id];
-        if (pt) { sum += pt.passRate; n++; }
-      });
-      return { id: to.id, name: to.name, avgPass: n ? sum / n : 0, n: n };
-    });
-    trapBreakers.sort(function (a, b) { return a.avgPass - b.avgPass; });
-    var hardestTrap = trapBreakers[0];
-    var easiestTrap = trapBreakers[trapBreakers.length - 1];
+    var providerSummary = Object.keys(providerCounts).sort().map(function (p) {
+      return p + ": " + providerCounts[p];
+    }).join("  ·  ");
 
-    var summaryHtml = '<div class="model-summary-banner">' +
-      '<div class="model-summary-stat"><span class="model-summary-stat-value">' + allRows.length + '</span>' +
-        '<span class="model-summary-stat-label">Total model variants</span></div>' +
-      '<div class="model-summary-stat"><span class="model-summary-stat-value" style="color:var(--success)">' + perfectCount + '</span>' +
-        '<span class="model-summary-stat-label">Pass all 6 traps (100%)</span></div>' +
-      '<div class="model-summary-stat"><span class="model-summary-stat-value" style="color:var(--danger)">' + zeroCount + '</span>' +
-        '<span class="model-summary-stat-label">Fail all 6 traps (0%)</span></div>' +
-      '<div class="model-summary-stat"><span class="model-summary-stat-value" style="color:var(--warning)">' + mixedCount + '</span>' +
-        '<span class="model-summary-stat-label">Mixed (some traps fool them)</span></div>' +
-      (hardestTrap ? '<div class="model-summary-stat"><span class="model-summary-stat-value" style="font-size:14px">' + esc(hardestTrap.name) + '</span>' +
-        '<span class="model-summary-stat-label">Hardest trap (' + Math.round(hardestTrap.avgPass * 100) + '% avg model pass)</span></div>' : '') +
-      (easiestTrap ? '<div class="model-summary-stat"><span class="model-summary-stat-value" style="font-size:14px">' + esc(easiestTrap.name) + '</span>' +
-        '<span class="model-summary-stat-label">Easiest trap (' + Math.round(easiestTrap.avgPass * 100) + '% avg model pass)</span></div>' : '') +
+    return '<div class="model-summary-banner">' +
+      '<div class="msb-stat"><div class="msb-num">' + allRows.length + '</div><div class="msb-lbl">Model variants</div></div>' +
+      '<div class="msb-stat"><div class="msb-num msb-good">' + perfectCount + '</div><div class="msb-lbl">Pass every trap</div></div>' +
+      '<div class="msb-stat"><div class="msb-num msb-bad">' + zeroCount + '</div><div class="msb-lbl">Fail every trap</div></div>' +
+      '<div class="msb-stat msb-wide"><div class="msb-sub">' + providerSummary + '</div><div class="msb-lbl">By provider</div></div>' +
       '</div>';
+  }
 
-    // ---- Trap-name abbreviations for the heatmap header row (tiny labels above dots) ----
-    function trapAbbr(name) {
-      // "Modified Cafe Wall" → "CAFE"
-      // "Modified Muller-Lyer" → "M-L"
-      // "Modified Ebbinghaus" → "EBBI"
-      // "Moving Robot" → "ROBOT"
-      // "Colliding Oranges" → "COLL"
-      // "Surrounded Planets" → "PLAN"
-      var map = {
-        "Modified Cafe Wall": "CAFE",
-        "Modified Muller-Lyer": "M-L",
-        "Modified Ebbinghaus": "EBBI",
-        "Moving Robot": "ROBOT",
-        "Colliding Oranges": "COLL",
-        "Surrounded Planets": "PLAN",
-        "Shape Overload": "SHAPE",
-      };
-      return map[name] || name.split(" ").map(function (w) { return w[0]; }).join("").toUpperCase();
+  // ====================================================================
+  //   SUB-VIEW 1: CARDS (default — model report cards organized by category)
+  // ====================================================================
+  function renderCardsView(rows) {
+    if (rows.length === 0) {
+      return '<p class="empty-state-msg">No models match your filters.</p>';
     }
+    var cardsHtml = rows.map(function (r) {
+      var avgPct = Math.round(r.avgPass * 100);
+      var avgCls = passClass(r.avgPass);
+      var thinkBadge = r.isThinking
+        ? '<span class="thinking-badge" title="Extended thinking / reasoning enabled">\u2020 thinking</span>'
+        : '';
 
-    var html = summaryHtml + '<div class="model-table-wrapper"><table class="model-leaderboard-table">' +
+      // Stat tiles
+      var statsRow =
+        '<div class="mc-stats">' +
+          '<div class="mc-stat-tile"><div class="mc-stat-num ' + avgCls + '">' + avgPct + '%</div><div class="mc-stat-lbl">avg pass</div></div>' +
+          '<div class="mc-stat-tile"><div class="mc-stat-num">' + r.passedCount + '/' + r.trapCount + '</div><div class="mc-stat-lbl">traps passed (≥80%)</div></div>' +
+          '<div class="mc-stat-tile"><div class="mc-stat-num">' + r.failedCount + '/' + r.trapCount + '</div><div class="mc-stat-lbl">traps failed (≤20%)</div></div>' +
+          '<div class="mc-stat-tile"><div class="mc-stat-num">' + r.totalTrials + '</div><div class="mc-stat-lbl">trials</div></div>' +
+        '</div>';
+
+      // Avg-pass progress bar (full width)
+      var avgBar =
+        '<div class="mc-avg-bar"><div class="mc-avg-bar-fill ' + avgCls + '" style="width:' + avgPct + '%"></div></div>';
+
+      // Per-category coverage rows (scales with N categories)
+      var catRows = r.byCategory.map(function (c) {
+        var pct = Math.round(c.avgPass * 100);
+        var cls = passClass(c.avgPass);
+        return '<div class="mc-cat-row">' +
+          '<div class="mc-cat-name">' + esc(c.category) + ' <span class="mc-cat-n">(' + c.n + ' trap' + (c.n !== 1 ? 's' : '') + ')</span></div>' +
+          '<div class="mc-cat-bar"><div class="mc-cat-bar-fill ' + cls + '" style="width:' + pct + '%"></div></div>' +
+          '<div class="mc-cat-pct ' + cls + '">' + pct + '%</div>' +
+          '</div>';
+      }).join("");
+
+      return '<article class="model-card" data-key="' + esc(r.model + "|" + r.contributionId) + '" tabindex="0">' +
+        '<header class="mc-header">' +
+          '<div class="mc-header-top">' +
+            '<span class="provider-badge ' + providerClass(r.provider) + '">' + esc(r.provider) + '</span>' +
+            thinkBadge +
+          '</div>' +
+          '<h3 class="mc-title">' + esc(r.model) + '</h3>' +
+          '<div class="mc-subtitle"><code>' + esc(r.config || "—") + '</code></div>' +
+        '</header>' +
+        statsRow +
+        avgBar +
+        '<div class="mc-cat-section">' +
+          '<div class="mc-cat-section-title">Constraint coverage</div>' +
+          catRows +
+        '</div>' +
+        '<div class="mc-footer">Click for full per-trap breakdown →</div>' +
+      '</article>';
+    }).join("");
+
+    return '<div class="model-cards-grid">' + cardsHtml + '</div>';
+  }
+
+  // ====================================================================
+  //   SUB-VIEW 2: LIST (compact table)
+  // ====================================================================
+  function renderListView(rows) {
+    if (rows.length === 0) return '<p class="empty-state-msg">No models match your filters.</p>';
+    var html = '<div class="model-list-wrapper"><table class="model-list-table">' +
       '<thead><tr>' +
-        '<th class="col-rank">#</th>' +
-        '<th class="col-model">Model</th>' +
-        '<th class="col-prov">Provider</th>' +
-        '<th class="col-config">Configuration</th>' +
-        '<th class="col-heatmap">' +
-          '<div class="heat-header-row">' +
-            trapOrder.map(function (to) {
-              return '<div class="heat-header" title="' + esc(to.name) + '">' + trapAbbr(to.name) + '</div>';
-            }).join("") +
-          '</div>' +
-          '<div style="font-size:10px;color:var(--gray-500);font-weight:400;text-transform:none;letter-spacing:0">' +
-            'pass rate per trap (hover for full name & %)' +
-          '</div>' +
-        '</th>' +
-        '<th class="col-avg">Avg pass</th>' +
-        '<th class="col-trials">Trials</th>' +
+        '<th class="lt-rank">#</th>' +
+        '<th>Model</th>' +
+        '<th>Provider</th>' +
+        '<th class="lt-config">Configuration</th>' +
+        '<th class="lt-num">Avg pass</th>' +
+        '<th class="lt-num">Passes</th>' +
+        '<th class="lt-num">Fails</th>' +
+        '<th class="lt-num">Trials</th>' +
       '</tr></thead><tbody>';
 
     rows.forEach(function (r, i) {
-      var heatCells = trapOrder.map(function (to) {
-        var pt = r.perTrap[to.id];
-        if (!pt) {
-          return '<span class="heat-dot heat-na" title="' + esc(to.name) + ': no data"></span>';
-        }
-        var pr = pt.passRate;
-        var cls = pr === 0 ? "heat-zero" : pr <= 0.3 ? "heat-low" : pr <= 0.7 ? "heat-mid" : "heat-high";
-        var pct = Math.round(pr * 100);
-        var tip = to.name + ": " + pct + "% pass (" + Math.round(pr * pt.trials) + "/" + pt.trials + ")";
-        return '<span class="heat-dot ' + cls + '" title="' + esc(tip) + '">' +
-          '<span class="heat-pct">' + pct + '</span></span>';
-      }).join("");
-
       var avgPct = Math.round(r.avgPass * 100);
-      var avgCls = avgPct >= 80 ? "rate-high" : avgPct >= 30 ? "rate-mid" : avgPct >= 1 ? "rate-low" : "rate-zero";
-
-      var provCls = r.provider === "Anthropic" ? "provider-anthropic"
-        : r.provider === "OpenAI" ? "provider-openai"
-        : r.provider === "Google" ? "provider-google" : "";
-
-      var rowTitle = "Method: " + r.method + " \u2022 Config: " + (r.config || "n/a")
-        + " \u2022 Source: " + r.source;
-
-      html += '<tr class="model-leaderboard-row" data-key="' + esc(r.model + "|" + r.contributionId) + '" title="' + esc(rowTitle) + '">' +
-        '<td class="col-rank">' + (i + 1) + '</td>' +
-        '<td class="col-model"><strong>' + esc(r.model) + '</strong></td>' +
-        '<td class="col-prov"><span class="provider-badge ' + provCls + '">' + esc(r.provider) + '</span></td>' +
-        '<td class="col-config"><span class="config-text">' + esc(r.config || "—") + '</span></td>' +
-        '<td class="col-heatmap"><div class="heat-row">' + heatCells + '</div></td>' +
-        '<td class="col-avg"><span class="rate ' + avgCls + '">' + avgPct + '%</span></td>' +
-        '<td class="col-trials">' + r.totalTrials + '</td>' +
+      var avgCls = passClass(r.avgPass);
+      html += '<tr class="model-list-row" data-key="' + esc(r.model + "|" + r.contributionId) + '">' +
+        '<td class="lt-rank">' + (i + 1) + '</td>' +
+        '<td class="lt-model"><strong>' + esc(r.model) + '</strong></td>' +
+        '<td><span class="provider-badge ' + providerClass(r.provider) + '">' + esc(r.provider) + '</span></td>' +
+        '<td class="lt-config"><code>' + esc(r.config || "—") + '</code></td>' +
+        '<td class="lt-num"><span class="rate-badge ' + avgCls + '">' + avgPct + '%</span></td>' +
+        '<td class="lt-num">' + r.passedCount + '/' + r.trapCount + '</td>' +
+        '<td class="lt-num">' + r.failedCount + '/' + r.trapCount + '</td>' +
+        '<td class="lt-num lt-muted">' + r.totalTrials + '</td>' +
       '</tr>';
     });
-
     html += '</tbody></table></div>';
+    return html;
+  }
 
-    if (rows.length === 0) {
-      container.innerHTML = '<p class="empty-state">No models match your filters.</p>';
-    } else {
-      container.innerHTML = html;
+  // ====================================================================
+  //   SUB-VIEW 3: MATRIX (models × traps grid; horizontally scrollable;
+  //   stays usable for any N traps because container scrolls naturally)
+  // ====================================================================
+  function renderMatrixView(rows) {
+    if (rows.length === 0) return '<p class="empty-state-msg">No models match your filters.</p>';
+    var trapList = allTraps.filter(function (t) { return t.modelTests && t.modelTests.length > 0; });
+
+    var headerCols = trapList.map(function (t) {
+      return '<th class="mt-trap-col" title="' + esc(t.name) + ' — ' + esc(t.category) + '">' +
+        '<div class="mt-trap-name">' + esc(t.name) + '</div>' +
+        '<div class="mt-trap-cat">' + esc(t.category) + '</div>' +
+        '</th>';
+    }).join("");
+
+    var bodyRows = rows.map(function (r, i) {
+      var cells = trapList.map(function (t) {
+        var pt = r.perTrap[t.id];
+        if (!pt) return '<td class="mt-na" title="No data">—</td>';
+        var pct = Math.round(pt.passRate * 100);
+        var cls = passClass(pt.passRate);
+        var passed = Math.round(pt.passRate * pt.trials);
+        var tip = t.name + " — " + pct + "% (" + passed + "/" + pt.trials + ")";
+        return '<td class="mt-cell ' + cls + '" title="' + esc(tip) + '">' + pct + '</td>';
+      }).join("");
+      var avgPct = Math.round(r.avgPass * 100);
+      var avgCls = passClass(r.avgPass);
+      return '<tr class="model-list-row" data-key="' + esc(r.model + "|" + r.contributionId) + '">' +
+        '<td class="mt-rank">' + (i + 1) + '</td>' +
+        '<td class="mt-model"><strong>' + esc(r.model) + '</strong>' +
+          '<div class="mt-model-sub"><span class="provider-badge ' + providerClass(r.provider) + '">' + esc(r.provider) + '</span></div></td>' +
+        cells +
+        '<td class="mt-avg ' + avgCls + '">' + avgPct + '%</td>' +
+      '</tr>';
+    }).join("");
+
+    return '<div class="model-matrix-wrapper"><div class="mt-scroll-hint">↔ scroll horizontally for more traps</div>' +
+      '<table class="model-matrix-table">' +
+        '<thead><tr>' +
+          '<th class="mt-rank">#</th>' +
+          '<th class="mt-model">Model</th>' +
+          headerCols +
+          '<th class="mt-avg">Avg</th>' +
+        '</tr></thead>' +
+        '<tbody>' + bodyRows + '</tbody>' +
+      '</table></div>';
+  }
+
+  // ====================================================================
+  //   GROUPING (None / Provider / Family / Thinking on-off)
+  // ====================================================================
+  function modelFamily(name, provider) {
+    // Best-effort family extraction from display name. Stable across providers.
+    if (provider === "Anthropic") {
+      var m = name.match(/Claude\s+(Haiku|Sonnet|Opus)\s+(\d+\.\d+)/);
+      if (m) return "Claude " + m[1] + " " + m[2];
+    }
+    if (provider === "OpenAI") {
+      var g = name.match(/GPT-(\d+\.\d+)/);
+      if (g) return "GPT-" + g[1];
+    }
+    if (provider === "Google") {
+      var ge = name.match(/Gemini\s+(\d+\.\d+|\d+)/);
+      if (ge) {
+        var sub = name.match(/Flash(?:\s+Lite)?|Pro/);
+        return "Gemini " + ge[1] + (sub ? " " + sub[0] : "");
+      }
+    }
+    return name.replace(/\u2020.*$/, "").trim();
+  }
+
+  function groupRows(rows) {
+    if (activeGroupBy === "none") {
+      return [{ label: null, rows: rows }];
+    }
+    var groups = {};
+    rows.forEach(function (r) {
+      var key;
+      if (activeGroupBy === "provider") {
+        key = r.provider || "Other";
+      } else if (activeGroupBy === "family") {
+        key = modelFamily(r.model, r.provider);
+      } else if (activeGroupBy === "thinking") {
+        key = r.isThinking ? "With thinking / reasoning" : "No thinking / reasoning";
+      } else {
+        key = "All";
+      }
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(r);
+    });
+    // Order groups intelligently: by total count desc, then alphabetical
+    var sorted = Object.keys(groups).sort(function (a, b) {
+      var diff = groups[b].length - groups[a].length;
+      if (diff !== 0) return diff;
+      return a.localeCompare(b);
+    });
+    return sorted.map(function (k) { return { label: k, rows: groups[k] }; });
+  }
+
+  function groupHeaderHtml(group) {
+    if (group.label === null) return "";
+    // Compute per-group avg pass and provider mix
+    var sum = 0;
+    var providerSet = {};
+    var thinkingCount = 0;
+    group.rows.forEach(function (r) {
+      sum += r.avgPass;
+      providerSet[r.provider] = (providerSet[r.provider] || 0) + 1;
+      if (r.isThinking) thinkingCount++;
+    });
+    var avg = group.rows.length > 0 ? sum / group.rows.length : 0;
+    var avgPct = Math.round(avg * 100);
+    var avgCls = passClass(avg);
+
+    // Build a small accent for provider-grouped headers
+    var accentCls = "";
+    if (activeGroupBy === "provider") {
+      accentCls = providerClass(group.label);
     }
 
-    // Click a model row → open trap-by-trap detail in modal
-    container.querySelectorAll(".model-leaderboard-row").forEach(function (row) {
-      row.addEventListener("click", function () { openModelModal(row.dataset.key, rows); });
+    var providerLine = activeGroupBy === "provider"
+      ? '<span class="mg-meta">' + group.rows.length + ' variant' + (group.rows.length !== 1 ? 's' : '') +
+        '  ·  ' + thinkingCount + ' with thinking</span>'
+      : '<span class="mg-meta">' + group.rows.length + ' model' + (group.rows.length !== 1 ? 's' : '') +
+        '  ·  ' + Object.keys(providerSet).map(function (p) {
+          return p + ' ' + providerSet[p];
+        }).join(' · ') + '</span>';
+
+    return '<div class="model-group-header ' + accentCls + '">' +
+      '<div class="mg-title">' + esc(group.label) + '</div>' +
+      providerLine +
+      '<div class="mg-avg ' + avgCls + '">' + avgPct + '% <span class="mg-avg-lbl">avg pass</span></div>' +
+    '</div>';
+  }
+
+  // ====================================================================
+  //   Top-level render dispatcher
+  // ====================================================================
+  function renderModels() {
+    var container = document.getElementById("model-leaderboard");
+    var countEl = document.getElementById("model-count");
+    if (!container) return;
+
+    var allRows = aggregateModels();
+    var rows = applyModelFilters(allRows);
+
+    if (countEl) {
+      countEl.textContent = rows.length + " of " + allRows.length + " model" + (allRows.length !== 1 ? "s" : "")
+        + (activeModelFilter !== "all" ? " (" + activeModelFilter + ")" : "");
+    }
+
+    var bannerHtml = summaryBannerHtml(allRows);
+
+    // Build sub-view HTML, optionally with group headers
+    var groups = groupRows(rows);
+    var subViewHtml = groups.map(function (g) {
+      var inner;
+      if (activeSubView === "cards") inner = renderCardsView(g.rows);
+      else if (activeSubView === "list") inner = renderListView(g.rows);
+      else inner = renderMatrixView(g.rows);
+      return groupHeaderHtml(g) + inner;
+    }).join("");
+
+    container.innerHTML = bannerHtml + (subViewHtml || '<p class="empty-state-msg">No models match your filters.</p>');
+
+    // Wire click-to-open-detail
+    container.querySelectorAll("[data-key]").forEach(function (el) {
+      var open = function () { openModelModal(el.dataset.key, allRows); };
+      el.addEventListener("click", open);
+      el.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+      });
     });
   }
+
 
   function openModelModal(key, rows) {
     var r = rows.find(function (x) { return (x.model + "|" + x.contributionId) === key; });
@@ -1167,6 +1414,26 @@
         activeModelSort = b.dataset.msort;
         document.querySelectorAll("[data-msort]").forEach(function (x) {
           x.classList.toggle("active", x.dataset.msort === activeModelSort);
+        });
+        renderModels();
+      });
+    });
+    // Sub-view: cards / list / matrix
+    document.querySelectorAll("[data-subview]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        activeSubView = b.dataset.subview;
+        document.querySelectorAll("[data-subview]").forEach(function (x) {
+          x.classList.toggle("active", x.dataset.subview === activeSubView);
+        });
+        renderModels();
+      });
+    });
+    // Group-by: none / provider / family / thinking
+    document.querySelectorAll("[data-group]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        activeGroupBy = b.dataset.group;
+        document.querySelectorAll("[data-group]").forEach(function (x) {
+          x.classList.toggle("active", x.dataset.group === activeGroupBy);
         });
         renderModels();
       });

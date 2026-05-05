@@ -15,7 +15,8 @@
       <p class="hero-description">
         Cognitive traps are visual-perceptual tasks that exploit architectural constraints in
         vision-language models. Humans pass them easily; AI agents fail systematically.
-        Each trap is validated against 34 models from Anthropic, OpenAI, and Google.
+        Each trap is validated against <span id="hero-model-count">several</span> models from Anthropic, OpenAI, and Google
+        across <span id="hero-date-range">multiple generations</span>.
         Browse the collection, click any trap to see full details and download the stimulus.
       </p>
       <div class="hero-actions">
@@ -114,10 +115,31 @@
         <span class="results-count" id="model-count"></span>
       </div>
 
+      <div class="model-control-row">
+        <div class="control-group">
+          <span class="control-label">View</span>
+          <div class="sub-view-toggle" id="model-sub-toggle">
+            <button class="sub-view-btn active" data-subview="cards">Cards</button>
+            <button class="sub-view-btn" data-subview="list">List</button>
+            <button class="sub-view-btn" data-subview="matrix">Matrix</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <span class="control-label">Group by</span>
+          <div class="sub-view-toggle" id="model-group-toggle">
+            <button class="sub-view-btn active" data-group="none">None</button>
+            <button class="sub-view-btn" data-group="provider">Provider</button>
+            <button class="sub-view-btn" data-group="family">Family</button>
+            <button class="sub-view-btn" data-group="thinking">Thinking on/off</button>
+          </div>
+        </div>
+      </div>
+
       <p class="view-help">
-        Each model card shows the average pass rate across all 6 base traps,
-        plus a mini heatmap. <strong>Green</strong> = model passes (humans-like),
-        <strong>red</strong> = model fails (cognitive trap works). Click any model to expand.
+        <strong>Pass rate</strong> = how often the model answers correctly (humans pass; cognitive traps work when models fail).
+        Models are profiled by <strong>architectural-constraint category</strong> rather than individual traps,
+        so this view stays meaningful as new traps are added.
+        Click any model to see its full per-trap breakdown.
       </p>
 
       <div class="model-leaderboard" id="model-leaderboard"></div>
