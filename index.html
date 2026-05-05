@@ -47,33 +47,80 @@
   </section>
 
   <main class="container" id="traps">
-    <div class="controls">
-      <div class="search-wrapper">
-        <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-          <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
-        </svg>
-        <input type="text" id="search" placeholder="Search by name, category, model..." autocomplete="off">
+    <div class="view-toggle" id="view-toggle">
+      <button class="view-btn active" data-view="traps">Browse by Trap</button>
+      <button class="view-btn" data-view="models">Browse by Model</button>
+    </div>
+
+    <!-- ===== TRAP VIEW (default) ===== -->
+    <div id="trap-view">
+      <div class="controls">
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+          </svg>
+          <input type="text" id="search" placeholder="Search by name, category, model..." autocomplete="off">
+        </div>
+        <div class="filters" id="filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+        </div>
       </div>
-      <div class="filters" id="filters">
-        <button class="filter-btn active" data-filter="all">All</button>
+
+      <div class="sort-bar">
+        <span class="sort-label">Sort by</span>
+        <div class="sort-options" id="sort-options">
+          <button class="sort-btn active" data-sort="discrimination">Discrimination</button>
+          <button class="sort-btn" data-sort="agent-fail">Agent Failure</button>
+          <button class="sort-btn" data-sort="human-pass">Human Pass</button>
+          <button class="sort-btn" data-sort="name">Name</button>
+        </div>
+        <span class="results-count" id="results-count"></span>
+      </div>
+
+      <div class="trap-grid" id="trap-grid"></div>
+
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <p>No traps match your search.</p>
       </div>
     </div>
 
-    <div class="sort-bar">
-      <span class="sort-label">Sort by</span>
-      <div class="sort-options" id="sort-options">
-        <button class="sort-btn active" data-sort="discrimination">Discrimination</button>
-        <button class="sort-btn" data-sort="agent-fail">Agent Failure</button>
-        <button class="sort-btn" data-sort="human-pass">Human Pass</button>
-        <button class="sort-btn" data-sort="name">Name</button>
+    <!-- ===== MODEL VIEW (toggled) ===== -->
+    <div id="model-view" style="display:none;">
+      <div class="controls">
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+          </svg>
+          <input type="text" id="model-search" placeholder="Search models..." autocomplete="off">
+        </div>
+        <div class="filters" id="model-filters">
+          <button class="filter-btn active" data-mfilter="all">All providers</button>
+          <button class="filter-btn" data-mfilter="Anthropic">Anthropic</button>
+          <button class="filter-btn" data-mfilter="OpenAI">OpenAI</button>
+          <button class="filter-btn" data-mfilter="Google">Google</button>
+          <button class="filter-btn" data-mfilter="thinking">Thinking only</button>
+          <button class="filter-btn" data-mfilter="no-thinking">No thinking only</button>
+        </div>
       </div>
-      <span class="results-count" id="results-count"></span>
-    </div>
 
-    <div class="trap-grid" id="trap-grid"></div>
+      <div class="sort-bar">
+        <span class="sort-label">Sort by</span>
+        <div class="sort-options" id="model-sort-options">
+          <button class="sort-btn" data-msort="avgAsc">Avg pass (low → high)</button>
+          <button class="sort-btn active" data-msort="avgDesc">Avg pass (high → low)</button>
+          <button class="sort-btn" data-msort="name">Name</button>
+          <button class="sort-btn" data-msort="provider">Provider</button>
+        </div>
+        <span class="results-count" id="model-count"></span>
+      </div>
 
-    <div class="empty-state" id="empty-state" style="display:none;">
-      <p>No traps match your search.</p>
+      <p class="view-help">
+        Each model card shows the average pass rate across all 6 base traps,
+        plus a mini heatmap. <strong>Green</strong> = model passes (humans-like),
+        <strong>red</strong> = model fails (cognitive trap works). Click any model to expand.
+      </p>
+
+      <div class="model-leaderboard" id="model-leaderboard"></div>
     </div>
   </main>
 

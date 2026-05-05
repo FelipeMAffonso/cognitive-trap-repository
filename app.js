@@ -824,6 +824,358 @@
   }
   function escKey(e) { if (e.key === "Escape") closeModal(); }
 
+  // ====================================================================
+  //   MODEL-CENTRIC VIEW (browse by model instead of by trap)
+  // ====================================================================
+
+  var activeModelFilter = "all";          // provider OR thinking/no-thinking
+  var activeModelSort = "avgDesc";
+  var modelSearchQuery = "";
+
+  // Aggregate: walk allTraps and produce one row per (model, contributionId) pair
+  function aggregateModels() {
+    var byKey = {};   // key -> {model, provider, config, contributionId, perTrap[], totalTrials, passes, totalCalls}
+    allTraps.forEach(function (t) {
+      if (!t.modelTests) return;
+      // Only count traps with agentTests data (ie main 6, not Shape Overload)
+      // — keep all traps in counts but per-trap heatmap should reflect 6 base traps too
+      t.modelTests.forEach(function (m) {
+        var key = m.model + "|" + (m.contributionId || "");
+        if (!byKey[key]) {
+          byKey[key] = {
+            model: m.model,
+            provider: m.provider || "",
+            method: m.method || "API",
+            config: m.config || "",
+            source: m.source || "",
+            contributionId: m.contributionId || "",
+            perTrap: {},          // trap.id -> {passRate, trials, trapName}
+          };
+        }
+        byKey[key].perTrap[t.id] = {
+          passRate: m.passRate,
+          trials: m.trials,
+          trapName: t.name,
+        };
+      });
+    });
+    // Compute aggregates
+    var rows = Object.keys(byKey).map(function (k) {
+      var r = byKey[k];
+      var trapIds = Object.keys(r.perTrap);
+      var passSum = 0;
+      var trialSum = 0;
+      trapIds.forEach(function (id) {
+        passSum += r.perTrap[id].passRate;
+        trialSum += r.perTrap[id].trials;
+      });
+      r.avgPass = trapIds.length > 0 ? passSum / trapIds.length : 0;
+      r.totalTrials = trialSum;
+      r.trapCount = trapIds.length;
+      // Stable thinking flag from display name (†) or config heuristic
+      r.isThinking = r.model.indexOf("\u2020") !== -1
+        || /thinking|effort=(low|medium|high|xhigh)|reasoning_effort=(low|medium|high|xhigh)|budget_tokens=\d+|thinking_(level|budget)/.test(r.config || "");
+      return r;
+    });
+    return rows;
+  }
+
+  function renderModels() {
+    var container = document.getElementById("model-leaderboard");
+    var countEl = document.getElementById("model-count");
+    if (!container) return;
+
+    var rows = aggregateModels();
+
+    // Filter
+    rows = rows.filter(function (r) {
+      if (activeModelFilter === "Anthropic" && r.provider !== "Anthropic") return false;
+      if (activeModelFilter === "OpenAI" && r.provider !== "OpenAI") return false;
+      if (activeModelFilter === "Google" && r.provider !== "Google") return false;
+      if (activeModelFilter === "thinking" && !r.isThinking) return false;
+      if (activeModelFilter === "no-thinking" && r.isThinking) return false;
+      if (modelSearchQuery) {
+        var hay = (r.model + " " + r.provider + " " + r.config).toLowerCase();
+        if (hay.indexOf(modelSearchQuery) === -1) return false;
+      }
+      return true;
+    });
+
+    // Sort
+    rows.sort(function (a, b) {
+      switch (activeModelSort) {
+        case "avgAsc":   return a.avgPass - b.avgPass;
+        case "avgDesc":  return b.avgPass - a.avgPass;
+        case "name":     return a.model.localeCompare(b.model);
+        case "provider": return (a.provider + a.model).localeCompare(b.provider + b.model);
+      }
+      return 0;
+    });
+
+    if (countEl) {
+      countEl.textContent = rows.length + " model" + (rows.length !== 1 ? "s" : "")
+        + (activeModelFilter !== "all" ? " (" + activeModelFilter + ")" : "");
+    }
+
+    // Build a stable canonical order of trap IDs for the heatmap (use the order of allTraps)
+    var trapOrder = allTraps.filter(function (t) { return t.modelTests && t.modelTests.length > 0; })
+      .map(function (t) { return { id: t.id, name: t.name }; });
+
+    // ---- Summary banner: how many models pass / fail / are mixed ----
+    var allRows = aggregateModels();      // unfiltered for top stats
+    var perfectCount = 0, zeroCount = 0, mixedCount = 0;
+    allRows.forEach(function (r) {
+      var hasZero = false, hasNonZero = false, allHigh = true;
+      Object.values(r.perTrap).forEach(function (pt) {
+        if (pt.passRate === 0) hasZero = true; else hasNonZero = true;
+        if (pt.passRate < 1.0) allHigh = false;
+      });
+      if (allHigh) perfectCount++;
+      else if (!hasNonZero) zeroCount++;
+      else mixedCount++;
+    });
+    // Per-trap "still robust" stats: trap pass rate averaged across all models
+    var trapBreakers = trapOrder.map(function (to) {
+      var sum = 0, n = 0;
+      allRows.forEach(function (r) {
+        var pt = r.perTrap[to.id];
+        if (pt) { sum += pt.passRate; n++; }
+      });
+      return { id: to.id, name: to.name, avgPass: n ? sum / n : 0, n: n };
+    });
+    trapBreakers.sort(function (a, b) { return a.avgPass - b.avgPass; });
+    var hardestTrap = trapBreakers[0];
+    var easiestTrap = trapBreakers[trapBreakers.length - 1];
+
+    var summaryHtml = '<div class="model-summary-banner">' +
+      '<div class="model-summary-stat"><span class="model-summary-stat-value">' + allRows.length + '</span>' +
+        '<span class="model-summary-stat-label">Total model variants</span></div>' +
+      '<div class="model-summary-stat"><span class="model-summary-stat-value" style="color:var(--success)">' + perfectCount + '</span>' +
+        '<span class="model-summary-stat-label">Pass all 6 traps (100%)</span></div>' +
+      '<div class="model-summary-stat"><span class="model-summary-stat-value" style="color:var(--danger)">' + zeroCount + '</span>' +
+        '<span class="model-summary-stat-label">Fail all 6 traps (0%)</span></div>' +
+      '<div class="model-summary-stat"><span class="model-summary-stat-value" style="color:var(--warning)">' + mixedCount + '</span>' +
+        '<span class="model-summary-stat-label">Mixed (some traps fool them)</span></div>' +
+      (hardestTrap ? '<div class="model-summary-stat"><span class="model-summary-stat-value" style="font-size:14px">' + esc(hardestTrap.name) + '</span>' +
+        '<span class="model-summary-stat-label">Hardest trap (' + Math.round(hardestTrap.avgPass * 100) + '% avg model pass)</span></div>' : '') +
+      (easiestTrap ? '<div class="model-summary-stat"><span class="model-summary-stat-value" style="font-size:14px">' + esc(easiestTrap.name) + '</span>' +
+        '<span class="model-summary-stat-label">Easiest trap (' + Math.round(easiestTrap.avgPass * 100) + '% avg model pass)</span></div>' : '') +
+      '</div>';
+
+    // ---- Trap-name abbreviations for the heatmap header row (tiny labels above dots) ----
+    function trapAbbr(name) {
+      // "Modified Cafe Wall" → "CAFE"
+      // "Modified Muller-Lyer" → "M-L"
+      // "Modified Ebbinghaus" → "EBBI"
+      // "Moving Robot" → "ROBOT"
+      // "Colliding Oranges" → "COLL"
+      // "Surrounded Planets" → "PLAN"
+      var map = {
+        "Modified Cafe Wall": "CAFE",
+        "Modified Muller-Lyer": "M-L",
+        "Modified Ebbinghaus": "EBBI",
+        "Moving Robot": "ROBOT",
+        "Colliding Oranges": "COLL",
+        "Surrounded Planets": "PLAN",
+        "Shape Overload": "SHAPE",
+      };
+      return map[name] || name.split(" ").map(function (w) { return w[0]; }).join("").toUpperCase();
+    }
+
+    var html = summaryHtml + '<div class="model-table-wrapper"><table class="model-leaderboard-table">' +
+      '<thead><tr>' +
+        '<th class="col-rank">#</th>' +
+        '<th class="col-model">Model</th>' +
+        '<th class="col-prov">Provider</th>' +
+        '<th class="col-config">Configuration</th>' +
+        '<th class="col-heatmap">' +
+          '<div class="heat-header-row">' +
+            trapOrder.map(function (to) {
+              return '<div class="heat-header" title="' + esc(to.name) + '">' + trapAbbr(to.name) + '</div>';
+            }).join("") +
+          '</div>' +
+          '<div style="font-size:10px;color:var(--gray-500);font-weight:400;text-transform:none;letter-spacing:0">' +
+            'pass rate per trap (hover for full name & %)' +
+          '</div>' +
+        '</th>' +
+        '<th class="col-avg">Avg pass</th>' +
+        '<th class="col-trials">Trials</th>' +
+      '</tr></thead><tbody>';
+
+    rows.forEach(function (r, i) {
+      var heatCells = trapOrder.map(function (to) {
+        var pt = r.perTrap[to.id];
+        if (!pt) {
+          return '<span class="heat-dot heat-na" title="' + esc(to.name) + ': no data"></span>';
+        }
+        var pr = pt.passRate;
+        var cls = pr === 0 ? "heat-zero" : pr <= 0.3 ? "heat-low" : pr <= 0.7 ? "heat-mid" : "heat-high";
+        var pct = Math.round(pr * 100);
+        var tip = to.name + ": " + pct + "% pass (" + Math.round(pr * pt.trials) + "/" + pt.trials + ")";
+        return '<span class="heat-dot ' + cls + '" title="' + esc(tip) + '">' +
+          '<span class="heat-pct">' + pct + '</span></span>';
+      }).join("");
+
+      var avgPct = Math.round(r.avgPass * 100);
+      var avgCls = avgPct >= 80 ? "rate-high" : avgPct >= 30 ? "rate-mid" : avgPct >= 1 ? "rate-low" : "rate-zero";
+
+      var provCls = r.provider === "Anthropic" ? "provider-anthropic"
+        : r.provider === "OpenAI" ? "provider-openai"
+        : r.provider === "Google" ? "provider-google" : "";
+
+      var rowTitle = "Method: " + r.method + " \u2022 Config: " + (r.config || "n/a")
+        + " \u2022 Source: " + r.source;
+
+      html += '<tr class="model-leaderboard-row" data-key="' + esc(r.model + "|" + r.contributionId) + '" title="' + esc(rowTitle) + '">' +
+        '<td class="col-rank">' + (i + 1) + '</td>' +
+        '<td class="col-model"><strong>' + esc(r.model) + '</strong></td>' +
+        '<td class="col-prov"><span class="provider-badge ' + provCls + '">' + esc(r.provider) + '</span></td>' +
+        '<td class="col-config"><span class="config-text">' + esc(r.config || "—") + '</span></td>' +
+        '<td class="col-heatmap"><div class="heat-row">' + heatCells + '</div></td>' +
+        '<td class="col-avg"><span class="rate ' + avgCls + '">' + avgPct + '%</span></td>' +
+        '<td class="col-trials">' + r.totalTrials + '</td>' +
+      '</tr>';
+    });
+
+    html += '</tbody></table></div>';
+
+    if (rows.length === 0) {
+      container.innerHTML = '<p class="empty-state">No models match your filters.</p>';
+    } else {
+      container.innerHTML = html;
+    }
+
+    // Click a model row → open trap-by-trap detail in modal
+    container.querySelectorAll(".model-leaderboard-row").forEach(function (row) {
+      row.addEventListener("click", function () { openModelModal(row.dataset.key, rows); });
+    });
+  }
+
+  function openModelModal(key, rows) {
+    var r = rows.find(function (x) { return (x.model + "|" + x.contributionId) === key; });
+    if (!r) return;
+    var overlay = document.getElementById("modal-overlay");
+    var modal = document.getElementById("modal");
+    if (!overlay || !modal) return;
+
+    var trapOrder = allTraps.filter(function (t) { return t.modelTests && t.modelTests.length > 0; });
+
+    var rowsHtml = trapOrder.map(function (t) {
+      var pt = r.perTrap[t.id];
+      if (!pt) {
+        return '<tr><td>' + esc(t.name) + '</td><td colspan="3" class="muted">No trial data</td></tr>';
+      }
+      var pct = Math.round(pt.passRate * 100);
+      var cls = pct === 0 ? "rate-zero" : pct <= 30 ? "rate-low" : pct <= 70 ? "rate-mid" : "rate-high";
+      var passed = Math.round(pt.passRate * pt.trials);
+      return '<tr>' +
+        '<td><a href="#" data-jump-trap="' + esc(t.id) + '">' + esc(t.name) + '</a></td>' +
+        '<td><span class="rate ' + cls + '">' + pct + '%</span></td>' +
+        '<td>' + passed + ' / ' + pt.trials + '</td>' +
+        '<td><div class="pass-bar"><div class="pass-bar-fill" style="width:' + pct + '%"></div></div></td>' +
+      '</tr>';
+    }).join("");
+
+    var avgPct = Math.round(r.avgPass * 100);
+    var provCls = r.provider === "Anthropic" ? "provider-anthropic"
+      : r.provider === "OpenAI" ? "provider-openai"
+      : r.provider === "Google" ? "provider-google" : "";
+
+    modal.innerHTML =
+      '<button class="modal-close" id="modal-close">\u00D7</button>' +
+      '<div class="modal-header">' +
+        '<div class="modal-title-block">' +
+          '<h2>' + esc(r.model) + '</h2>' +
+          '<div class="modal-meta-row">' +
+            '<span class="provider-badge ' + provCls + '">' + esc(r.provider) + '</span>' +
+            '<span class="modal-meta-text">Method: <strong>' + esc(r.method) + '</strong></span>' +
+            '<span class="modal-meta-text">Config: <strong>' + esc(r.config || "n/a") + '</strong></span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="modal-stats" style="margin-top:12px;">' +
+          mStat(avgPct + "%", "Avg pass", r.trapCount + " traps", avgPct >= 80 ? "good" : avgPct >= 30 ? "warn" : "neutral") +
+          mStat(r.totalTrials, "Total trials", r.source, "neutral") +
+        '</div>' +
+      '</div>' +
+      '<div class="modal-section">' +
+        '<div class="modal-section-title">Per-trap pass rate</div>' +
+        '<table class="model-table">' +
+          '<thead><tr><th>Trap</th><th>Pass</th><th>Correct/Trials</th><th></th></tr></thead>' +
+          '<tbody>' + rowsHtml + '</tbody>' +
+        '</table>' +
+      '</div>';
+
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", escKey);
+
+    var close = document.getElementById("modal-close");
+    if (close) close.addEventListener("click", closeModal);
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) closeModal(); });
+    // Click trap link → switch to trap view + open that trap's modal
+    modal.querySelectorAll("a[data-jump-trap]").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        var trap = allTraps.find(function (x) { return x.id === a.dataset.jumpTrap; });
+        if (trap) { closeModal(); setTimeout(function () { setActiveView("traps"); openModal(trap); }, 50); }
+      });
+    });
+  }
+
+  // ---- View toggle wiring ----
+  function setActiveView(v) {
+    var traps = document.getElementById("trap-view");
+    var models = document.getElementById("model-view");
+    if (!traps || !models) return;
+    traps.style.display = (v === "traps") ? "" : "none";
+    models.style.display = (v === "models") ? "" : "none";
+    document.querySelectorAll(".view-btn").forEach(function (b) {
+      b.classList.toggle("active", b.dataset.view === v);
+    });
+    if (v === "models") renderModels();
+  }
+
+  function initViewToggle() {
+    document.querySelectorAll(".view-btn").forEach(function (b) {
+      b.addEventListener("click", function () { setActiveView(b.dataset.view); });
+    });
+    // Model search
+    var msearch = document.getElementById("model-search");
+    if (msearch) {
+      var t;
+      msearch.addEventListener("input", function () {
+        clearTimeout(t);
+        t = setTimeout(function () {
+          modelSearchQuery = msearch.value.trim().toLowerCase();
+          renderModels();
+        }, 200);
+      });
+    }
+    // Model filters
+    document.querySelectorAll("[data-mfilter]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        activeModelFilter = b.dataset.mfilter;
+        document.querySelectorAll("[data-mfilter]").forEach(function (x) {
+          x.classList.toggle("active", x.dataset.mfilter === activeModelFilter);
+        });
+        renderModels();
+      });
+    });
+    // Model sort
+    document.querySelectorAll("[data-msort]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        activeModelSort = b.dataset.msort;
+        document.querySelectorAll("[data-msort]").forEach(function (x) {
+          x.classList.toggle("active", x.dataset.msort === activeModelSort);
+        });
+        renderModels();
+      });
+    });
+  }
+
+  // Wire up once DOM is ready (may already be)
+  initViewToggle();
+
   // ---- Copy ----
   window.copyQuestion = function (id) {
     var t = allTraps.find(function (x) { return x.id === id; });
