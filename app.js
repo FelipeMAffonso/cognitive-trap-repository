@@ -879,7 +879,9 @@
   //   MODEL-CENTRIC VIEW (browse by model instead of by trap)
   // ====================================================================
 
-  var activeModelFilter = "all";          // provider OR thinking/no-thinking
+  // Two INDEPENDENT filters that compose (e.g. Anthropic AND thinking-only).
+  var activeProviderFilter = "all";       // 'all' | 'Anthropic' | 'OpenAI' | 'Google'
+  var activeThinkingFilter = "all";       // 'all' | 'thinking' | 'no-thinking'
   var activeModelSort = "avgDesc";
   var modelSearchQuery = "";
   var activeSubView = "cards";            // 'cards' | 'list' | 'matrix'
@@ -983,11 +985,12 @@
   // ---- Filter + sort applied to the aggregated rows ----
   function applyModelFilters(rows) {
     var filtered = rows.filter(function (r) {
-      if (activeModelFilter === "Anthropic" && r.provider !== "Anthropic") return false;
-      if (activeModelFilter === "OpenAI" && r.provider !== "OpenAI") return false;
-      if (activeModelFilter === "Google" && r.provider !== "Google") return false;
-      if (activeModelFilter === "thinking" && !r.isThinking) return false;
-      if (activeModelFilter === "no-thinking" && r.isThinking) return false;
+      // Provider filter
+      if (activeProviderFilter !== "all" && r.provider !== activeProviderFilter) return false;
+      // Thinking filter (independent — composes with provider)
+      if (activeThinkingFilter === "thinking" && !r.isThinking) return false;
+      if (activeThinkingFilter === "no-thinking" && r.isThinking) return false;
+      // Search
       if (modelSearchQuery) {
         var hay = (r.model + " " + r.provider + " " + r.config).toLowerCase();
         if (hay.indexOf(modelSearchQuery) === -1) return false;
@@ -1289,8 +1292,12 @@
     var rows = applyModelFilters(allRows);
 
     if (countEl) {
-      countEl.textContent = rows.length + " of " + allRows.length + " model" + (allRows.length !== 1 ? "s" : "")
-        + (activeModelFilter !== "all" ? " (" + activeModelFilter + ")" : "");
+      var filterParts = [];
+      if (activeProviderFilter !== "all") filterParts.push(activeProviderFilter);
+      if (activeThinkingFilter === "thinking") filterParts.push("thinking only");
+      else if (activeThinkingFilter === "no-thinking") filterParts.push("no-thinking only");
+      var suffix = filterParts.length ? " (" + filterParts.join(" · ") + ")" : "";
+      countEl.textContent = rows.length + " of " + allRows.length + " model" + (allRows.length !== 1 ? "s" : "") + suffix;
     }
 
     var bannerHtml = summaryBannerHtml(allRows);
@@ -1699,12 +1706,22 @@
         }, 200);
       });
     }
-    // Model filters
-    document.querySelectorAll("[data-mfilter]").forEach(function (b) {
+    // Provider filter (independent)
+    document.querySelectorAll("[data-pfilter]").forEach(function (b) {
       b.addEventListener("click", function () {
-        activeModelFilter = b.dataset.mfilter;
-        document.querySelectorAll("[data-mfilter]").forEach(function (x) {
-          x.classList.toggle("active", x.dataset.mfilter === activeModelFilter);
+        activeProviderFilter = b.dataset.pfilter;
+        document.querySelectorAll("[data-pfilter]").forEach(function (x) {
+          x.classList.toggle("active", x.dataset.pfilter === activeProviderFilter);
+        });
+        renderModels();
+      });
+    });
+    // Thinking filter (independent — composes with provider)
+    document.querySelectorAll("[data-tfilter]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        activeThinkingFilter = b.dataset.tfilter;
+        document.querySelectorAll("[data-tfilter]").forEach(function (x) {
+          x.classList.toggle("active", x.dataset.tfilter === activeThinkingFilter);
         });
         renderModels();
       });

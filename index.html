@@ -145,12 +145,16 @@
           <div class="mv-row">
             <span class="mv-label">Provider</span>
             <div class="mv-segmented">
-              <button class="mv-seg active" data-mfilter="all">All</button>
-              <button class="mv-seg" data-mfilter="Anthropic">Anthropic</button>
-              <button class="mv-seg" data-mfilter="OpenAI">OpenAI</button>
-              <button class="mv-seg" data-mfilter="Google">Google</button>
-              <button class="mv-seg mv-seg-divider" data-mfilter="thinking">Thinking only</button>
-              <button class="mv-seg" data-mfilter="no-thinking">No thinking only</button>
+              <button class="mv-seg active" data-pfilter="all">All</button>
+              <button class="mv-seg" data-pfilter="Anthropic">Anthropic</button>
+              <button class="mv-seg" data-pfilter="OpenAI">OpenAI</button>
+              <button class="mv-seg" data-pfilter="Google">Google</button>
+            </div>
+            <span class="mv-label mv-label-mid">Thinking</span>
+            <div class="mv-segmented">
+              <button class="mv-seg active" data-tfilter="all">Both</button>
+              <button class="mv-seg" data-tfilter="thinking">Thinking only</button>
+              <button class="mv-seg" data-tfilter="no-thinking">No thinking only</button>
             </div>
           </div>
 
