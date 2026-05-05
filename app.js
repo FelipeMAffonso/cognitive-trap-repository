@@ -1405,7 +1405,33 @@
   var evoShowTrend = true;
   var evoShowHuman = true;
   var evoShowLabels = true;
-  var EVO_HUMAN_BASELINE = 0.868;      // 86.8% — from paper figure 2 caption
+
+  // Compute the human baseline DYNAMICALLY from the data given which traps
+  // are currently in scope. Each trap's pooled humanPassRate (from the
+  // N=1007 deployment cohort) is averaged across the selected traps.
+  // Fallback: humanStudies aggregated by sample size if pooled is missing.
+  function evoHumanBaseline() {
+    var trapsInScope = (evoSelectedTraps.length === 0)
+      ? allTraps.filter(function (t) { return t.modelTests && t.modelTests.length > 0; })
+      : allTraps.filter(function (t) { return evoSelectedTraps.indexOf(t.id) !== -1; });
+
+    var sumWeighted = 0, sumN = 0;
+    trapsInScope.forEach(function (t) {
+      // Prefer pooledAgentResults for the largest cohort
+      if (t.pooledAgentResults && typeof t.pooledAgentResults.humanPassRate === "number") {
+        var n = t.pooledAgentResults.humanSampleSize || 0;
+        sumWeighted += t.pooledAgentResults.humanPassRate * n;
+        sumN += n;
+        return;
+      }
+      // Fallback: aggregate humanStudies
+      if (t.humanStudies) t.humanStudies.forEach(function (h) {
+        sumWeighted += (h.passRate || 0) * (h.sampleSize || 0);
+        sumN += (h.sampleSize || 0);
+      });
+    });
+    return sumN > 0 ? sumWeighted / sumN : 0.868;
+  }
 
   // Provider plot colors (match figure 2)
   var EVO_PROVIDER_COLORS = {
@@ -1552,11 +1578,16 @@
     parts.push('<text class="evo-axis-title" x="' + (margin.left + iw / 2) + '" y="' + (H - 8) + '" text-anchor="middle">Model release date</text>');
     parts.push('<text class="evo-axis-title" x="0" y="0" text-anchor="middle" transform="translate(' + (margin.left - 42) + ',' + (margin.top + ih / 2) + ') rotate(-90)">Pass rate</text>');
 
-    // Human baseline line
+    // Human baseline — dynamic per selected traps (weighted by sample size)
+    var humanBaseline = evoHumanBaseline();
     if (evoShowHuman) {
-      var hy = yScale(EVO_HUMAN_BASELINE);
+      var hy = yScale(humanBaseline);
       parts.push('<line class="evo-human" x1="' + margin.left + '" y1="' + hy + '" x2="' + (margin.left + iw) + '" y2="' + hy + '"/>');
-      parts.push('<text class="evo-human-label" x="' + (margin.left + iw + 6) + '" y="' + (hy + 4) + '">Human ' + Math.round(EVO_HUMAN_BASELINE * 100) + '%</text>');
+      var trapsCount = evoSelectedTraps.length === 0
+        ? allTraps.filter(function (t) { return t.modelTests && t.modelTests.length > 0; }).length
+        : evoSelectedTraps.length;
+      parts.push('<text class="evo-human-label" x="' + (margin.left + iw + 6) + '" y="' + (hy + 4) + '">Human ' + Math.round(humanBaseline * 100) + '%</text>');
+      parts.push('<text class="evo-human-label" x="' + (margin.left + iw + 6) + '" y="' + (hy + 18) + '" style="font-size:9px;font-weight:400;opacity:0.8">(avg of ' + trapsCount + ' trap' + (trapsCount !== 1 ? 's' : '') + ')</text>');
     }
 
     // Trend line: simple OLS through points
